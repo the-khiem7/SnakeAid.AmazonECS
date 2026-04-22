@@ -1,0 +1,1206 @@
+2026-04-22 08:57:52.642Z: Host information
+2026-04-22 08:57:52.642Z: ----------------
+2026-04-22 08:57:52.642Z: OS: Ubuntu 22.04.5 LTS (stable release)
+2026-04-22 08:57:52.642Z: Image details: https://github.com/github/codespaces-host-images/blob/main/README.md
+2026-04-22 08:57:52.642Z: ----------------
+
+=================================================================================
+2026-04-22 08:57:52.642Z: Configuration starting...
+2026-04-22 08:57:52.656Z: Cloning...
+
+=================================================================================
+2026-04-22 08:57:56.600Z: Creating container...
+2026-04-22 08:57:56.645Z: $ devcontainer up --id-label Type=codespaces --workspace-folder /var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer --mount type=bind,source=/.codespaces/agent/mount/cache,target=/vscode --user-data-folder /var/lib/docker/codespacemount/.persistedshare --container-data-folder .vscode-remote/data/Machine --container-system-data-folder /var/vscode-remote --log-level trace --log-format json --update-remote-user-uid-default never --mount-workspace-git-root false --omit-config-remote-env-from-metadata --skip-non-blocking-commands --skip-post-create --config "/var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer/.devcontainer/devcontainer.json" --override-config /root/.codespaces/shared/merged_devcontainer.json --default-user-env-probe loginInteractiveShell --container-session-data-folder /workspaces/.codespaces/.persistedshare/devcontainers-cli/cache --secrets-file /root/.codespaces/shared/user-secrets-envs.json
+2026-04-22 08:57:56.854Z: @devcontainers/cli 0.83.3. Node.js v18.20.8. linux 6.8.0-1044-azure x64.
+2026-04-22 08:57:57.105Z: Resolving Feature dependencies for 'ghcr.io/devcontainers/features/common-utils:2'...
+2026-04-22 08:57:58.063Z: Resolving Feature dependencies for 'ghcr.io/devcontainers/features/git:1'...
+2026-04-22 08:57:58.742Z: Resolving Feature dependencies for 'ghcr.io/devcontainers/features/github-cli:1'...
+2026-04-22 08:58:00.262Z: Files to omit: ''
+2026-04-22 08:58:00.614Z: Files to omit: ''
+2026-04-22 08:58:00.925Z: Files to omit: ''
+2026-04-22 08:58:00.946Z: $ docker buildx build --load --build-arg BUILDKIT_INLINE_CACHE=1 -f /tmp/devcontainercli-root/container-features/0.83.3-1776848277099/Dockerfile-with-features -t vsc-fcaj-hugo-devcontainer-121f57e24be5a35ec41a6b2b584b509fe5ed706a7814052dec1271391380abf9 --target dev_containers_target_stage --build-arg HUGO_VERSION=0.134.3 --build-context dev_containers_feature_content_source=/tmp/devcontainercli-root/container-features/0.83.3-1776848277099 --build-arg _DEV_CONTAINERS_BASE_IMAGE=dev_container_auto_added_stage_label --build-arg _DEV_CONTAINERS_IMAGE_USER=root --build-arg _DEV_CONTAINERS_FEATURE_CONTENT_SOURCE=dev_container_feature_content_temp /var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer/.devcontainer
+2026-04-22 08:58:01.892Z: #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile-with-features
+2026-04-22 08:58:01.897Z: #1 transferring dockerfile: 5.74kB done
+#1 DONE 0.1s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for mcr.microsoft.com/devcontainers/base:ubuntu
+#3 DONE 0.0s
+2026-04-22 08:58:02.030Z: 
+2026-04-22 08:58:02.034Z: #4 [context dev_containers_feature_content_source] load .dockerignore2026-04-22 08:58:02.035Z: 
+2026-04-22 08:58:02.036Z: #4 transferring dev_containers_feature_content_source: 2B done
+#4 DONE 0.0s
+
+#5 [context dev_containers_feature_content_source] load from client
+2026-04-22 08:58:02.172Z: #5 transferring dev_containers_feature_content_source: 106.53kB 0.0s done
+#5 DONE 0.1s
+
+#6 [dev_container_auto_added_stage_label 1/2] FROM mcr.microsoft.com/devcontainers/base:ubuntu
+#6 DONE 0.2s
+2026-04-22 08:58:02.326Z: 
+#7 [dev_container_auto_added_stage_label 2/2] RUN set -eux;     apt-get update;     apt-get install -y --no-install-recommends curl ca-certificates tar;     ARCH="$(dpkg --print-architecture)";     case "${ARCH}" in       amd64) HUGO_ARCH='amd64' ;;       arm64) HUGO_ARCH='arm64' ;;       *) echo "Unsupported architecture: ${ARCH}" >&2; exit 1 ;;     esac;     curl -fsSL "********/gohugoio/hugo/releases/download/v0.134.3/hugo_extended_0.134.3_linux-${HUGO_ARCH}.tar.gz"       | tar -xz -C /usr/local/bin hugo;     apt-get clean;     rm -rf /var/lib/apt/lists/*
+2026-04-22 08:58:03.061Z: #7 0.886 + apt-get update
+2026-04-22 08:58:04.725Z: #7 2.551 Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]2026-04-22 08:58:04.725Z: 
+2026-04-22 08:58:04.928Z: #7 2.604 Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-04-22 08:58:06.049Z: #7 3.874 Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-04-22 08:58:06.357Z: #7 4.182 Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-04-22 08:58:06.511Z: #7 4.186 Get:5 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3479 kB]
+2026-04-22 08:58:06.688Z: #7 4.509 Get:6 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+2026-04-22 08:58:06.890Z: #7 4.564 Get:7 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+2026-04-22 08:58:07.770Z: #7 5.596 Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1497 kB]
+2026-04-22 08:58:08.004Z: #7 5.665 Get:9 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.2 kB]
+#7 5.666 Get:10 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1979 kB]
+2026-04-22 08:58:08.745Z: #7 6.569 Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+2026-04-22 08:58:09.014Z: #7 6.576 Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+#7 6.615 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2141 kB]
+2026-04-22 08:58:09.014Z: #7 6.841 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.0 kB]
+#7 6.841 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2354 kB]
+2026-04-22 08:58:09.173Z: #7 6.849 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3658 kB]
+2026-04-22 08:58:09.700Z: #7 7.468 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+2026-04-22 08:58:09.795Z: #7 7.470 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+#7 7.470 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.6 kB]
+2026-04-22 08:58:09.906Z: #7 7.731 Fetched 37.5 MB in 6s (6325 kB/s)2026-04-22 08:58:09.906Z: 
+#7 7.731 Reading package lists...2026-04-22 08:58:12.651Z: 
+2026-04-22 08:58:12.849Z: #7 10.50 + apt-get install -y --no-install-recommends curl ca-certificates tar
+#7 10.53 Reading package lists...2026-04-22 08:58:13.620Z: 
+2026-04-22 08:58:13.783Z: #7 11.46 Building dependency tree...2026-04-22 08:58:13.820Z: 
+#7 11.65 Reading state information...2026-04-22 08:58:14.001Z: 
+2026-04-22 08:58:14.038Z: #7 11.86 ca-certificates is already the newest version (20240203).2026-04-22 08:58:14.039Z: 
+#7 11.86 tar is already the newest version (1.35+dfsg-3build1).
+#7 11.86 The following additional packages will be installed:
+2026-04-22 08:58:14.230Z: #7 11.87   libcurl3t64-gnutls libcurl4-openssl-dev libcurl4t64
+#7 11.87 Suggested packages:
+2026-04-22 08:58:14.230Z: #7 11.87   libcurl4-doc libidn-dev libkrb5-dev libldap2-dev librtmp-dev libssh2-1-dev
+#7 11.87   pkg-config
+#7 11.91 The following packages will be upgraded:
+#7 11.91   curl libcurl3t64-gnutls libcurl4-openssl-dev libcurl4t64
+2026-04-22 08:58:14.865Z: #7 12.69 4 upgraded, 0 newly installed, 0 to remove and 32 not upgraded.
+#7 12.69 Need to get 1348 kB of archives.
+2026-04-22 08:58:14.867Z: #7 12.69 After this operation, 1024 B of additional disk space will be used.
+#7 12.69 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4-openssl-dev amd64 8.5.0-2ubuntu10.8 [446 kB]
+2026-04-22 08:58:16.304Z: #7 14.13 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.8 [227 kB]
+2026-04-22 08:58:16.536Z: #7 14.21 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.8 [342 kB]
+2026-04-22 08:58:16.567Z: #7 14.40 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl3t64-gnutls amd64 8.5.0-2ubuntu10.8 [334 kB]
+2026-04-22 08:58:17.205Z: #7 15.03 debconf: unable to initialize frontend: Dialog2026-04-22 08:58:17.205Z: 
+#7 15.03 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#7 15.03 debconf: falling back to frontend: Readline
+2026-04-22 08:58:17.344Z: #7 15.04 debconf: unable to initialize frontend: Readline
+#7 15.04 debconf: (This frontend requires a controlling tty.)
+#7 15.04 debconf: falling back to frontend: Teletype
+#7 15.05 dpkg-preconfigure: unable to re-open stdin: 
+#7 15.11 Fetched 1348 kB in 3s (519 kB/s)
+#7 15.17 (Reading database ... 
+2026-04-22 08:58:17.507Z: (Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 2026-04-22 08:58:17.658Z: 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+2026-04-22 08:58:17.659Z: 
+#7 15.49 Preparing to unpack .../libcurl4-openssl-dev_8.5.0-2ubuntu10.8_amd64.deb ...
+
+2026-04-22 08:58:17.818Z: #7 15.49 Unpacking libcurl4-openssl-dev:amd64 (8.5.0-2ubuntu10.8) over (8.5.0-2ubuntu10.7) ...
+
+2026-04-22 08:58:18.097Z: #7 15.92 Preparing to unpack .../curl_8.5.0-2ubuntu10.8_amd64.deb ...
+
+2026-04-22 08:58:18.293Z: #7 15.93 Unpacking curl (8.5.0-2ubuntu10.8) over (8.5.0-2ubuntu10.7) ...
+
+2026-04-22 08:58:18.305Z: #7 16.13 Preparing to unpack .../libcurl4t64_8.5.0-2ubuntu10.8_amd64.deb ...
+
+2026-04-22 08:58:18.467Z: #7 16.14 Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.8) over (8.5.0-2ubuntu10.7) ...
+
+2026-04-22 08:58:18.600Z: #7 16.42 Preparing to unpack .../libcurl3t64-gnutls_8.5.0-2ubuntu10.8_amd64.deb ...
+
+#7 16.42 Unpacking libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.8) over (8.5.0-2ubuntu10.7) ...
+
+2026-04-22 08:58:18.726Z: #7 16.55 Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.8) ...
+
+2026-04-22 08:58:18.903Z: #7 16.56 Setting up libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.8) ...
+
+#7 16.57 Setting up libcurl4-openssl-dev:amd64 (8.5.0-2ubuntu10.8) ...
+
+#7 16.57 Setting up curl (8.5.0-2ubuntu10.8) ...
+
+#7 16.58 Processing triggers for man-db (2.12.0-4build2) ...
+
+2026-04-22 08:58:19.067Z: #7 16.89 Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+
+2026-04-22 08:58:21.059Z: #7 18.89 + dpkg --print-architecture
+2026-04-22 08:58:21.214Z: #7 18.89 + ARCH=amd64
+#7 18.89 + HUGO_ARCH=amd64
+#7 18.89 + tar -xz -C /usr/local/bin hugo
+#7 18.89 + curl -fsSL ********/gohugoio/hugo/releases/download/v0.134.3/hugo_extended_0.134.3_linux-amd64.tar.gz
+2026-04-22 08:58:22.806Z: #7 20.63 + apt-get clean
+2026-04-22 08:58:22.962Z: #7 20.64 + rm -rf /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/auxfiles /var/lib/apt/lists/lock /var/lib/apt/lists/partial /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_InRelease /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_universe_binary-amd64_Packages.lz4
+2026-04-22 08:58:23.890Z: #7 DONE 21.7s
+2026-04-22 08:58:24.148Z: 
+2026-04-22 08:58:24.149Z: #8 [dev_containers_feature_content_normalize 1/2] COPY --from=dev_containers_feature_content_source devcontainer-features.builtin.env /tmp/build-features/
+#8 DONE 0.1s
+
+#9 [dev_containers_feature_content_normalize 2/2] RUN chmod -R 0755 /tmp/build-features/2026-04-22 08:58:24.149Z: 
+2026-04-22 08:58:24.336Z: #9 ...
+
+#10 [dev_containers_target_stage 1/6] RUN mkdir -p /tmp/dev-container-features
+#10 DONE 0.4s
+2026-04-22 08:58:24.506Z: 
+#9 [dev_containers_feature_content_normalize 2/2] RUN chmod -R 0755 /tmp/build-features/
+#9 DONE 0.4s
+
+#11 [dev_containers_target_stage 2/6] COPY --from=dev_containers_feature_content_normalize /tmp/build-features/ /tmp/dev-container-features
+#11 DONE 0.1s
+2026-04-22 08:58:24.664Z: 
+#12 [dev_containers_target_stage 3/6] RUN echo "_CONTAINER_USER_HOME=$( (command -v getent >/dev/null 2>&1 && getent passwd 'root' || grep -E '^root|^[^:]*:[^:]*:root:' /etc/passwd || ********) | cut -d: -f6)" >> /tmp/dev-container-features/devcontainer-features.builtin.env && echo "_REMOTE_USER_HOME=$( (command -v getent >/dev/null 2>&1 && getent passwd 'vscode' || grep -E '^vscode|^[^:]*:[^:]*:vscode:' /etc/passwd || ********) | cut -d: -f6)" >> /tmp/dev-container-features/devcontainer-features.builtin.env
+2026-04-22 08:58:24.865Z: #12 DONE 0.4s2026-04-22 08:58:24.866Z: 
+2026-04-22 08:58:25.040Z: 
+#13 [dev_containers_target_stage 4/6] RUN --mount=type=bind,from=dev_containers_feature_content_source,source=common-utils_0,target=/tmp/build-features-src/common-utils_0     cp -ar /tmp/build-features-src/common-utils_0 /tmp/dev-container-features  && chmod -R 0755 /tmp/dev-container-features/common-utils_0  && cd /tmp/dev-container-features/common-utils_0  && chmod +x ./devcontainer-features-install.sh  && ./devcontainer-features-install.sh  && rm -rf /tmp/dev-container-features/common-utils_0
+2026-04-22 08:58:25.163Z: #13 0.290 ===========================================================================
+#13 0.290 Feature       : Common Utilities
+#13 0.290 Description   : Installs a set of common command line utilities, Oh My Zsh!, and sets up a non-root user.
+#13 0.290 Id            : ghcr.io/devcontainers/features/common-utils
+#13 0.290 Version       : 2.5.7
+#13 0.290 Documentation : ********/devcontainers/features/tree/main/src/common-utils
+#13 0.290 Options       :
+#13 0.290     INSTALLZSH="false"
+#13 0.290     CONFIGUREZSHASDEFAULTSHELL="false"
+#13 0.290     INSTALLOHMYZSH="********"
+#13 0.290     INSTALLOHMYZSHCONFIG="********"
+#13 0.290     UPGRADEPACKAGES="********"
+#13 0.290     USERNAME="vscode"
+#13 0.290     USERUID="automatic"
+#13 0.290     USERGID="automatic"
+#13 0.290     NONFREEPACKAGES="false"
+#13 0.290     INSTALLSSL="********"
+#13 0.290 ===========================================================================
+2026-04-22 08:58:25.374Z: #13 0.306 Marker file found:
+#13 0.337     PACKAGES_ALREADY_INSTALLED=********
+#13 0.337     LOCALE_ALREADY_SET=********
+#13 0.337     EXISTING_NON_ROOT_USER=vscode
+#13 0.337     RC_SNIPPET_ALREADY_ADDED=********
+#13 0.337     ZSH_ALREADY_INSTALLED=********
+#13 0.353 Packages to verify are installed: 
+2026-04-22 08:58:25.707Z: #13 0.837 Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-04-22 08:58:26.299Z: #13 1.429 Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+2026-04-22 08:58:26.847Z: #13 1.977 Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1979 kB]
+2026-04-22 08:58:27.671Z: #13 2.801 Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]2026-04-22 08:58:27.671Z: 
+2026-04-22 08:58:28.012Z: #13 3.141 Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-04-22 08:58:28.238Z: #13 3.368 Get:6 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3479 kB]
+2026-04-22 08:58:28.351Z: #13 3.481 Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+2026-04-22 08:58:28.611Z: #13 3.740 Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1497 kB]
+2026-04-22 08:58:28.883Z: #13 3.840 Get:9 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.2 kB]
+2026-04-22 08:58:29.145Z: #13 4.275 Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+2026-04-22 08:58:29.257Z: #13 4.372 Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]2026-04-22 08:58:29.259Z: 
+#13 4.381 Get:12 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+2026-04-22 08:58:30.435Z: #13 5.564 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2354 kB]
+2026-04-22 08:58:30.589Z: #13 5.717 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2141 kB]
+2026-04-22 08:58:30.689Z: #13 5.817 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [38.0 kB]
+2026-04-22 08:58:30.886Z: #13 5.821 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3658 kB]
+2026-04-22 08:58:30.925Z: #13 6.054 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]2026-04-22 08:58:30.925Z: 
+2026-04-22 08:58:31.078Z: #13 6.056 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+#13 6.057 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.6 kB]
+2026-04-22 08:58:31.455Z: #13 6.585 Fetched 37.5 MB in 6s (6047 kB/s)
+#13 6.585 Reading package lists...2026-04-22 08:58:32.386Z: 
+2026-04-22 08:58:32.938Z: #13 8.067 Reading package lists...2026-04-22 08:58:33.817Z: 
+2026-04-22 08:58:33.986Z: #13 8.964 Building dependency tree...2026-04-22 08:58:34.084Z: 
+2026-04-22 08:58:34.085Z: #13 9.214 Reading state information...2026-04-22 08:58:34.235Z: 
+2026-04-22 08:58:34.342Z: #13 9.470 0 upgraded, 0 newly installed, 0 to remove and 32 not upgraded.
+2026-04-22 08:58:34.583Z: #13 9.478 Reading package lists...2026-04-22 08:58:35.352Z: 
+2026-04-22 08:58:35.519Z: #13 10.50 Building dependency tree...2026-04-22 08:58:35.647Z: 
+#13 10.72 Reading state information...
+2026-04-22 08:58:35.746Z: #13 10.79 Calculating upgrade...
+2026-04-22 08:58:35.936Z: #13 11.06 The following packages will be upgraded:
+#13 11.06   binutils binutils-common binutils-x86-64-linux-gnu bsdextrautils bsdutils
+#13 11.06   coreutils libapparmor1 libbinutils libblkid1 libcap2 libcap2-bin
+2026-04-22 08:58:36.087Z: #13 11.07   libctf-nobfd0 libctf0 libgprofng0 libmount1 libsframe1 libsmartcols1
+#13 11.07   libssh-4 libssl-dev libssl3t64 libsystemd0 libudev1 libuuid1 linux-libc-dev
+#13 11.07   mount openssh-client openssl sudo tzdata util-linux vim-common vim-tiny2026-04-22 08:58:36.088Z: 
+2026-04-22 08:58:36.765Z: #13 11.90 32 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+#13 11.90 Need to get 18.7 MB of archives.
+#13 11.90 After this operation, 104 kB disk space will be freed.
+#13 11.90 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bsdutils amd64 1:2.39.3-9ubuntu6.5 [96.1 kB]
+2026-04-22 08:58:37.694Z: #13 12.82 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 coreutils amd64 9.4-3ubuntu6.2 [1412 kB]
+2026-04-22 08:58:38.707Z: #13 13.84 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 util-linux amd64 2.39.3-9ubuntu6.5 [1128 kB]
+2026-04-22 08:58:38.893Z: #13 14.02 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 mount amd64 2.39.3-9ubuntu6.5 [118 kB]
+2026-04-22 08:58:39.104Z: #13 14.04 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libblkid1 amd64 2.39.3-9ubuntu6.5 [123 kB]
+#13 14.06 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcap2 amd64 1:2.66-5ubuntu2.4 [30.5 kB]
+#13 14.06 Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libmount1 amd64 2.39.3-9ubuntu6.5 [134 kB]
+2026-04-22 08:58:39.104Z: #13 14.07 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsmartcols1 amd64 2.39.3-9ubuntu6.5 [65.8 kB]
+#13 14.08 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl-dev amd64 3.0.13-0ubuntu3.9 [2407 kB]
+2026-04-22 08:58:39.147Z: #13 14.28 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl3t64 amd64 3.0.13-0ubuntu3.9 [1941 kB]
+2026-04-22 08:58:39.248Z: #13 14.38 Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsystemd0 amd64 255.4-1ubuntu8.15 [435 kB]
+2026-04-22 08:58:39.402Z: #13 14.40 Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libudev1 amd64 255.4-1ubuntu8.15 [177 kB]
+#13 14.41 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libuuid1 amd64 2.39.3-9ubuntu6.5 [36.1 kB]
+#13 14.41 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libapparmor1 amd64 4.0.1really4.0.1-0ubuntu0.24.04.6 [51.2 kB]
+#13 14.41 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcap2-bin amd64 1:2.66-5ubuntu2.4 [34.1 kB]
+#13 14.41 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.9 [1002 kB]
+#13 14.53 Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 sudo amd64 1.9.15p5-3ubuntu5.24.04.2 [948 kB]
+2026-04-22 08:58:39.580Z: #13 14.55 Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 tzdata all 2026a-0ubuntu0.24.04.1 [280 kB]
+#13 14.56 Get:19 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 vim-tiny amd64 2:9.1.0016-1ubuntu7.11 [805 kB]
+2026-04-22 08:58:39.633Z: #13 14.76 Get:20 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 vim-common all 2:9.1.0016-1ubuntu7.11 [387 kB]2026-04-22 08:58:39.633Z: 
+2026-04-22 08:58:39.829Z: #13 14.77 Get:21 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bsdextrautils amd64 2.39.3-9ubuntu6.5 [73.7 kB]
+#13 14.77 Get:22 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-client amd64 1:9.6p1-3ubuntu13.15 [906 kB]
+#13 14.78 Get:23 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgprofng0 amd64 2.42-4ubuntu2.10 [849 kB]
+#13 14.80 Get:24 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libctf0 amd64 2.42-4ubuntu2.10 [94.5 kB]
+#13 14.80 Get:25 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libctf-nobfd0 amd64 2.42-4ubuntu2.10 [98.0 kB]
+#13 14.81 Get:26 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 binutils-x86-64-linux-gnu amd64 2.42-4ubuntu2.10 [2463 kB]
+2026-04-22 08:58:39.872Z: #13 15.00 Get:27 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbinutils amd64 2.42-4ubuntu2.10 [577 kB]
+2026-04-22 08:58:40.067Z: #13 15.05 Get:28 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 binutils amd64 2.42-4ubuntu2.10 [18.2 kB]
+#13 15.05 Get:29 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 binutils-common amd64 2.42-4ubuntu2.10 [240 kB]
+2026-04-22 08:58:40.086Z: #13 15.22 Get:30 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsframe1 amd64 2.42-4ubuntu2.10 [15.7 kB]
+2026-04-22 08:58:40.244Z: #13 15.22 Get:31 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-4 amd64 0.10.6-2ubuntu0.4 [190 kB]
+#13 15.22 Get:32 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 linux-libc-dev amd64 6.8.0-110.110 [1587 kB]
+2026-04-22 08:58:42.384Z: #13 17.51 Preconfiguring packages ...
+2026-04-22 08:58:42.530Z: #13 17.65 Fetched 18.7 MB in 4s (4491 kB/s)
+2026-04-22 08:58:42.629Z: #13 17.70 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+2026-04-22 08:58:42.800Z: (Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 17.77 Preparing to unpack .../bsdutils_1%3a2.39.3-9ubuntu6.5_amd64.deb ...
+
+#13 17.78 Unpacking bsdutils (1:2.39.3-9ubuntu6.5) over (1:2.39.3-9ubuntu6.4) ...
+
+2026-04-22 08:58:42.851Z: #13 17.98 Setting up bsdutils (1:2.39.3-9ubuntu6.5) ...
+
+2026-04-22 08:58:43.051Z: #13 18.01 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+2026-04-22 08:58:43.051Z: #13 18.02 Preparing to unpack .../coreutils_9.4-3ubuntu6.2_amd64.deb ...
+
+#13 18.03 Unpacking coreutils (9.4-3ubuntu6.2) over (9.4-3ubuntu6.1) ...
+
+2026-04-22 08:58:43.709Z: #13 18.84 Setting up coreutils (9.4-3ubuntu6.2) ...
+
+2026-04-22 08:58:43.918Z: #13 18.87 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 18.89 Preparing to unpack .../util-linux_2.39.3-9ubuntu6.5_amd64.deb ...
+2026-04-22 08:58:43.918Z: 
+#13 18.90 Unpacking util-linux (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+2026-04-22 08:58:44.227Z: #13 19.36 Setting up util-linux (2.39.3-9ubuntu6.5) ...
+
+2026-04-22 08:58:44.496Z: #13 19.63 (Reading database ... 
+2026-04-22 08:58:44.631Z: (Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 19.64 Preparing to unpack .../mount_2.39.3-9ubuntu6.5_amd64.deb ...
+
+#13 19.64 Unpacking mount (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+#13 19.75 Preparing to unpack .../libblkid1_2.39.3-9ubuntu6.5_amd64.deb ...
+
+2026-04-22 08:58:44.729Z: #13 19.77 Unpacking libblkid1:amd64 (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+#13 19.82 Setting up libblkid1:amd64 (2.39.3-9ubuntu6.5) ...
+
+2026-04-22 08:58:44.730Z: #13 19.86 (Reading database ... 
+2026-04-22 08:58:44.831Z: (Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 19.87 Preparing to unpack .../libcap2_1%3a2.66-5ubuntu2.4_amd64.deb ...
+
+#13 19.88 Unpacking libcap2:amd64 (1:2.66-5ubuntu2.4) over (1:2.66-5ubuntu2.2) ...
+
+#13 19.93 Setting up libcap2:amd64 (1:2.66-5ubuntu2.4) ...
+
+#13 19.96 (Reading database ... 
+2026-04-22 08:58:44.972Z: (Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+2026-04-22 08:58:44.972Z: #13 19.99 Preparing to unpack .../libmount1_2.39.3-9ubuntu6.5_amd64.deb ...
+
+#13 20.02 Unpacking libmount1:amd64 (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+#13 20.10 Setting up libmount1:amd64 (2.39.3-9ubuntu6.5) ...
+
+2026-04-22 08:58:45.103Z: #13 20.15 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+2026-04-22 08:58:45.103Z: 
+#13 20.16 Preparing to unpack .../libsmartcols1_2.39.3-9ubuntu6.5_amd64.deb ...
+2026-04-22 08:58:45.103Z: 
+#13 20.17 Unpacking libsmartcols1:amd64 (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+#13 20.23 Setting up libsmartcols1:amd64 (2.39.3-9ubuntu6.5) ...
+2026-04-22 08:58:45.104Z: 
+2026-04-22 08:58:45.337Z: #13 20.27 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 20.28 Preparing to unpack .../libssl-dev_3.0.13-0ubuntu3.9_amd64.deb ...
+
+2026-04-22 08:58:45.338Z: #13 20.32 Unpacking libssl-dev:amd64 (3.0.13-0ubuntu3.9) over (3.0.13-0ubuntu3.7) ...
+
+2026-04-22 08:58:46.782Z: #13 21.91 Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.9_amd64.deb ...
+
+2026-04-22 08:58:46.969Z: #13 21.95 Unpacking libssl3t64:amd64 (3.0.13-0ubuntu3.9) over (3.0.13-0ubuntu3.7) ...
+
+2026-04-22 08:58:47.078Z: #13 22.21 Setting up libssl3t64:amd64 (3.0.13-0ubuntu3.9) ...
+
+2026-04-22 08:58:47.181Z: #13 22.29 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 22.30 Preparing to unpack .../libsystemd0_255.4-1ubuntu8.15_amd64.deb ...
+
+#13 22.31 Unpacking libsystemd0:amd64 (255.4-1ubuntu8.15) over (255.4-1ubuntu8.12) ...
+
+2026-04-22 08:58:47.293Z: #13 22.39 Setting up libsystemd0:amd64 (255.4-1ubuntu8.15) ...
+
+#13 22.42 (Reading database ... 
+2026-04-22 08:58:47.433Z: (Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+2026-04-22 08:58:47.436Z: 
+#13 22.44 Preparing to unpack .../libudev1_255.4-1ubuntu8.15_amd64.deb ...
+
+#13 22.44 Unpacking libudev1:amd64 (255.4-1ubuntu8.15) over (255.4-1ubuntu8.12) ...
+
+#13 22.50 Setting up libudev1:amd64 (255.4-1ubuntu8.15) ...
+
+#13 22.56 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+2026-04-22 08:58:47.532Z: (Reading database ... 20530 files and directories currently installed.)
+
+#13 22.57 Preparing to unpack .../libuuid1_2.39.3-9ubuntu6.5_amd64.deb ...
+
+#13 22.59 Unpacking libuuid1:amd64 (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+#13 22.66 Setting up libuuid1:amd64 (2.39.3-9ubuntu6.5) ...
+
+2026-04-22 08:58:47.680Z: #13 22.70 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 20530 files and directories currently installed.)
+
+#13 22.71 Preparing to unpack .../00-libapparmor1_4.0.1really4.0.1-0ubuntu0.24.04.6_amd64.deb ...
+
+#13 22.72 Unpacking libapparmor1:amd64 (4.0.1really4.0.1-0ubuntu0.24.04.6) over (4.0.1really4.0.1-0ubuntu0.24.04.5) ...
+
+#13 22.76 Preparing to unpack .../01-libcap2-bin_1%3a2.66-5ubuntu2.4_amd64.deb ...
+
+#13 22.76 Unpacking libcap2-bin (1:2.66-5ubuntu2.4) over (1:2.66-5ubuntu2.2) ...
+
+#13 22.81 Preparing to unpack .../02-openssl_3.0.13-0ubuntu3.9_amd64.deb ...
+
+2026-04-22 08:58:47.835Z: #13 22.81 Unpacking openssl (3.0.13-0ubuntu3.9) over (3.0.13-0ubuntu3.7) ...
+
+2026-04-22 08:58:47.862Z: #13 22.99 Preparing to unpack .../03-sudo_1.9.15p5-3ubuntu5.24.04.2_amd64.deb ...
+
+2026-04-22 08:58:48.025Z: #13 23.00 Unpacking sudo (1.9.15p5-3ubuntu5.24.04.2) over (1.9.15p5-3ubuntu5.24.04.1) ...
+
+2026-04-22 08:58:48.365Z: #13 23.49 Preparing to unpack .../04-tzdata_2026a-0ubuntu0.24.04.1_all.deb ...
+
+2026-04-22 08:58:48.522Z: #13 23.50 Unpacking tzdata (2026a-0ubuntu0.24.04.1) over (2025b-0ubuntu0.24.04.1) ...
+
+2026-04-22 08:58:49.346Z: #13 24.48 Preparing to unpack .../05-vim-tiny_2%3a9.1.0016-1ubuntu7.11_amd64.deb ...
+
+2026-04-22 08:58:49.507Z: #13 24.49 Unpacking vim-tiny (2:9.1.0016-1ubuntu7.11) over (2:9.1.0016-1ubuntu7.9) ...
+
+2026-04-22 08:58:49.683Z: #13 24.81 Preparing to unpack .../06-vim-common_2%3a9.1.0016-1ubuntu7.11_all.deb ...
+
+2026-04-22 08:58:49.840Z: #13 24.82 Unpacking vim-common (2:9.1.0016-1ubuntu7.11) over (2:9.1.0016-1ubuntu7.9) ...
+
+2026-04-22 08:58:50.053Z: #13 25.18 Preparing to unpack .../07-bsdextrautils_2.39.3-9ubuntu6.5_amd64.deb ...
+
+2026-04-22 08:58:50.241Z: #13 25.19 Unpacking bsdextrautils (2.39.3-9ubuntu6.5) over (2.39.3-9ubuntu6.4) ...
+
+2026-04-22 08:58:50.242Z: #13 25.34 Preparing to unpack .../08-openssh-client_1%3a9.6p1-3ubuntu13.15_amd64.deb ...2026-04-22 08:58:50.416Z: 
+
+#13 25.39 Unpacking openssh-client (1:9.6p1-3ubuntu13.15) over (1:9.6p1-3ubuntu13.14) ...
+
+2026-04-22 08:58:50.570Z: #13 25.70 Preparing to unpack .../09-libgprofng0_2.42-4ubuntu2.10_amd64.deb ...
+
+2026-04-22 08:58:50.727Z: #13 25.71 Unpacking libgprofng0:amd64 (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+2026-04-22 08:58:50.843Z: #13 25.96 Preparing to unpack .../10-libctf0_2.42-4ubuntu2.10_amd64.deb ...
+
+2026-04-22 08:58:50.948Z: #13 25.97 Unpacking libctf0:amd64 (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+2026-04-22 08:58:50.949Z: 
+#13 26.03 Preparing to unpack .../11-libctf-nobfd0_2.42-4ubuntu2.10_amd64.deb ...
+
+#13 26.03 Unpacking libctf-nobfd0:amd64 (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+#13 26.08 Preparing to unpack .../12-binutils-x86-64-linux-gnu_2.42-4ubuntu2.10_amd64.deb ...
+
+2026-04-22 08:58:51.107Z: #13 26.09 Unpacking binutils-x86-64-linux-gnu (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+2026-04-22 08:58:52.091Z: #13 27.21 Preparing to unpack .../13-libbinutils_2.42-4ubuntu2.10_amd64.deb ...
+
+#13 27.21 Unpacking libbinutils:amd64 (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+2026-04-22 08:58:52.205Z: #13 27.33 Preparing to unpack .../14-binutils_2.42-4ubuntu2.10_amd64.deb ...
+
+2026-04-22 08:58:52.389Z: #13 27.34 Unpacking binutils (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+#13 27.41 Preparing to unpack .../15-binutils-common_2.42-4ubuntu2.10_amd64.deb ...
+
+#13 27.41 Unpacking binutils-common:amd64 (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+#13 27.52 Preparing to unpack .../16-libsframe1_2.42-4ubuntu2.10_amd64.deb ...
+
+#13 27.52 Unpacking libsframe1:amd64 (2.42-4ubuntu2.10) over (2.42-4ubuntu2.8) ...
+
+2026-04-22 08:58:52.493Z: #13 27.56 Preparing to unpack .../17-libssh-4_0.10.6-2ubuntu0.4_amd64.deb ...
+
+#13 27.57 Unpacking libssh-4:amd64 (0.10.6-2ubuntu0.4) over (0.10.6-2ubuntu0.3) ...
+
+#13 27.62 Preparing to unpack .../18-linux-libc-dev_6.8.0-110.110_amd64.deb ...
+
+2026-04-22 08:58:52.651Z: #13 27.63 Unpacking linux-libc-dev:amd64 (6.8.0-110.110) over (6.8.0-101.101) ...
+
+2026-04-22 08:58:55.040Z: #13 30.16 Setting up libapparmor1:amd64 (4.0.1really4.0.1-0ubuntu0.24.04.6) ...
+
+#13 30.16 Setting up bsdextrautils (2.39.3-9ubuntu6.5) ...
+
+#13 30.16 Setting up openssh-client (1:9.6p1-3ubuntu13.15) ...
+
+2026-04-22 08:58:55.182Z: #13 30.20 Setting up binutils-common:amd64 (2.42-4ubuntu2.10) ...
+
+#13 30.21 Setting up linux-libc-dev:amd64 (6.8.0-110.110) ...
+
+#13 30.21 Setting up libctf-nobfd0:amd64 (2.42-4ubuntu2.10) ...
+
+#13 30.22 Setting up libsframe1:amd64 (2.42-4ubuntu2.10) ...
+
+#13 30.22 Setting up tzdata (2026a-0ubuntu0.24.04.1) ...
+
+#13 30.31 
+
+#13 30.31 Current default time zone: 'Etc/UTC'
+
+2026-04-22 08:58:55.351Z: #13 30.32 Local time is now:      Wed Apr 22 08:58:55 UTC 2026.
+
+#13 30.32 Universal Time is now:  Wed Apr 22 08:58:55 UTC 2026.
+
+#13 30.32 Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+#13 30.32 
+
+#13 30.34 Setting up libcap2-bin (1:2.66-5ubuntu2.4) ...
+
+#13 30.34 Setting up vim-common (2:9.1.0016-1ubuntu7.11) ...
+
+#13 30.35 Setting up libssl-dev:amd64 (3.0.13-0ubuntu3.9) ...
+
+#13 30.36 Setting up sudo (1.9.15p5-3ubuntu5.24.04.2) ...
+
+#13 30.39 Setting up libssh-4:amd64 (0.10.6-2ubuntu0.4) ...
+
+#13 30.43 Setting up mount (2.39.3-9ubuntu6.5) ...
+
+#13 30.43 Setting up libbinutils:amd64 (2.42-4ubuntu2.10) ...
+
+#13 30.43 Setting up openssl (3.0.13-0ubuntu3.9) ...
+
+2026-04-22 08:58:55.413Z: #13 30.47 Setting up libctf0:amd64 (2.42-4ubuntu2.10) ...
+
+2026-04-22 08:58:55.413Z: #13 30.47 Setting up vim-tiny (2:9.1.0016-1ubuntu7.11) ...
+
+#13 30.50 Setting up libgprofng0:amd64 (2.42-4ubuntu2.10) ...
+
+#13 30.51 Setting up binutils-x86-64-linux-gnu (2.42-4ubuntu2.10) ...
+
+#13 30.51 Setting up binutils (2.42-4ubuntu2.10) ...
+
+#13 30.52 Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+
+#13 30.54 Processing triggers for man-db (2.12.0-4build2) ...
+
+2026-04-22 08:58:55.661Z: #13 30.79 Reading package lists...2026-04-22 08:58:56.660Z: 
+2026-04-22 08:58:56.826Z: #13 31.80 Building dependency tree...2026-04-22 08:58:56.884Z: 
+#13 32.01 Reading state information...2026-04-22 08:58:57.034Z: 
+2026-04-22 08:58:57.121Z: #13 32.25 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2026-04-22 08:58:57.362Z: #13 32.30 Done!
+2026-04-22 08:58:57.362Z: #13 DONE 32.3s
+
+#14 [dev_containers_target_stage 5/6] RUN --mount=type=bind,from=dev_containers_feature_content_source,source=git_1,target=/tmp/build-features-src/git_1     cp -ar /tmp/build-features-src/git_1 /tmp/dev-container-features  && chmod -R 0755 /tmp/dev-container-features/git_1  && cd /tmp/dev-container-features/git_1  && chmod +x ./devcontainer-features-install.sh  && ./devcontainer-features-install.sh  && rm -rf /tmp/dev-container-features/git_1
+2026-04-22 08:58:57.651Z: #14 0.439 ===========================================================================2026-04-22 08:58:57.652Z: 
+#14 0.439 Feature       : Git (from source)
+#14 0.439 Description   : Install an up-to-date version of Git, built from source as needed. Useful for when you want the latest and greatest features. Auto-detects latest stable version and installs needed dependencies.
+#14 0.439 Id            : ghcr.io/devcontainers/features/git
+#14 0.439 Version       : 1.3.5
+#14 0.439 Documentation : ********/devcontainers/features/tree/main/src/git
+#14 0.439 Options       :
+#14 0.439     VERSION="os-provided"
+#14 0.439     PPA="********"
+#14 0.439 ===========================================================================
+2026-04-22 08:58:57.857Z: #14 0.647 Detected existing system install: git version 2.53.0
+2026-04-22 08:58:58.029Z: #14 DONE 0.7s
+
+#15 [dev_containers_target_stage 6/6] RUN --mount=type=bind,from=dev_containers_feature_content_source,source=github-cli_2,target=/tmp/build-features-src/github-cli_2     cp -ar /tmp/build-features-src/github-cli_2 /tmp/dev-container-features  && chmod -R 0755 /tmp/dev-container-features/github-cli_2  && cd /tmp/dev-container-features/github-cli_2  && chmod +x ./devcontainer-features-install.sh  && ./devcontainer-features-install.sh  && rm -rf /tmp/dev-container-features/github-cli_2
+2026-04-22 08:58:58.126Z: #15 0.247 ===========================================================================
+#15 0.247 Feature       : GitHub CLI
+#15 0.247 Description   : Installs the GitHub CLI. Auto-detects latest version and installs needed dependencies.
+#15 0.247 Id            : ghcr.io/devcontainers/features/github-cli
+#15 0.247 Version       : 1.1.0
+2026-04-22 08:58:58.128Z: #15 0.247 Documentation : ********/devcontainers/features/tree/main/src/github-cli
+#15 0.247 Options       :
+#15 0.247     VERSION="latest"
+#15 0.247     INSTALLDIRECTLYFROMGITHUBRELEASE="********"
+#15 0.247     EXTENSIONS=""
+#15 0.247 ===========================================================================
+2026-04-22 08:58:58.298Z: #15 0.270 Downloading github CLI...2026-04-22 08:58:58.299Z: 
+2026-04-22 08:58:58.861Z: #15 0.983 CLI_VERSION=2.90.0
+2026-04-22 08:58:59.014Z: #15 0.986 /tmp/ghcli /tmp/dev-container-features/github-cli_2
+2026-04-22 08:58:59.248Z: #15 1.369 
+#15 1.369      0K .2026-04-22 08:58:59.492Z: ....... .....                     100%  277M=0.05s
+#15 1.410 
+#15 1.446 Selecting previously unselected package gh.
+#15 1.459 (Reading database ... 20530 files and directories currently installed.)
+#15 1.460 Preparing to unpack .../gh_2.90.0_linux_amd64.deb ...
+#15 1.462 Unpacking gh (2.90.0) ...
+2026-04-22 08:58:59.594Z: #15 1.716 Setting up gh (2.90.0) ...
+2026-04-22 08:58:59.723Z: #15 1.723 Processing triggers for man-db (2.12.0-4build2) ...
+#15 1.844 /tmp/dev-container-features/github-cli_2
+2026-04-22 08:59:00.265Z: #15 DONE 2.4s
+2026-04-22 08:59:00.436Z: 
+#16 preparing layers for inline cache2026-04-22 08:59:00.436Z: 
+2026-04-22 08:59:06.340Z: #16 DONE 6.1s
+
+#17 exporting to image
+#17 exporting layers
+2026-04-22 08:59:06.374Z: #17 exporting layers done
+#17 writing image sha256:dd1862b8a37e4306c785695fbe0dcfb942d46eec048e828abf99a697f4413577 done
+#17 naming to docker.io/library/vsc-fcaj-hugo-devcontainer-121f57e24be5a35ec41a6b2b584b509fe5ed706a7814052dec1271391380abf9 done
+#17 DONE 0.0s
+2026-04-22 08:59:06.383Z: Stop: Run: docker buildx build --load --build-arg BUILDKIT_INLINE_CACHE=1 -f /tmp/devcontainercli-root/container-features/0.83.3-1776848277099/Dockerfile-with-features -t vsc-fcaj-hugo-devcontainer-121f57e24be5a35ec41a6b2b584b509fe5ed706a7814052dec1271391380abf9 --target dev_containers_target_stage --build-arg HUGO_VERSION=0.134.3 --build-context dev_containers_feature_content_source=/tmp/devcontainercli-root/container-features/0.83.3-1776848277099 --build-arg _DEV_CONTAINERS_BASE_IMAGE=dev_container_auto_added_stage_label --build-arg _DEV_CONTAINERS_IMAGE_USER=root --build-arg _DEV_CONTAINERS_FEATURE_CONTENT_SOURCE=dev_container_feature_content_temp /var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer/.devcontainer
+2026-04-22 08:59:06.395Z: $127.0.0.1 --cap-add sys_nice --network host --entrypoint /bin/sh vsc-fcaj-hugo-devcontainer-121f57e24be5a35ec41a6b2b584b509fe5ed706a7814052dec1271391380abf9 -c echo Container started
+2026-04-22 08:59:06.647Z: Container started
+2026-04-22 08:59:06.935Z: Outcome: success User: vscode WorkspaceFolder: /workspaces/fcaj-hugo-devcontainer
+2026-04-22 08:59:06.941Z: devcontainer process exited with exit code 0
+
+=================================================================================
+2026-04-22 08:59:07.545Z: Running blocking commands...
+2026-04-22 08:59:07.660Z: $ devcontainer up --id-label Type=codespaces --workspace-folder /var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer --mount type=bind,source=/.codespaces/agent/mount/cache,target=/vscode --user-data-folder /var/lib/docker/codespacemount/.persistedshare --container-data-folder .vscode-remote/data/Machine --container-system-data-folder /var/vscode-remote --log-level trace --log-format json --update-remote-user-uid-default never --mount-workspace-git-root false --omit-config-remote-env-from-metadata --skip-non-blocking-commands --expect-existing-container --config "/var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer/.devcontainer/devcontainer.json" --override-config /root/.codespaces/shared/merged_devcontainer.json --default-user-env-probe loginInteractiveShell --container-session-data-folder /workspaces/.codespaces/.persistedshare/devcontainers-cli/cache --secrets-file /root/.codespaces/shared/user-secrets-envs.json
+2026-04-22 08:59:07.913Z: @devcontainers/cli 0.83.3. Node.js v18.20.8. linux 6.8.0-1044-azure x64.
+2026-04-22 08:59:08.456Z: Running the updateContentCommand from devcontainer.json...
+
+2026-04-22 08:59:08.456Z: bash -lc 'set -euo pipefail; git submodule update --init --recursive'
+2026-04-22 08:59:08.723Z: fatal: No url found for submodule path 'public' in .gitmodules
+2026-04-22 08:59:08.733Z: updateContentCommand from devcontainer.json failed with exit code 128. Skipping any further user-provided commands.
+
+2026-04-22 08:59:08.738Z: {"outcome":"error","message":"Command failed: /bin/sh -c bash -lc 'set -euo pipefail; git submodule update --init --recursive'","description":"updateContentCommand from devcontainer.json failed.","containerId":"ecec3139e4e4084db8c940dda6a3e039d4f901bc7df00b01a361fca16bdfa5ed"}
+2026-04-22 08:59:08.739Z: Error: Command failed: /bin/sh -c bash -lc 'set -euo pipefail; git submodule update --init --recursive'
+2026-04-22 08:59:08.739Z:     at Q (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:235:157)
+2026-04-22 08:59:08.739Z:     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-04-22 08:59:08.740Z:     at async Promise.allSettled (index 0)
+2026-04-22 08:59:08.743Z:     at async _q (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:237:119)
+2026-04-22 08:59:08.743Z:     at async qp (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:226:4668)
+2026-04-22 08:59:08.748Z:     at async Tp (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:226:4013)
+2026-04-22 08:59:08.748Z:     at async _p (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:226:3089)
+2026-04-22 08:59:08.750Z:     at async Tg (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:226:2623)
+2026-04-22 08:59:08.750Z:     at async x9 (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:467:1550)
+2026-04-22 08:59:08.751Z:     at async RL (/.codespaces/agent/bin/node_modules/@devcontainers/cli/dist/spec-node/devContainersSpecCLI.js:467:984)
+2026-04-22 08:59:08.757Z: devcontainer process exited with exit code 1
+
+====================================== ERROR ====================================
+2026-04-22 08:59:08.762Z: Failed to create container.
+=================================================================================
+2026-04-22 08:59:08.763Z: Error: Command failed: /bin/sh -c bash -lc 'set -euo pipefail; git submodule update --init --recursive'
+2026-04-22 08:59:08.768Z: Error code: 1302 (UnifiedContainersErrorFatalCreatingContainer)
+
+====================================== ERROR ====================================
+2026-04-22 08:59:08.779Z: Container creation failed.
+=================================================================================
+2026-04-22 08:59:08.871Z: 
+
+===================================== WARNING ===================================
+2026-04-22 08:59:08.873Z: Creating recovery container.
+=================================================================================
+
+=================================================================================
+2026-04-22 08:59:35.690Z: Creating container...
+2026-04-22 08:59:35.720Z: $ devcontainer up --id-label Type=codespaces --workspace-folder /var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer --mount type=bind,source=/.codespaces/agent/mount/cache,target=/vscode --user-data-folder /var/lib/docker/codespacemount/.persistedshare --container-data-folder .vscode-remote/data/Machine --container-system-data-folder /var/vscode-remote --log-level trace --log-format json --update-remote-user-uid-default never --mount-workspace-git-root false --omit-config-remote-env-from-metadata --skip-non-blocking-commands --skip-post-create --config "/var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer/.devcontainer/devcontainer.json" --override-config /root/.codespaces/shared/merged_devcontainer.json --default-user-env-probe loginInteractiveShell --container-session-data-folder /workspaces/.codespaces/.persistedshare/devcontainers-cli/cache --secrets-file /root/.codespaces/shared/user-secrets-envs.json
+2026-04-22 08:59:35.946Z: @devcontainers/cli 0.83.3. Node.js v18.20.8. linux 6.8.0-1044-azure x64.
+2026-04-22 08:59:36.341Z: $alpine -c echo Container started
+2026-04-22 08:59:36.362Z: Unable to find image 'mcr.microsoft.com/devcontainers/base:alpine' locally
+2026-04-22 08:59:36.714Z: alpine: Pulling from devcontainers/base
+2026-04-22 08:59:36.791Z: 
+[1A[2K
+6a0ac1617861: Pulling fs layer 
+[1B
+[1A[2K
+b26adce8d256: Pulling fs layer 
+[1B
+[1A[2K
+badfb3c6cfa4: Pulling fs layer 
+[1B
+[1A[2K
+0978a46db6e7: Pulling fs layer 
+[1B
+[1A[2K
+405a072bb526: Pulling fs layer 
+[1B
+[1A[2K
+d1dc51084bcc: Pulling fs layer 
+[1B
+[1A[2K
+3b9bd5876b41: Pulling fs layer 
+[1B[4A[2K
+0978a46db6e7: Waiting 
+[4B[3A[2K
+405a072bb526: Waiting 
+[3B[2A[2K
+d1dc51084bcc: Waiting 
+[2B[1A[2K
+3b9bd5876b41: Waiting 
+[1B2026-04-22 08:59:36.845Z: [5A[2K
+badfb3c6cfa4: Download complete 
+[5B2026-04-22 08:59:36.862Z: [7A[2K
+2026-04-22 08:59:36.863Z: 6a0ac1617861: Downloading  48.35kB/3.864MB
+[7B2026-04-22 08:59:36.879Z: [7A[2K
+6a0ac1617861: Verifying Checksum 
+[7B2026-04-22 08:59:36.879Z: [7A2026-04-22 08:59:36.879Z: [2K
+6a0ac1617861: Download complete 
+[7B2026-04-22 08:59:36.895Z: [4A[2K2026-04-22 08:59:36.895Z: 
+0978a46db6e7: Downloading     223B/223B
+[4B[4A[2K
+0978a46db6e7: Verifying Checksum 
+[4B[4A[2K
+0978a46db6e7: Download complete 
+[4B2026-04-22 08:59:36.897Z: [7A2026-04-22 08:59:36.898Z: [2K
+6a0ac1617861: Extracting  65.54kB/3.864MB
+[7B2026-04-22 08:59:36.924Z: [6A2026-04-22 08:59:36.927Z: [2K
+b26adce8d256: Downloading     405B/405B
+[6B2026-04-22 08:59:36.928Z: [6A[2K
+b26adce8d256: Verifying Checksum 
+[6B[6A[2K
+b26adce8d256: Download complete 
+[6B2026-04-22 08:59:36.935Z: [3A[2K
+2026-04-22 08:59:36.935Z: 405a072bb526: Downloading     234B/234B
+[3B[3A[2K
+405a072bb526: Verifying Checksum 
+[3B[3A[2K
+405a072bb526: Download complete 
+[3B2026-04-22 08:59:36.966Z: [2A[2K2026-04-22 08:59:36.966Z: 
+d1dc51084bcc: Downloading  538.7kB/55.96MB
+[2B2026-04-22 08:59:36.988Z: [1A[2K
+3b9bd5876b41: Downloading  538.7kB/207.5MB
+[1B2026-04-22 08:59:36.997Z: [7A[2K
+6a0ac1617861: Extracting  524.3kB/3.864MB
+[7B2026-04-22 08:59:37.107Z: [2A[2K
+d1dc51084bcc: Downloading  15.66MB/55.96MB
+[2B[1A[2K
+3b9bd5876b41: Downloading  8.634MB/207.5MB
+[1B[7A[2K
+6a0ac1617861: Extracting  1.245MB/3.864MB
+[7B2026-04-22 08:59:37.173Z: [2A[2K
+d1dc51084bcc: Downloading  24.85MB/55.96MB
+[2B2026-04-22 08:59:37.194Z: [1A[2K
+3b9bd5876b41: Downloading  24.85MB/207.5MB
+[1B2026-04-22 08:59:37.214Z: [7A[2K
+6a0ac1617861: Extracting  1.507MB/3.864MB
+[7B2026-04-22 08:59:37.274Z: [2A[2K
+d1dc51084bcc: Downloading  37.29MB/55.96MB
+[2B2026-04-22 08:59:37.299Z: [1A[2K
+3b9bd5876b41: Downloading  48.64MB/207.5MB
+[1B2026-04-22 08:59:37.319Z: [7A[2K
+6a0ac1617861: Extracting  3.539MB/3.864MB
+[7B2026-04-22 08:59:37.335Z: [7A[2K
+6a0ac1617861: Extracting  3.864MB/3.864MB
+[7B2026-04-22 08:59:37.340Z: [7A[2K2026-04-22 08:59:37.341Z: 
+6a0ac1617861: Extracting  3.864MB/3.864MB
+[7B2026-04-22 08:59:37.381Z: [2A[2K2026-04-22 08:59:37.381Z: 
+d1dc51084bcc: Downloading  54.59MB/55.96MB
+[2B2026-04-22 08:59:37.395Z: [1A[2K2026-04-22 08:59:37.395Z: 
+3b9bd5876b41: Downloading  69.19MB/207.5MB
+[1B2026-04-22 08:59:37.404Z: [2A[2K
+d1dc51084bcc: Verifying Checksum 
+[2B2026-04-22 08:59:37.404Z: [2A[2K2026-04-22 08:59:37.405Z: 
+d1dc51084bcc: Download complete 
+[2B2026-04-22 08:59:37.420Z: [7A[2K
+6a0ac1617861: Pull complete 
+[7B2026-04-22 08:59:37.425Z: [6A[2K
+b26adce8d256: Extracting     405B/405B
+[6B2026-04-22 08:59:37.427Z: [6A[2K
+b26adce8d256: Extracting     405B/405B
+[6B2026-04-22 08:59:37.498Z: [1A[2K
+3b9bd5876b41: 2026-04-22 08:59:37.500Z: Downloading  84.33MB/207.5MB
+[1B2026-04-22 08:59:37.596Z: [1A[2K
+3b9bd5876b41: Downloading  98.39MB/207.5MB
+[1B2026-04-22 08:59:37.700Z: [1A[2K
+3b9bd5876b41: Downloading  107.6MB/207.5MB
+[1B2026-04-22 08:59:37.799Z: [1A[2K
+3b9bd5876b41: Downloading  118.9MB/207.5MB
+[1B2026-04-22 08:59:37.901Z: [1A[2K
+3b9bd5876b41: Downloading    133MB/207.5MB
+2026-04-22 08:59:37.901Z: [1B2026-04-22 08:59:38.001Z: [1A[2K
+3b9bd5876b41: Downloading  149.7MB/207.5MB
+[1B2026-04-22 08:59:38.102Z: [1A[2K
+3b9bd5876b41: 2026-04-22 08:59:38.103Z: Downloading  161.6MB/207.5MB
+[1B2026-04-22 08:59:38.207Z: [1A[2K
+3b9bd5876b41: 2026-04-22 08:59:38.209Z: Downloading  171.9MB/207.5MB
+[1B2026-04-22 08:59:38.310Z: [1A[2K
+3b9bd5876b41: Downloading  187.1MB/207.5MB
+[1B2026-04-22 08:59:38.416Z: [1A[2K
+3b9bd5876b41: Downloading  205.4MB/207.5MB
+[1B2026-04-22 08:59:38.428Z: [1A[2K
+3b9bd5876b41: Verifying Checksum 
+[1B[1A[2K
+3b9bd5876b41: Download complete 
+[1B2026-04-22 08:59:39.690Z: [6A[2K
+b26adce8d256: Pull complete 
+[6B2026-04-22 08:59:39.695Z: [5A[2K
+badfb3c6cfa4: Extracting     134B/134B
+[5B2026-04-22 08:59:39.696Z: [5A[2K
+badfb3c6cfa4: Extracting     134B/134B
+[5B2026-04-22 08:59:41.078Z: [5A[2K
+2026-04-22 08:59:41.079Z: badfb3c6cfa4: Pull complete 
+[5B2026-04-22 08:59:41.083Z: [4A[2K
+0978a46db6e7: Extracting     223B/223B
+[4B2026-04-22 08:59:41.084Z: [4A[2K
+0978a46db6e7: Extracting     223B/223B
+[4B2026-04-22 08:59:41.105Z: [4A[2K
+0978a46db6e7: Pull complete 
+[4B2026-04-22 08:59:41.110Z: [3A[2K
+2026-04-22 08:59:41.110Z: 405a072bb526: Extracting     234B/234B
+[3B2026-04-22 08:59:41.112Z: [3A[2K
+405a072bb526: Extracting     234B/234B
+[3B2026-04-22 08:59:41.128Z: [3A[2K
+405a072bb526: Pull complete 
+[3B2026-04-22 08:59:41.147Z: [2A[2K
+2026-04-22 08:59:41.147Z: d1dc51084bcc: Extracting  557.1kB/55.96MB
+[2B2026-04-22 08:59:41.277Z: [2A[2K
+d1dc51084bcc: Extracting  2.228MB/55.96MB
+[2B2026-04-22 08:59:41.491Z: [2A[2K
+d1dc51084bcc: Extracting  6.128MB/55.96MB
+[2B2026-04-22 08:59:41.724Z: [2A[2K
+d1dc51084bcc: Extracting  6.685MB/55.96MB
+[2B2026-04-22 08:59:41.779Z: [2A[2K
+d1dc51084bcc: Extracting  8.913MB/55.96MB
+[2B2026-04-22 08:59:41.892Z: [2A[2K
+2026-04-22 08:59:41.892Z: d1dc51084bcc: Extracting  12.81MB/55.96MB
+[2B2026-04-22 08:59:42.108Z: [2A[2K
+d1dc51084bcc: Extracting  13.37MB/55.96MB
+[2B2026-04-22 08:59:42.202Z: [2A[2K2026-04-22 08:59:42.203Z: 
+d1dc51084bcc: Extracting  13.93MB/55.96MB
+[2B2026-04-22 08:59:42.312Z: [2A[2K
+2026-04-22 08:59:42.313Z: d1dc51084bcc: Extracting  16.15MB/55.96MB
+[2B2026-04-22 08:59:42.421Z: [2A[2K
+d1dc51084bcc: 2026-04-22 08:59:42.421Z: Extracting  22.28MB/55.96MB
+[2B2026-04-22 08:59:42.530Z: [2A[2K
+d1dc51084bcc: Extracting   27.3MB/55.96MB
+[2B2026-04-22 08:59:42.635Z: [2A[2K
+d1dc51084bcc: Extracting  32.87MB/55.96MB
+[2B2026-04-22 08:59:42.778Z: [2A[2K
+d1dc51084bcc: Extracting  37.32MB/55.96MB
+[2B2026-04-22 08:59:42.861Z: [2A[2K
+d1dc51084bcc: Extracting  38.99MB/55.96MB
+[2B2026-04-22 08:59:43.211Z: [2A[2K
+d1dc51084bcc: Extracting  40.67MB/55.96MB
+[2B2026-04-22 08:59:43.335Z: [2A[2K
+d1dc51084bcc: Extracting  41.78MB/55.96MB
+[2B2026-04-22 08:59:43.558Z: [2A[2K
+d1dc51084bcc: Extracting  42.34MB/55.96MB
+2026-04-22 08:59:43.559Z: [2B2026-04-22 08:59:43.708Z: [2A[2K
+d1dc51084bcc: Extracting  42.89MB/55.96MB
+[2B2026-04-22 08:59:43.901Z: [2A[2K
+d1dc51084bcc: 2026-04-22 08:59:43.902Z: Extracting  43.45MB/55.96MB
+[2B2026-04-22 08:59:43.980Z: [2A2026-04-22 08:59:43.980Z: [2K
+d1dc51084bcc: Extracting  44.56MB/55.96MB
+[2B2026-04-22 08:59:44.086Z: [2A[2K
+d1dc51084bcc: Extracting  47.35MB/55.96MB
+[2B2026-04-22 08:59:44.329Z: [2A[2K
+d1dc51084bcc: Extracting  47.91MB/55.96MB
+[2B2026-04-22 08:59:44.483Z: [2A2026-04-22 08:59:44.483Z: [2K
+d1dc51084bcc: Extracting  50.69MB/55.96MB
+[2B2026-04-22 08:59:44.578Z: [2A[2K
+2026-04-22 08:59:44.579Z: d1dc51084bcc: Extracting  51.25MB/55.96MB
+[2B2026-04-22 08:59:44.853Z: [2A2026-04-22 08:59:44.854Z: [2K
+d1dc51084bcc: Extracting  52.36MB/55.96MB
+[2B2026-04-22 08:59:44.965Z: [2A[2K
+d1dc51084bcc: Extracting  52.92MB/55.96MB
+[2B2026-04-22 08:59:45.100Z: [2A[2K
+d1dc51084bcc: Extracting  53.48MB/55.96MB
+[2B2026-04-22 08:59:45.113Z: [2A[2K
+d1dc51084bcc: Extracting  55.96MB/55.96MB
+[2B2026-04-22 08:59:47.062Z: [2A[2K
+d1dc51084bcc: Pull complete 
+[2B2026-04-22 08:59:47.090Z: [1A[2K
+3b9bd5876b41: Extracting  557.1kB/207.5MB
+[1B2026-04-22 08:59:47.194Z: [1A[2K
+2026-04-22 08:59:47.194Z: 3b9bd5876b41: Extracting  6.685MB/207.5MB
+[1B2026-04-22 08:59:47.301Z: [1A[2K
+3b9bd5876b41: Extracting   9.47MB/207.5MB
+[1B2026-04-22 08:59:47.407Z: [1A[2K
+3b9bd5876b41: Extracting  16.71MB/207.5MB
+[1B2026-04-22 08:59:47.518Z: [1A[2K
+3b9bd5876b41: Extracting  22.28MB/207.5MB
+[1B2026-04-22 08:59:47.678Z: [1A[2K
+3b9bd5876b41: Extracting  25.07MB/207.5MB
+[1B2026-04-22 08:59:47.764Z: [1A[2K
+3b9bd5876b41: Extracting  26.18MB/207.5MB
+[1B2026-04-22 08:59:47.891Z: [1A[2K
+3b9bd5876b41: Extracting  26.74MB/207.5MB
+[1B2026-04-22 08:59:48.038Z: [1A[2K
+3b9bd5876b41: 2026-04-22 08:59:48.038Z: Extracting   27.3MB/207.5MB
+[1B2026-04-22 08:59:48.319Z: [1A2026-04-22 08:59:48.320Z: [2K
+3b9bd5876b41: Extracting  28.41MB/207.5MB
+[1B2026-04-22 08:59:48.436Z: [1A[2K
+2026-04-22 08:59:48.436Z: 3b9bd5876b41: Extracting  31.75MB/207.5MB
+[1B2026-04-22 08:59:48.545Z: [1A[2K2026-04-22 08:59:48.545Z: 
+3b9bd5876b41: Extracting  32.87MB/207.5MB
+[1B2026-04-22 08:59:48.653Z: [1A[2K
+3b9bd5876b41: Extracting  38.99MB/207.5MB
+[1B2026-04-22 08:59:48.758Z: [1A[2K
+3b9bd5876b41: 2026-04-22 08:59:48.758Z: Extracting  44.56MB/207.5MB
+[1B2026-04-22 08:59:48.863Z: [1A[2K
+3b9bd5876b41: Extracting  49.58MB/207.5MB
+[1B2026-04-22 08:59:49.025Z: [1A2026-04-22 08:59:49.025Z: [2K
+3b9bd5876b41: Extracting  53.48MB/207.5MB
+[1B2026-04-22 08:59:49.084Z: [1A[2K
+3b9bd5876b41: Extracting  55.15MB/207.5MB
+[1B2026-04-22 08:59:49.202Z: [1A[2K
+3b9bd5876b41: Extracting  58.49MB/207.5MB
+[1B2026-04-22 08:59:49.330Z: [1A2026-04-22 08:59:49.331Z: [2K
+3b9bd5876b41: Extracting  61.83MB/207.5MB
+[1B2026-04-22 08:59:49.434Z: [1A[2K
+3b9bd5876b41: Extracting   67.4MB/207.5MB
+[1B2026-04-22 08:59:49.537Z: [1A2026-04-22 08:59:49.537Z: [2K
+3b9bd5876b41: Extracting  74.09MB/207.5MB
+[1B2026-04-22 08:59:49.806Z: [1A[2K
+3b9bd5876b41: Extracting   79.1MB/207.5MB
+[1B2026-04-22 08:59:49.857Z: [1A[2K
+3b9bd5876b41: Extracting  82.44MB/207.5MB
+[1B2026-04-22 08:59:49.980Z: [1A[2K
+3b9bd5876b41: Extracting  84.67MB/207.5MB
+[1B2026-04-22 08:59:50.131Z: [1A[2K2026-04-22 08:59:50.131Z: 
+3b9bd5876b41: Extracting  85.79MB/207.5MB
+[1B2026-04-22 08:59:50.245Z: [1A2026-04-22 08:59:50.246Z: [2K
+3b9bd5876b41: Extracting   86.9MB/207.5MB
+[1B2026-04-22 08:59:50.445Z: [1A[2K2026-04-22 08:59:50.451Z: 
+3b9bd5876b41: Extracting  89.69MB/207.5MB
+[1B2026-04-22 08:59:50.479Z: [1A[2K
+3b9bd5876b41: Extracting  93.59MB/207.5MB
+[1B2026-04-22 08:59:50.584Z: [1A2026-04-22 08:59:50.585Z: [2K
+3b9bd5876b41: Extracting  100.3MB/207.5MB
+[1B2026-04-22 08:59:50.687Z: [1A[2K
+3b9bd5876b41: Extracting  105.3MB/207.5MB
+[1B2026-04-22 08:59:50.799Z: [1A[2K
+3b9bd5876b41: Extracting  112.5MB/207.5MB
+2026-04-22 08:59:50.799Z: [1B2026-04-22 08:59:50.902Z: [1A[2K
+3b9bd5876b41: Extracting  115.3MB/207.5MB
+[1B2026-04-22 08:59:50.999Z: [1A[2K
+3b9bd5876b41: Extracting  118.1MB/207.5MB
+[1B2026-04-22 08:59:51.100Z: [1A[2K
+3b9bd5876b41: Extracting  120.3MB/207.5MB
+[1B2026-04-22 08:59:51.201Z: [1A[2K
+3b9bd5876b41: Extracting  126.5MB/207.5MB
+[1B2026-04-22 08:59:51.374Z: [1A[2K
+3b9bd5876b41: Extracting  133.1MB/207.5MB
+[1B2026-04-22 08:59:51.438Z: [1A[2K
+3b9bd5876b41: Extracting    137MB/207.5MB
+[1B2026-04-22 08:59:53.449Z: [1A2026-04-22 08:59:53.449Z: [2K
+3b9bd5876b41: Extracting  140.4MB/207.5MB
+[1B2026-04-22 08:59:53.548Z: [1A[2K
+3b9bd5876b41: 2026-04-22 08:59:53.549Z: Extracting  148.2MB/207.5MB
+[1B2026-04-22 08:59:53.657Z: [1A2026-04-22 08:59:53.659Z: [2K
+3b9bd5876b41: Extracting  154.9MB/207.5MB
+[1B2026-04-22 08:59:53.760Z: [1A[2K
+3b9bd5876b41: Extracting  159.9MB/207.5MB
+[1B2026-04-22 08:59:53.865Z: [1A[2K
+3b9bd5876b41: Extracting  162.1MB/207.5MB
+2026-04-22 08:59:53.865Z: [1B2026-04-22 08:59:53.974Z: [1A[2K
+3b9bd5876b41: Extracting  166.6MB/207.5MB
+[1B2026-04-22 08:59:54.075Z: [1A2026-04-22 08:59:54.075Z: [2K
+3b9bd5876b41: Extracting    171MB/207.5MB
+[1B2026-04-22 08:59:54.189Z: [1A2026-04-22 08:59:54.191Z: [2K
+3b9bd5876b41: Extracting  173.2MB/207.5MB
+[1B2026-04-22 08:59:54.294Z: [1A2026-04-22 08:59:54.295Z: [2K
+3b9bd5876b41: Extracting  178.8MB/207.5MB
+[1B2026-04-22 08:59:54.395Z: [1A[2K
+3b9bd5876b41: Extracting  185.5MB/207.5MB
+[1B2026-04-22 08:59:54.558Z: [1A[2K
+3b9bd5876b41: Extracting  191.6MB/207.5MB
+[1B2026-04-22 08:59:54.602Z: [1A2026-04-22 08:59:54.603Z: [2K
+3b9bd5876b41: Extracting  193.3MB/207.5MB
+[1B2026-04-22 08:59:54.708Z: [1A[2K2026-04-22 08:59:54.709Z: 
+3b9bd5876b41: Extracting  198.3MB/207.5MB
+[1B2026-04-22 08:59:54.829Z: [1A[2K
+3b9bd5876b41: Extracting  198.9MB/207.5MB
+[1B2026-04-22 08:59:54.957Z: [1A2026-04-22 08:59:54.957Z: [2K
+3b9bd5876b41: Extracting    200MB/207.5MB
+[1B2026-04-22 08:59:55.072Z: [1A[2K
+3b9bd5876b41: Extracting  201.1MB/207.5MB
+[1B2026-04-22 08:59:55.175Z: [1A[2K
+3b9bd5876b41: Extracting  202.8MB/207.5MB
+[1B2026-04-22 08:59:55.452Z: [1A[2K
+2026-04-22 08:59:55.452Z: 3b9bd5876b41: Extracting  203.9MB/207.5MB
+[1B2026-04-22 08:59:55.562Z: [1A[2K
+3b9bd5876b41: Extracting    205MB/207.5MB
+[1B2026-04-22 08:59:55.872Z: [1A[2K
+2026-04-22 08:59:55.874Z: 3b9bd5876b41: Extracting  205.6MB/207.5MB
+[1B2026-04-22 08:59:56.037Z: [1A[2K
+3b9bd5876b41: Extracting  206.7MB/207.5MB
+[1B2026-04-22 08:59:56.274Z: [1A[2K2026-04-22 08:59:56.274Z: 
+3b9bd5876b41: Extracting  207.2MB/207.5MB
+[1B2026-04-22 08:59:56.332Z: [1A[2K
+3b9bd5876b41: Extracting  207.5MB/207.5MB
+[1B2026-04-22 09:00:02.115Z: [1A[2K
+3b9bd5876b41: Pull complete 
+[1B2026-04-22 09:00:02.123Z: Digest: sha256:f97c76c14557ae060ece69f2c43dc34455669ff5c7cfc2586f3e252341634b4c
+2026-04-22 09:00:02.127Z: Status: Downloaded newer image for mcr.microsoft.com/devcontainers/base:alpine
+2026-04-22 09:00:02.660Z: Container started
+2026-04-22 09:00:02.857Z: Outcome: success User: vscode WorkspaceFolder: /workspaces/fcaj-hugo-devcontainer
+2026-04-22 09:00:02.864Z: devcontainer process exited with exit code 0
+
+=================================================================================
+2026-04-22 09:00:03.342Z: Running blocking commands...
+2026-04-22 09:00:03.415Z: $ devcontainer up --id-label Type=codespaces --workspace-folder /var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer --mount type=bind,source=/.codespaces/agent/mount/cache,target=/vscode --user-data-folder /var/lib/docker/codespacemount/.persistedshare --container-data-folder .vscode-remote/data/Machine --container-system-data-folder /var/vscode-remote --log-level trace --log-format json --update-remote-user-uid-default never --mount-workspace-git-root false --omit-config-remote-env-from-metadata --skip-non-blocking-commands --expect-existing-container --config "/var/lib/docker/codespacemount/workspace/fcaj-hugo-devcontainer/.devcontainer/devcontainer.json" --override-config /root/.codespaces/shared/merged_devcontainer.json --default-user-env-probe loginInteractiveShell --container-session-data-folder /workspaces/.codespaces/.persistedshare/devcontainers-cli/cache --secrets-file /root/.codespaces/shared/user-secrets-envs.json
+2026-04-22 09:00:03.664Z: @devcontainers/cli 0.83.3. Node.js v18.20.8. linux 6.8.0-1044-azure x64.
+2026-04-22 09:00:04.280Z: Outcome: success User: vscode WorkspaceFolder: /workspaces/fcaj-hugo-devcontainer
+2026-04-22 09:00:04.289Z: devcontainer process exited with exit code 0
+
+=================================================================================
+2026-04-22 09:00:04.304Z: Configuring codespace...
+
+=================================================================================
+2026-04-22 09:00:04.304Z: Finished configuring codespace.
