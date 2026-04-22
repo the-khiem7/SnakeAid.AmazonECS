@@ -36,8 +36,10 @@
         }
       },
       "extensions": [
+        "cweijan.vscode-office",
+        "usernamehw.errorlens",
         "budparr.language-hugo-vscode",
-        "bungcip.better-toml",
+        "tamasfe.even-better-toml",
         "ms-vscode.vscode-markdown-preview",
         "davidanson.vscode-markdownlint",
         "streetsidesoftware.code-spell-checker",
