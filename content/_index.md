@@ -5,6 +5,9 @@ weight: 1
 chapter: false
 ---
 
+# SnakeAid Disaster-Aware 
+# Hybrid Architecture
+
 ## Objectives
 
 Build a **hybrid architecture (self-host + cloud backup)** to:

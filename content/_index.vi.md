@@ -5,6 +5,9 @@ weight: 1
 chapter: false
 ---
 
+# SnakeAid Disaster-Aware 
+# Hybrid Architecture
+
 ## Mục tiêu
 
 Xây dựng một kiến trúc **hybrid (self-host + cloud backup)** nhằm:
