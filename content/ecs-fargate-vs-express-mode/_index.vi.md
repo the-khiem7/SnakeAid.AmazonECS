@@ -1,14 +1,13 @@
 ---
 title: "Vì sao chọn ECS Fargate (Standard) thay vì Express Mode"
 date: 2026-04-22
-weight: 1
+weight: 2
 chapter: false
-pre: " <b> 1.1. </b> "
 ---
 
 ## Kết luận ngắn gọn
 
-👉 Chọn **ECS Fargate (standard)**, không dùng **Express Mode** cho kiến trúc SnakeAid hiện tại.
+Chọn **ECS Fargate (standard)**, không dùng **Express Mode** cho kiến trúc SnakeAid hiện tại.
 
 ---
 

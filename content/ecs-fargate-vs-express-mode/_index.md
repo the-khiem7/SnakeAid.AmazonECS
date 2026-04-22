@@ -1,9 +1,8 @@
 ---
 title: "Why Choose ECS Fargate (Standard) Over Express Mode"
 date: 2026-04-22
-weight: 1
+weight: 2
 chapter: false
-pre: " <b> 1.1. </b> "
 ---
 
 ## Short Answer
