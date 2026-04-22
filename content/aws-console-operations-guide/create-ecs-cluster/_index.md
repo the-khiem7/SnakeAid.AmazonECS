@@ -7,9 +7,9 @@ chapter: false
 
 ## Console Screen
 
-![Create ECS Cluster in AWS Console](/images/aws-console-operations-guide/create-ecs-cluster.png)
+![Create ECS Cluster in AWS Console](/images/aws-console-operations-guide/ECS/1.%20create-cluster/create-ecs-cluster.png)
 
-> Tip: place the screenshot at `static/images/aws-console-operations-guide/create-ecs-cluster.png` so this image renders correctly.
+> Tip: place the screenshot at `static/images/aws-console-operations-guide/ECS/1. create-cluster/create-ecs-cluster.png` so this image renders correctly.
 
 ---
 

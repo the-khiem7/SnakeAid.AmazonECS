@@ -7,9 +7,9 @@ chapter: false
 
 ## Màn hình thao tác
 
-![Create ECS Cluster trên AWS Console](/images/aws-console-operations-guide/create-ecs-cluster.png)
+![Create ECS Cluster trên AWS Console](/images/aws-console-operations-guide/ECS/1.%20create-cluster/create-ecs-cluster.png)
 
-> Gợi ý: đặt ảnh screenshot vào file `static/images/aws-console-operations-guide/create-ecs-cluster.png` để hiển thị đúng.
+> Gợi ý: đặt ảnh screenshot vào file `static/images/aws-console-operations-guide/ECS/1. create-cluster/create-ecs-cluster.png` để hiển thị đúng.
 
 ---
 
