@@ -20,6 +20,7 @@ It should describe how to use Hugo in this repository, not how to reproduce any 
 - This repository uses paired language files:
   - `*.md` for English
   - `*.vi.md` for Vietnamese
+- All `*.vi.md` content must be written in proper Vietnamese with diacritics (dau), not ASCII-only transliteration.
 - Keep both language files in the same folder.
 - When creating a new page, create both language files together.
 - Keep the page purpose, front matter shape, and relative placement aligned across languages.
