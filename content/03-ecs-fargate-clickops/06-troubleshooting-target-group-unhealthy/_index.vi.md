@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-# Khắc phục mục tiêu không khỏe mạnh trong nhóm mục tiêu ECS
-
 Trong quá trình thiết lập thành phần sao lưu đám mây của kiến trúc hybrid chống thảm họa SnakeAid, chúng tôi gặp phải một vấn đề phổ biến khi tích hợp AWS ECS và Application Load Balancer (ALB): các mục tiêu không khỏe mạnh trong nhóm mục tiêu. Bài viết này ghi lại quy trình khắc phục từng bước mà chúng tôi đã thực hiện để giải quyết vấn đề.
 
 Điều quan trọng nhất của ca xử lý này không nằm ở một screenshot riêng lẻ, mà ở thứ tự điều tra: xác nhận task IP đang chạy, gỡ target cũ, kiểm tra security-group path, rồi mới xử lý startup timing qua grace period.

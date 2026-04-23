@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-# Troubleshooting Unhealthy Targets in ECS Target Groups
-
 In the process of setting up the cloud backup component of SnakeAid's disaster-aware hybrid architecture, we encountered a common issue with AWS ECS and Application Load Balancer (ALB) integration: unhealthy targets in the target group. This post documents the step-by-step troubleshooting process we went through to resolve the issue.
 
 The troubleshooting sequence turned out to be more important than any single screenshot: first confirm the live task IP, then remove stale registrations, then verify the security-group path, and finally give the application enough startup time.
