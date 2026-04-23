@@ -29,6 +29,10 @@ Simple mental model:
 Cluster = folder that holds container services
 ```
 
+### Cluster Scope Diagram
+
+![ECS cluster scope diagram](/images/diagrams/create-ecs-cluster/cluster-scope.png)
+
 ---
 
 ## Goal of This Step
@@ -38,6 +42,10 @@ Create a cluster to:
 * run the backup system (API + AI)
 * avoid server management
 * make ALB attachment easier later
+
+### Cluster In Context
+
+![ECS cluster in context diagram](/images/diagrams/create-ecs-cluster/cluster-in-context.png)
 
 ---
 

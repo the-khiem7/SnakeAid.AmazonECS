@@ -34,6 +34,22 @@ It is responsible for:
 * registering tasks into target group
 * integrating with ALB health checks and routing
 
+### Service Orchestration
+
+![ECS service orchestration diagram](/images/diagrams/create-ecs-service/service-orchestration.png)
+
+### ALB Binding
+
+![ECS service ALB binding diagram](/images/diagrams/create-ecs-service/alb-binding.png)
+
+### Rolling Update
+
+![ECS service rolling update diagram](/images/diagrams/create-ecs-service/rolling-update.png)
+
+### Task Network Placement
+
+![ECS service network placement diagram](/images/diagrams/create-ecs-service/network-placement.png)
+
 ---
 
 ## 1. Service details

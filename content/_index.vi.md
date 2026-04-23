@@ -23,6 +23,18 @@ Xây dựng một kiến trúc **hybrid (self-host + cloud backup)** nhằm:
 
 ![Sơ đồ kiến trúc hybrid SnakeAid](/images/architecture/snakeaid-hybrid-architecture-diagram.png)
 
+### Góc nhìn failover traffic
+
+![Sơ đồ failover traffic của SnakeAid](/images/diagrams/overview/traffic-failover.png)
+
+### Hành vi messaging
+
+![Sơ đồ hành vi messaging của SnakeAid](/images/diagrams/overview/messaging-behavior.png)
+
+### Chuỗi chuyển trạng thái khi sự cố
+
+![Sơ đồ chuỗi chuyển trạng thái khi sự cố của SnakeAid](/images/diagrams/overview/failure-sequence.png)
+
 ---
 
 ## Thành phần hệ thống
@@ -109,6 +121,8 @@ Hệ thống sử dụng **2 nguồn queue song song**:
 | Bình thường | Cloudflare -> ZimaOS     |
 | ZimaOS fail | Cloudflare -> ALB -> ECS |
 
+Failover path được tách riêng khỏi normal path để hệ thống cloud có thể giữ vai trò standby cho tới khi thực sự cần.
+
 ---
 
 ### Dual Queue Strategy
@@ -138,6 +152,8 @@ Chỉ sử dụng: Amazon MQ
 
 	* **eventual consistency**
 	* **best-effort delivery**
+
+Diagram messaging ở trên thể hiện rõ RabbitMQ local và Amazon MQ là hai nguồn queue độc lập, không phải cặp được replicate.
 
 ---
 

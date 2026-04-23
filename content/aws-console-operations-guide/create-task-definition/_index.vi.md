@@ -33,6 +33,22 @@ Nó định nghĩa:
 * env
 * CPU / RAM
 
+### Cấu trúc của Task Definition
+
+![Sơ đồ cấu trúc của task definition](/images/diagrams/create-task-definition/task-definition-anatomy.png)
+
+### Task Definition đi vào runtime như thế nào
+
+![Sơ đồ task definition đi vào runtime](/images/diagrams/create-task-definition/task-to-runtime.png)
+
+### Profile task của API và AI
+
+![Sơ đồ profile task của API và AI](/images/diagrams/create-task-definition/task-profiles.png)
+
+### IAM role trong quá trình chạy task
+
+![Sơ đồ IAM role trong quá trình chạy task ECS](/images/diagrams/create-task-definition/iam-roles.png)
+
 ---
 
 ## Kiểm tra điều kiện trước khi làm

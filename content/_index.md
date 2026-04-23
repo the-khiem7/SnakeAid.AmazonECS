@@ -23,6 +23,18 @@ Build a **hybrid architecture (self-host + cloud backup)** to:
 
 ![SnakeAid hybrid architecture diagram](/images/architecture/snakeaid-hybrid-architecture-diagram.png)
 
+### Traffic Failover View
+
+![SnakeAid traffic failover diagram](/images/diagrams/overview/traffic-failover.png)
+
+### Messaging Behavior
+
+![SnakeAid messaging behavior diagram](/images/diagrams/overview/messaging-behavior.png)
+
+### Failure Transition
+
+![SnakeAid failure transition diagram](/images/diagrams/overview/failure-sequence.png)
+
 ---
 
 ## System Components
@@ -109,6 +121,8 @@ The system uses **two queue sources in parallel**:
 | Normal      | Cloudflare -> ZimaOS     |
 | ZimaOS down | Cloudflare -> ALB -> ECS |
 
+The failover path is intentionally separate from the normal path so the cloud backup can stay passive until needed.
+
 ---
 
 ### Dual Queue Strategy
@@ -138,6 +152,8 @@ Use only: Amazon MQ
 
 	* **eventual consistency**
 	* **best-effort delivery**
+
+The messaging diagram above reflects that the local queue and Amazon MQ are two independent sources, not a replicated pair.
 
 ---
 

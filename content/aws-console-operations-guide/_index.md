@@ -19,6 +19,22 @@ This page is a standard scaffold for documenting AWS Console procedures used in 
 
 ---
 
+## AWS Backup Mental Model
+
+### Console Workflow Map
+
+![AWS Console workflow map](/images/diagrams/aws-guide/console-workflow.png)
+
+### Runtime Mental Model
+
+![AWS backup runtime mental model diagram](/images/diagrams/aws-guide/runtime-mental-model.png)
+
+### Resource Dependency
+
+![AWS backup resource dependency diagram](/images/diagrams/aws-guide/resource-dependency.png)
+
+---
+
 ## Prerequisites
 
 * AWS account with appropriate permissions

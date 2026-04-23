@@ -29,6 +29,10 @@ Hiểu đơn giản:
 Cluster = folder chứa các container service
 ```
 
+### Sơ đồ phạm vi của cluster
+
+![Sơ đồ phạm vi của ECS cluster](/images/diagrams/create-ecs-cluster/cluster-scope.png)
+
 ---
 
 ## Mục tiêu của bạn ở bước này
@@ -38,6 +42,10 @@ Tạo một cluster để:
 * chạy backup system (API + AI)
 * không quản lý server
 * dễ attach ALB sau này
+
+### Cluster trong bối cảnh hệ thống
+
+![Sơ đồ cluster trong bối cảnh hệ thống](/images/diagrams/create-ecs-cluster/cluster-in-context.png)
 
 ---
 

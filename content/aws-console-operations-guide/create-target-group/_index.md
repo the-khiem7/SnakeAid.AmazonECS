@@ -23,6 +23,18 @@ Target Group = the backend list ALB forwards requests to
 
 It defines how ALB calls backends: protocol, port, and health checks.
 
+### Health Check Flow
+
+![Target group health check diagram](/images/diagrams/create-target-group/health-check.png)
+
+### ECS Auto Registration
+
+![Target group auto registration diagram](/images/diagrams/create-target-group/auto-registration.png)
+
+### Port Alignment
+
+![Target group port alignment diagram](/images/diagrams/create-target-group/port-alignment.png)
+
 ---
 
 ## Screens by UI Phase

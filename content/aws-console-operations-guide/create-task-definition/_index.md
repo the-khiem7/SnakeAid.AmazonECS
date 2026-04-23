@@ -33,6 +33,22 @@ It defines:
 * env
 * CPU / RAM
 
+### Task Definition Anatomy
+
+![Task definition anatomy diagram](/images/diagrams/create-task-definition/task-definition-anatomy.png)
+
+### Task Definition to Runtime Mapping
+
+![Task definition to runtime mapping diagram](/images/diagrams/create-task-definition/task-to-runtime.png)
+
+### API vs AI Task Profiles
+
+![SnakeAid task profiles diagram](/images/diagrams/create-task-definition/task-profiles.png)
+
+### IAM Roles in Task Execution
+
+![IAM roles in ECS task execution diagram](/images/diagrams/create-task-definition/iam-roles.png)
+
 ---
 
 ## Prerequisite Check

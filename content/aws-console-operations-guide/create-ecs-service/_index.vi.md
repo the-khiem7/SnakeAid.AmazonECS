@@ -34,6 +34,22 @@ Nó chịu trách nhiệm:
 * đăng ký task vào target group
 * phối hợp với ALB để health check và routing
 
+### Cơ chế orchestration của service
+
+![Sơ đồ cơ chế orchestration của ECS service](/images/diagrams/create-ecs-service/service-orchestration.png)
+
+### Bind ALB vào service
+
+![Sơ đồ bind ALB vào ECS service](/images/diagrams/create-ecs-service/alb-binding.png)
+
+### Cập nhật rolling update
+
+![Sơ đồ rolling update của ECS service](/images/diagrams/create-ecs-service/rolling-update.png)
+
+### Vị trí network của task
+
+![Sơ đồ vị trí network của task ECS service](/images/diagrams/create-ecs-service/network-placement.png)
+
 ---
 
 ## 1. Service details

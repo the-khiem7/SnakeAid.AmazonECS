@@ -25,6 +25,18 @@ ALB đóng vai trò:
 
 Lưu ý: ALB không chứa backend, ALB chỉ forward.
 
+### Các thành phần bên trong ALB
+
+![Sơ đồ các thành phần bên trong ALB](/images/diagrams/create-application-load-balancer/alb-components.png)
+
+### Luồng request đi qua ALB
+
+![Sơ đồ luồng request đi qua ALB](/images/diagrams/create-application-load-balancer/request-routing.png)
+
+### Vị trí network của ALB
+
+![Sơ đồ vị trí network của ALB](/images/diagrams/create-application-load-balancer/network-placement.png)
+
 ---
 
 ## Ảnh màn hình theo từng phase
