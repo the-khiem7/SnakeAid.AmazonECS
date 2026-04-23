@@ -119,6 +119,26 @@ Important content goes here.
 5. Add related page-specific assets under `_diagrams/` or another `_`-prefixed support folder if needed.
 6. Run Hugo locally and verify both languages.
 
+## AI Drivent Blog Writing from ClickOps Raw Data
+
+- Organize raw data for blog content in a `raw/` folder at the project root.
+- Structure:
+  ```
+  raw/
+  ├── {operation_number}/  # e.g., 1/, 2/
+  │   ├── {step_letter}/   # e.g., a/, b/
+  │   │   ├── *.png        # Screenshot from AWS console
+  │   │   ├── req.md       # mean for `request` my question to ChatGPT
+  │   │   └── res.md       # mean for `response` the answer or guidance from ChatGPT to my question
+  ```
+- Workflow:
+  # Click Ops with ChatGPT
+  - Screenshot AWS console to ask ChatGPT.
+  - ChatGPT responds with guidance.
+  # Writing blogs
+  - Save screenshots and ChatGPT responses to the appropriate raw/ step folder.
+  - Read raw/ for context to write blogs, creating page bundles in `content/` with assets in `_diagrams/` or similar.
+
 ## Hugo Commands
 
 Run locally:
