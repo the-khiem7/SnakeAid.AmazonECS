@@ -65,6 +65,8 @@ The walkthrough is organized around the core Fargate setup path for SnakeAid:
 
 Supporting topics such as Amazon MQ connectivity and troubleshooting are added where they become operationally relevant.
 
+That means the pages below should be read less like isolated tutorials and more like one continuous deployment path.
+
 ---
 
 ## Child Pages
@@ -73,6 +75,6 @@ Supporting topics such as Amazon MQ connectivity and troubleshooting are added w
 
 ---
 
-## Upcoming Content
+## Reading Note
 
-Detailed procedures will be added incrementally as child pages under this section.
+If you are following the setup for the first time, go in sidebar order. Each page assumes the previous resources already exist.
