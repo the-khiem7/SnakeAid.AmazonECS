@@ -5,213 +5,107 @@ weight: 1
 chapter: false
 ---
 
-# SnakeAid Disaster-Aware 
+# SnakeAid Disaster-Aware
 # Hybrid Architecture
+
+SnakeAid đi theo một mô hình hybrid thực dụng: giữ runtime chính ở self-host, và duy trì AWS như một đường backup khi hệ thống primary không còn khả dụng.
 
 ## Mục tiêu
 
-Xây dựng một kiến trúc **hybrid (self-host + cloud backup)** nhằm:
+* Giữ dịch vụ còn truy cập được khi self-host gặp sự cố
+* Tránh phụ thuộc hoàn toàn vào cloud về cost và control
+* Giữ vận hành gọn và dễ theo dõi
+* Chừa chỗ cho việc nâng cấp dần lên production-grade
 
-* Đảm bảo **dịch vụ luôn sẵn sàng** khi hạ tầng self-host gặp sự cố (mất điện, mất mạng)
-* Giảm phụ thuộc hoàn toàn vào cloud (cost + control)
-* Duy trì hệ thống **lean, dễ vận hành (low ops overhead)**
-* Cho phép mở rộng dần lên production-grade khi cần
+Phần backup trên AWS hiện được triển khai theo hai hướng song song:
 
-Phần cloud backup hiện được định hướng theo hai hướng triển khai:
-
-* **ECS Fargate Classic** để giữ quyền kiểm soát hạ tầng rõ ràng
-* **ECS Express Mode** để rút ngắn thời gian đi tới bản deploy đầu tiên
+* **ECS Fargate Classic** để giữ quyền kiểm soát hạ tầng sâu hơn
+* **ECS Express Mode** để rút ngắn đường đi tới một service chạy được
 
 ---
 
-## Tổng quan kiến trúc
+## Toàn cảnh kiến trúc
+
+Hệ thống xoay quanh một nguyên tắc đơn giản: traffic bình thường đi vào ZimaOS, còn traffic failover có thể chuyển sang AWS khi cần.
 
 ![Sơ đồ kiến trúc hybrid SnakeAid](_diagrams/snakeaid-hybrid-architecture-diagram.png)
 
-### Góc nhìn failover traffic
+---
+
+## Vai trò traffic và runtime
+
+### Luồng chính
+
+Môi trường self-host trên ZimaOS vẫn là runtime chính:
+
+* `snakeaid-api`
+* `snakeai`
+* RabbitMQ local
+* NGINX reverse proxy
+
+### Luồng backup
+
+AWS đóng vai trò môi trường standby:
+
+* ALB là entry point
+* Amazon ECS là compute layer
+* Amazon MQ là nguồn queue cho backup path
 
 ![Sơ đồ failover traffic của SnakeAid](_diagrams/traffic-failover.png)
 
-### Hành vi messaging
+| Trạng thái | Routing |
+| ---------- | ------- |
+| Bình thường | Cloudflare -> ZimaOS |
+| Failover | Cloudflare -> ALB -> ECS |
+
+---
+
+## Chiến lược messaging
+
+SnakeAid không coi RabbitMQ local và Amazon MQ là một cặp replicate. Đây là hai nguồn queue tách biệt, phục vụ cho hai runtime path khác nhau.
+
+* Runtime chính ưu tiên RabbitMQ local
+* Runtime backup dùng Amazon MQ
+* Message pending ở local có thể mất khi failover
+* Vì vậy backend cần idempotent và chấp nhận best-effort recovery
 
 ![Sơ đồ hành vi messaging của SnakeAid](_diagrams/messaging-behavior.png)
 
-### Chuỗi chuyển trạng thái khi sự cố
+---
+
+## Hai hướng triển khai trên AWS
+
+Stack backup hiện được ghi chép theo hai hướng:
+
+* **Fargate Classic**
+  Phù hợp hơn khi cần kiểm soát rõ ALB, target group, networking, và troubleshooting.
+* **Express Mode**
+  Phù hợp hơn khi ưu tiên tốc độ triển khai và ít quyết định hạ tầng hơn.
+
+Hiện tại, luồng hands-on chi tiết vẫn tập trung vào Fargate Classic.
+
+---
+
+## Kiến trúc này đang tối ưu cho điều gì
+
+* Có disaster recovery thực tế mà không phải viết lại toàn bộ hệ thống
+* Tách rõ failover path giữa self-host và cloud
+* Giữ ops nhẹ hơn các platform nặng
+* Có đường đi từ cold standby tới mức resilience cao hơn sau này
 
 ![Sơ đồ chuỗi chuyển trạng thái khi sự cố của SnakeAid](_diagrams/failure-sequence.png)
 
----
-
-## Thành phần hệ thống
-
-### Edge Layer
-
-* **Cloudflare DNS**
-
-	* Domain chính: `api.snakeaid.com`
-	* Routing:
-
-		* Primary -> ZimaOS
-		* Failover -> AWS ALB (manual hoặc tự động trong tương lai)
-
----
-
-### Primary System (ZimaOS)
-
-Hệ thống self-host hiện tại đóng vai trò **runtime chính**:
-
-* **NGINX Reverse Proxy**
-
-	* Routing theo port/subdomain
-* **snakeaid-api (monolith backend)**
-* **snakeai (AI inference service)**
-* **RabbitMQ (local container)**
-
-Ưu điểm:
-
-* latency thấp
-* full control
-* không tốn chi phí cloud
-
----
-
-### Backup System (AWS ECS)
-
-Hệ thống cloud đóng vai trò **standby (active-passive)**
-
-#### Compute:
-
-* **Hướng triển khai Amazon ECS**
-
-	* Hướng 1: `ECS Fargate Classic`
-	* Hướng 2: `ECS Express Mode`
-	* Luồng hands-on chi tiết hiện tại đang tập trung vào Fargate Classic
-
-#### Networking:
-
-* **Application Load Balancer (ALB)**
-
-	* cung cấp endpoint tĩnh
-	* health check
-	* routing
-
-#### Registry:
-
-* Docker Hub (giảm ops overhead)
-
----
-
-### Messaging Layer (Dual RabbitMQ)
-
-Hệ thống sử dụng **2 nguồn queue song song**:
-
-#### Local RabbitMQ
-
-* chạy trong ZimaOS
-* phục vụ primary workload
-
-#### Amazon MQ (RabbitMQ managed)
-
-* phục vụ backup system (ECS)
-* đóng vai trò fallback queue
-
----
-
-## Chiến lược Disaster Awareness
-
-### Active-Passive Failover
-
-| Trạng thái   | Routing                  |
-| ----------- | ------------------------ |
-| Bình thường | Cloudflare -> ZimaOS     |
-| ZimaOS fail | Cloudflare -> ALB -> ECS |
-
-Failover path được tách riêng khỏi normal path để hệ thống cloud có thể giữ vai trò standby cho tới khi thực sự cần.
-
----
-
-### Dual Queue Strategy
-
-#### Primary (ZimaOS):
-
-```text
-Ưu tiên: RabbitMQ local
-Fallback: Amazon MQ
-```
-
-#### Backup (ECS):
-
-```text
-Chỉ sử dụng: Amazon MQ
-```
-
----
-
-### Queue Behavior
-
-* Không có replication giữa 2 queue
-* Khi failover:
-
-	* message pending ở local có thể mất
-* Hệ thống chấp nhận:
-
-	* **eventual consistency**
-	* **best-effort delivery**
-
-Diagram messaging ở trên thể hiện rõ RabbitMQ local và Amazon MQ là hai nguồn queue độc lập, không phải cặp được replicate.
-
----
-
-## Các Trade-offs và Giả định
-
-### Không đồng bộ queue
-
-* RabbitMQ local != Amazon MQ
-* Không đảm bảo giữ toàn bộ message
-
----
-
-### Yêu cầu Idempotency
-
-Backend cần đảm bảo:
-
-* xử lý retry an toàn
-* không tạo side-effect duplicate
-
----
-
-### Cold/Warm Standby
-
-* Cold standby:
-
-	* ECS scale = 0 -> tiết kiệm chi phí
-	* có cold start
-* Warm standby:
-
-	* ECS luôn chạy -> failover nhanh
-
----
-
-### Không High Availability đầy đủ
-
-* không multi-region
-* không auto failover hoàn toàn (giai đoạn hiện tại)
-
----
-
-## Ưu điểm của kiến trúc
-
-* Giảm phụ thuộc cloud (cost + control)
-* Có disaster recovery thực tế
-* Giữ nguyên hệ thống hiện tại (zero rewrite)
-* Ops đơn giản (no Kubernetes, no over-engineering)
-* Có lộ trình scale rõ ràng
+Các giả định hiện tại:
+
+* standby có thể là cold hoặc warm tùy mức chấp nhận chi phí
+* failover chưa tự động hoàn toàn
+* đây chưa phải high availability đa vùng
 
 ---
 
 ## Sơ đồ nội dung
 
-Bộ tài liệu hiện được tách thành ba nhánh chính:
+Bộ tài liệu được tách thành ba nhánh:
 
 1. **So sánh Fargate và Express**
 2. **Hands-on ClickOps cho ECS Fargate**
@@ -221,54 +115,18 @@ Bộ tài liệu hiện được tách thành ba nhánh chính:
 
 ---
 
-## Lộ trình nâng cấp (Future Roadmap)
+## Lộ trình
 
-### Giai đoạn 1 (hiện tại)
+### Gần hạn
 
-* Active-Passive
-* Manual failover
-* Dual RabbitMQ
+* Manual failover với backup path ổn định
+* ECS auto scaling ở những chỗ cần thiết
 
----
+### Về sau
 
-### Giai đoạn 2
-
-* Cloudflare Load Balancer (auto failover)
-* ECS auto scaling
-
----
-
-### Giai đoạn 3
-
-* Message replication (Outbox / Event sourcing)
-* Multi-region deployment
-
----
-
-### Giai đoạn 4
-
-* AI scaling (GPU / SageMaker)
-* Event-driven architecture (Kafka nếu cần)
-
----
-
-## Kết luận
-
-Kiến trúc đề xuất là một hệ thống:
-
-> **Disaster-aware Hybrid Architecture (Self-host + Cloud Backup)**
-
-Nó đạt được sự cân bằng giữa:
-
-* **Reliability** (có backup cloud)
-* **Cost-efficiency** (primary self-host)
-* **Operational simplicity** (không over-engineer)
-
-Phù hợp cho:
-
-* startup stage
-* capstone project
-* hệ thống production quy mô vừa
+* Cloudflare Load Balancer để tự động failover
+* Mẫu message durability tốt hơn
+* Multi-region hoặc AI scaling nâng cao nếu thật sự cần
 
 ---
 
@@ -276,5 +134,5 @@ Phù hợp cho:
 
 ```text
 Cloudflare DNS -> (Primary: ZimaOS + RabbitMQ local)
-							 -> (Backup: ALB -> ECS Fargate + Amazon MQ)
+               -> (Backup: ALB -> ECS + Amazon MQ)
 ```

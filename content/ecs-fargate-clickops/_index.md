@@ -21,17 +21,27 @@ This section documents the manual AWS Console workflow for the **ECS Fargate Cla
 
 ## AWS Deployment Mental Model
 
+Before going step by step in the Console, it helps to keep three views in mind: execution order, runtime shape, and resource dependency.
+
 ### Console Workflow Map
+
+This is the operational order we usually follow in AWS Console. It answers the question: "What should be created first so later resources can attach cleanly?"
 
 ![AWS Console workflow map](_diagrams/console-workflow.png)
 
 ### Runtime Mental Model
 
+This view shifts from setup order to runtime behavior. It shows how traffic reaches the backup stack after the infrastructure has already been created.
+
 ![AWS backup runtime mental model diagram](_diagrams/runtime-mental-model.png)
 
 ### Resource Dependency
 
+This final view is useful when something breaks. It helps trace which resource depends on which upstream configuration, especially around ALB, target groups, services, and health checks.
+
 ![AWS backup resource dependency diagram](_diagrams/resource-dependency.png)
+
+Together, these three diagrams reduce a common source of confusion: the Console flow is not always the same as the runtime flow, and neither is exactly the same as the dependency graph.
 
 ---
 
@@ -43,44 +53,23 @@ This section documents the manual AWS Console workflow for the **ECS Fargate Cla
 
 ---
 
-## Child Page Template
+## What This Series Covers
 
-Each child page should follow this structure:
+The walkthrough is organized around the core Fargate setup path for SnakeAid:
 
-1. **Purpose**
-2. **Required inputs**
-3. **Console steps**
-4. **Expected result**
-5. **Notes / common issues**
-6. **Rollback (if applicable)**
+1. Create the ECS cluster
+2. Define the application tasks
+3. Create the ALB and target groups
+4. Create ECS services and attach traffic
+5. Validate health checks and failover behavior
 
----
-
-## Planned Child Topics
-
-1. Create ECS Cluster (Fargate)
-2. Create Task Definition for `snakeaid-api`
-3. Create Task Definition for `snakeai`
-4. Create ALB and Target Groups
-5. Create ECS Services and attach ALB
-6. Configure Amazon MQ connectivity
-7. Validate health checks and failover
+Supporting topics such as Amazon MQ connectivity and troubleshooting are added where they become operationally relevant.
 
 ---
 
 ## Child Pages
 
 {{% children description="true" /%}}
-
----
-
-## Authoring Notes
-
-* Include Console navigation paths for each step
-* Keep naming conventions consistent across resources
-* Keep raw console captures in `raw/` and treat them as immutable source material
-* Publish focused screenshot crops from each page bundle under `_diagrams/`, preferably as `webp`
-* Reference screenshot assets with page-relative paths so English and Vietnamese pages can reuse the same crop
 
 ---
 

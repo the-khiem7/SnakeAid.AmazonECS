@@ -5,213 +5,107 @@ weight: 1
 chapter: false
 ---
 
-# SnakeAid Disaster-Aware 
+# SnakeAid Disaster-Aware
 # Hybrid Architecture
 
-## Objectives
+SnakeAid follows a practical hybrid model: keep the main runtime on self-hosted infrastructure, and keep AWS as a backup path when the primary system is unavailable.
 
-Build a **hybrid architecture (self-host + cloud backup)** to:
+## Goals
 
-* Ensure **service availability** when self-hosted infrastructure fails (power outage, network outage)
-* Reduce full dependence on cloud (cost + control)
-* Keep the system **lean and easy to operate (low ops overhead)**
-* Allow gradual scaling to production-grade when needed
+* Keep the service reachable during self-host outages
+* Avoid full dependence on cloud cost and control
+* Stay operationally lean
+* Leave room for gradual production hardening
 
-The cloud backup path is being documented along two deployment options:
+The AWS backup track is being explored through two deployment options:
 
-* **ECS Fargate Classic** for explicit infrastructure control
-* **ECS Express Mode** for faster, more opinionated delivery
+* **ECS Fargate Classic** for deeper infrastructure control
+* **ECS Express Mode** for faster, more opinionated setup
 
 ---
 
-## Architecture Overview
+## Architecture at a Glance
+
+The system is built around a simple rule: normal traffic stays on ZimaOS, and failover traffic can be redirected to AWS when needed.
 
 ![SnakeAid hybrid architecture diagram](_diagrams/snakeaid-hybrid-architecture-diagram.png)
 
-### Traffic Failover View
+---
+
+## Traffic and Runtime Roles
+
+### Primary path
+
+The self-hosted environment on ZimaOS remains the main runtime:
+
+* `snakeaid-api`
+* `snakeai`
+* local RabbitMQ
+* NGINX reverse proxy
+
+### Backup path
+
+AWS acts as a standby environment:
+
+* ALB as entry point
+* Amazon ECS as compute layer
+* Amazon MQ as backup queue source
 
 ![SnakeAid traffic failover diagram](_diagrams/traffic-failover.png)
 
-### Messaging Behavior
+| State | Routing |
+| ----- | ------- |
+| Normal | Cloudflare -> ZimaOS |
+| Failover | Cloudflare -> ALB -> ECS |
+
+---
+
+## Messaging Strategy
+
+SnakeAid does not treat local RabbitMQ and Amazon MQ as a replicated pair. They are two separate queue sources serving two different runtime paths.
+
+* Primary runtime prefers local RabbitMQ
+* Backup runtime uses Amazon MQ
+* Pending local messages may be lost during failover
+* The system therefore depends on idempotent consumers and best-effort recovery
 
 ![SnakeAid messaging behavior diagram](_diagrams/messaging-behavior.png)
 
-### Failure Transition
+---
+
+## Deployment Options on AWS
+
+The backup stack is now documented in two parallel directions:
+
+* **Fargate Classic**
+  Best when we need explicit ALB, target group, networking, and troubleshooting control.
+* **Express Mode**
+  Best when we want a faster path to a running service with fewer infrastructure decisions.
+
+For now, the detailed hands-on flow is centered on Fargate Classic.
+
+---
+
+## What This Architecture Optimizes For
+
+* Practical disaster recovery without rewriting the whole system
+* Clear failover separation between self-host and cloud
+* Lower ops burden than a heavier platform approach
+* A path from cold standby toward more automated resilience later
 
 ![SnakeAid failure transition diagram](_diagrams/failure-sequence.png)
 
----
+Current assumptions:
 
-## System Components
-
-### Edge Layer
-
-* **Cloudflare DNS**
-
-	* Primary domain: `api.snakeaid.com`
-	* Routing:
-
-		* Primary -> ZimaOS
-		* Failover -> AWS ALB (manual now, automated in the future)
+* standby may be cold or warm depending on cost tolerance
+* failover is not fully automated yet
+* this is not multi-region high availability
 
 ---
 
-### Primary System (ZimaOS)
+## Documentation Map
 
-The current self-hosted system is the **main runtime**:
-
-* **NGINX Reverse Proxy**
-
-	* Port/subdomain-based routing
-* **snakeaid-api (monolithic backend)**
-* **snakeai (AI inference service)**
-* **RabbitMQ (local container)**
-
-Benefits:
-
-* Low latency
-* Full control
-* No cloud runtime cost
-
----
-
-### Backup System (AWS ECS)
-
-The cloud system serves as **standby (active-passive)**.
-
-#### Compute:
-
-* **Amazon ECS deployment path**
-
-	* Option 1: `ECS Fargate Classic`
-	* Option 2: `ECS Express Mode`
-	* The current detailed hands-on flow is centered on Fargate Classic
-
-#### Networking:
-
-* **Application Load Balancer (ALB)**
-
-	* Provides a stable endpoint
-	* Health checks
-	* Routing
-
-#### Registry:
-
-* Docker Hub (reduced ops overhead)
-
----
-
-### Messaging Layer (Dual RabbitMQ)
-
-The system uses **two queue sources in parallel**:
-
-#### Local RabbitMQ
-
-* Runs on ZimaOS
-* Serves primary workload
-
-#### Amazon MQ (RabbitMQ managed)
-
-* Serves backup system (ECS)
-* Acts as fallback queue
-
----
-
-## Disaster Awareness Strategy
-
-### Active-Passive Failover
-
-| State       | Routing                  |
-| ----------- | ------------------------ |
-| Normal      | Cloudflare -> ZimaOS     |
-| ZimaOS down | Cloudflare -> ALB -> ECS |
-
-The failover path is intentionally separate from the normal path so the cloud backup can stay passive until needed.
-
----
-
-### Dual Queue Strategy
-
-#### Primary (ZimaOS):
-
-```text
-Priority: local RabbitMQ
-Fallback: Amazon MQ
-```
-
-#### Backup (ECS):
-
-```text
-Use only: Amazon MQ
-```
-
----
-
-### Queue Behavior
-
-* There is no replication between the two queues
-* During failover:
-
-	* Pending local messages may be lost
-* The system accepts:
-
-	* **eventual consistency**
-	* **best-effort delivery**
-
-The messaging diagram above reflects that the local queue and Amazon MQ are two independent sources, not a replicated pair.
-
----
-
-## Trade-offs and Assumptions
-
-### Queue Non-Synchronization
-
-* Local RabbitMQ != Amazon MQ
-* Full message retention is not guaranteed
-
----
-
-### Idempotency Requirement
-
-The backend must ensure:
-
-* Safe retry handling
-* No duplicate side effects
-
----
-
-### Cold/Warm Standby
-
-* Cold standby:
-
-	* ECS scale = 0 -> cost saving
-	* Includes cold start time
-* Warm standby:
-
-	* ECS always running -> faster failover
-
----
-
-### Not Full High Availability Yet
-
-* No multi-region deployment
-* No fully automated failover (at current stage)
-
----
-
-## Architecture Advantages
-
-* Reduced cloud dependence (cost + control)
-* Practical disaster recovery path
-* Preserves existing system (zero rewrite)
-* Simple operations (no Kubernetes, no over-engineering)
-* Clear scaling roadmap
-
----
-
-## Content Map
-
-This documentation is organized into three main tracks:
+This documentation is organized into three tracks:
 
 1. **Fargate vs Express**
 2. **Hands-on ClickOps for ECS Fargate**
@@ -221,54 +115,18 @@ This documentation is organized into three main tracks:
 
 ---
 
-## Future Roadmap
+## Roadmap
 
-### Phase 1 (current)
+### Near term
 
-* Active-passive
-* Manual failover
-* Dual RabbitMQ
+* Manual failover with a stable backup path
+* ECS auto scaling where needed
 
----
+### Later
 
-### Phase 2
-
-* Cloudflare Load Balancer (auto failover)
-* ECS auto scaling
-
----
-
-### Phase 3
-
-* Message replication (Outbox / Event sourcing)
-* Multi-region deployment
-
----
-
-### Phase 4
-
-* AI scaling (GPU / SageMaker)
-* Event-driven architecture (Kafka if needed)
-
----
-
-## Conclusion
-
-The proposed architecture is a:
-
-> **Disaster-aware Hybrid Architecture (Self-host + Cloud Backup)**
-
-It balances:
-
-* **Reliability** (cloud backup available)
-* **Cost-efficiency** (self-hosted primary)
-* **Operational simplicity** (no over-engineering)
-
-It is suitable for:
-
-* Startup stage
-* Capstone project
-* Medium-scale production systems
+* Cloudflare Load Balancer for automated failover
+* Better message durability patterns
+* Multi-region or more advanced AI scaling only if justified
 
 ---
 
@@ -276,5 +134,5 @@ It is suitable for:
 
 ```text
 Cloudflare DNS -> (Primary: ZimaOS + local RabbitMQ)
-							 -> (Backup: ALB -> ECS Fargate + Amazon MQ)
+               -> (Backup: ALB -> ECS + Amazon MQ)
 ```
