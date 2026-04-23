@@ -23,11 +23,7 @@ Trong Amazon Elastic Container Service:
 * Không tốn tiền trực tiếp
 * Chỉ là nơi "gom" các service lại
 
-Hiểu đơn giản:
-
-```text
-Cluster = folder chứa các container service
-```
+Cách hiểu dễ nhất là: cluster là ranh giới runtime để chứa service và task, chứ không phải chính phần compute.
 
 ### Sơ đồ phạm vi của cluster
 
@@ -95,14 +91,14 @@ Fargate only
 
 ### Giải thích dễ hiểu
 
-```text
-Fargate = "Docker nhưng AWS lo hết phần máy"
-```
+Fargate là chế độ bạn chỉ khai báo cấu hình container, còn AWS lo phần máy phía dưới.
 
 Bạn chỉ cần:
 
 * image
 * RAM / CPU
+
+![Sơ đồ các quyết định tối thiểu thực sự quan trọng khi tạo cluster này](_diagrams/cluster-creation-minimum.png)
 
 ---
 
@@ -204,19 +200,6 @@ Skip
 
 ## Final cấu hình
 
-```text
-Cluster name: snakeaid-backup-cluster
-
-Infrastructure:
-  Fargate only
-
-Monitoring:
-  Turned off
-
-Các phần khác:
-  default / skip
-```
-
 Bấm **Create**.
 
 ## Kết quả mong đợi
@@ -229,23 +212,12 @@ Sau khi tạo xong, danh sách cluster trong ECS cần hiển thị `snakeaid-ba
 
 ## Sau bước này bạn có gì?
 
-Bạn đã có:
-
-```text
-1 ECS Cluster (rỗng)
-```
-
-Chưa chạy gì cả.
+Bạn đã có một ECS cluster rỗng sẵn sàng để nhận service về sau. Ở thời điểm này vẫn chưa có workload nào chạy.
 
 ---
 
 ## Bước tiếp theo (quan trọng hơn)
-
-```text
-1. Tạo Task Definition (container config)
-2. Tạo ALB
-3. Tạo ECS Service
-```
+Sau đây mới là các resource thật sự quyết định hành vi runtime: task definition, đường ALB, rồi tới ECS service.
 
 ---
 
@@ -256,16 +228,10 @@ Rất nhiều người mới bị nhầm:
 > "Cluster là thứ quan trọng nhất"
 
 Sai. Thực tế:
-
-```text
-Cluster = chỉ là container holder
-Quan trọng thật = Task + Service + ALB
-```
+Cluster chủ yếu chỉ là nơi chứa. Phần quyết định hành vi thật sự nằm ở Task Definition, Service, và ALB khi chúng đi cùng nhau.
 
 ---
 
 ## TL;DR
 
-```text
-Tạo cluster = đặt tên + chọn Fargate + tắt monitoring -> Create
-```
+Đặt tên, chọn Fargate, tắt monitoring ở giai đoạn hiện tại, rồi tạo cluster.

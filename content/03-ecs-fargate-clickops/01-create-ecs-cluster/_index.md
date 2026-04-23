@@ -23,11 +23,7 @@ In Amazon Elastic Container Service:
 * It does not cost money directly
 * It is mainly where services are grouped
 
-Simple mental model:
-
-```text
-Cluster = folder that holds container services
-```
+The easiest mental model is: a cluster is the runtime boundary that holds services and tasks, not the compute itself.
 
 ### Cluster Scope Diagram
 
@@ -95,14 +91,14 @@ Fargate only
 
 ### Easy explanation
 
-```text
-Fargate = "Docker while AWS handles the machines"
-```
+Fargate is the mode where you define the container settings, and AWS takes care of the underlying machines.
 
 You only define:
 
 * image
 * RAM / CPU
+
+![Diagram showing the minimum decisions that matter when creating this cluster](_diagrams/cluster-creation-minimum.png)
 
 ---
 
@@ -205,19 +201,6 @@ Skip
 
 ## Final Configuration
 
-```text
-Cluster name: snakeaid-backup-cluster
-
-Infrastructure:
-  Fargate only
-
-Monitoring:
-  Turned off
-
-Other sections:
-  default / skip
-```
-
 Click **Create**.
 
 ## Expected Result
@@ -230,23 +213,12 @@ After the cluster is created, the ECS clusters list should show `snakeaid-backup
 
 ## What You Get After This Step
 
-You will have:
-
-```text
-1 empty ECS Cluster
-```
-
-No workloads are running yet.
+You will have one empty ECS cluster ready to receive services later. No workload is running yet.
 
 ---
 
 ## Next Step (more important)
-
-```text
-1. Create Task Definition (container config)
-2. Create ALB
-3. Create ECS Service
-```
+From here, the meaningful resources come next: task definitions, the load balancer path, and then ECS services.
 
 ---
 
@@ -257,16 +229,10 @@ Many beginners think:
 > "Cluster is the most important thing"
 
 Not exactly. In practice:
-
-```text
-Cluster = just a container holder
-Real core = Task + Service + ALB
-```
+The cluster is mainly the holder. The real runtime behavior comes from Task Definition, Service, and ALB working together.
 
 ---
 
 ## TL;DR
 
-```text
-Create cluster = set name + choose Fargate + turn off monitoring -> Create
-```
+Set the name, choose Fargate, keep monitoring off for now, and create the cluster.

@@ -6,6 +6,7 @@ from pathlib import Path
 from diagrams import Cluster
 from diagrams.aws.compute import ElasticContainerServiceService, Fargate
 from diagrams.aws.integration import MQ
+from diagrams.aws.management import Cloudwatch
 from diagrams.aws.network import ALB
 
 
@@ -47,9 +48,21 @@ def generate_cluster_in_context_diagram() -> None:
     render_bundle_diagram(BUNDLE_DIR, "cluster-in-context.png", builder)
 
 
+def generate_cluster_creation_minimum_diagram() -> None:
+    def builder() -> None:
+        cluster = ElasticContainerServiceService("Create Cluster")
+        runtime = Fargate("Fargate only")
+        monitor = Cloudwatch("Monitoring off\nfor now")
+        cluster >> runtime
+        cluster >> monitor
+
+    render_bundle_diagram(BUNDLE_DIR, "cluster-creation-minimum.png", builder)
+
+
 def main() -> None:
     generate_cluster_scope_diagram()
     generate_cluster_in_context_diagram()
+    generate_cluster_creation_minimum_diagram()
 
 
 if __name__ == "__main__":
