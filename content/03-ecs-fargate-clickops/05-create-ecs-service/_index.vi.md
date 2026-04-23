@@ -9,9 +9,7 @@ chapter: false
 
 Đây là bước orchestration chính của ECS:
 
-```text
-Run task + attach vào ALB + tự heal + scale
-```
+![Sơ đồ cơ chế orchestration của ECS service](_diagrams/service-orchestration.png)
 
 ---
 
@@ -40,6 +38,8 @@ Nó chịu trách nhiệm:
 * đăng ký task vào target group
 * phối hợp với ALB để health check và routing
 
+Điểm thay đổi lớn nhất ở bước này là các resource tạo trước đó thôi không còn đứng riêng lẻ nữa, mà bắt đầu vận hành như một đường service hoàn chỉnh.
+
 ### Cơ chế orchestration của service
 
 ![Sơ đồ cơ chế orchestration của ECS service](_diagrams/service-orchestration.png)
@@ -56,25 +56,7 @@ Nó chịu trách nhiệm:
 
 ![Sơ đồ vị trí network của task ECS service](_diagrams/network-placement.png)
 
----
-
-## Ảnh theo từng cụm thao tác
-
-### Cụm 1: Service details và environment
-
-![Màn hình tạo service hiển thị task definition, service name, cluster và capacity provider](_diagrams/ecs-service-details.webp)
-
-### Cụm 2: Deployment configuration
-
-![Màn hình tạo service hiển thị replica scheduling và thiết lập rolling update](_diagrams/ecs-service-deployment-configuration.webp)
-
-### Cụm 3: Networking
-
-![Màn hình tạo service hiển thị VPC, subnet, security group và tùy chọn public IP](_diagrams/ecs-service-networking.webp)
-
-### Cụm 4: Load balancing
-
-![Màn hình tạo service hiển thị ALB, target group, listener rule và container port mapping](_diagrams/ecs-service-load-balancing.webp)
+Bốn diagram này ghép lại để giải thích ECS Service thực sự thêm gì vào trên nền Task Definition: orchestration, bind ALB, rollout behavior, và task placement.
 
 ---
 
@@ -104,6 +86,8 @@ Cluster: snakeaid-backup-cluster
 ```
 
 Cluster là runtime environment chứa service và task.
+
+Service chính là lớp controller nằm giữa task definition và các task đang chạy thật.
 
 ---
 
@@ -136,6 +120,8 @@ Max: 200%
 
 Khi deploy revision mới, ECS tạo task mới, pass health check rồi mới thay task cũ.
 
+![Sơ đồ rolling update của ECS service](_diagrams/rolling-update.png)
+
 ![Phần deployment configuration hiển thị replica scheduling, desired tasks và ngưỡng rolling update](_diagrams/ecs-service-deployment-configuration.webp)
 
 ---
@@ -155,6 +141,8 @@ Public IP: Enabled
 
 * task Fargate có public IP (dễ test)
 * production nên ưu tiên private subnet cho task và giữ ALB public
+
+![Sơ đồ vị trí network của task ECS service](_diagrams/network-placement.png)
 
 ![Phần networking hiển thị default VPC, hai subnet, default security group và public IP bật](_diagrams/ecs-service-networking.webp)
 
@@ -199,12 +187,6 @@ Container: snakeaid-api
 Port: 8080
 ```
 
-Mapping tổng quát:
-
-```text
-ALB:80 -> Target Group -> Container:8080
-```
-
 ### Health check
 
 ```text
@@ -213,6 +195,8 @@ Protocol: HTTP
 ```
 
 Nếu health check fail, task sẽ bị thay thế theo cơ chế tự heal.
+
+![Sơ đồ bind ALB vào ECS service](_diagrams/alb-binding.png)
 
 ![Phần load balancing hiển thị ALB có sẵn, target group, listener rule và port 8080 của container](_diagrams/ecs-service-load-balancing.webp)
 
@@ -242,16 +226,7 @@ Không ảnh hưởng runtime, có thể điền sau.
 
 ## Bức tranh kiến trúc sau bước này
 
-```text
-Internet
-  -> ALB (snakeaid-alb)
-  -> Listener :80
-  -> Rule "/"
-  -> Target Group (snakeaid-api-tg)
-  -> ECS Service
-  -> Fargate Task
-  -> Container (8080)
-```
+![Sơ đồ runtime stack sau khi ECS service được tạo](_diagrams/service-runtime-stack.png)
 
 ---
 
@@ -266,10 +241,7 @@ Internet
 
 ## TL;DR
 
-```text
-Use existing ALB + existing Target Group + đúng container port
-=> ECS Service sẽ bind traffic đúng luồng
-```
+Hãy dùng ALB có sẵn, target group có sẵn, và đúng container port để ECS có thể nạp các target healthy vào đúng traffic path.
 
 ---
 

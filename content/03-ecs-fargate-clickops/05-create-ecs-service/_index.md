@@ -9,9 +9,7 @@ chapter: false
 
 This is the core ECS orchestration step:
 
-```text
-Run tasks + attach to ALB + auto-heal + scale
-```
+![ECS service orchestration diagram](_diagrams/service-orchestration.png)
 
 ---
 
@@ -40,6 +38,8 @@ It is responsible for:
 * registering tasks into target group
 * integrating with ALB health checks and routing
 
+The main shift at this step is that earlier resources stop being isolated pieces and start behaving like one running service path.
+
 ### Service Orchestration
 
 ![ECS service orchestration diagram](_diagrams/service-orchestration.png)
@@ -56,25 +56,7 @@ It is responsible for:
 
 ![ECS service network placement diagram](_diagrams/network-placement.png)
 
----
-
-## Screens by UI Phase
-
-### Phase 1: Service details and environment
-
-![Service creation screen showing the task definition family, service name, cluster, and capacity provider](_diagrams/ecs-service-details.webp)
-
-### Phase 2: Deployment configuration
-
-![Service creation screen showing replica scheduling and rolling update settings](_diagrams/ecs-service-deployment-configuration.webp)
-
-### Phase 3: Networking
-
-![Service creation screen showing the selected VPC, subnets, security group, and public IP setting](_diagrams/ecs-service-networking.webp)
-
-### Phase 4: Load balancing
-
-![Service creation screen showing the selected ALB, target group, listener rule, and container port mapping](_diagrams/ecs-service-load-balancing.webp)
+Together, these four diagrams explain what ECS Service adds on top of Task Definition: orchestration, ALB attachment, rollout behavior, and task placement.
 
 ---
 
@@ -104,6 +86,8 @@ Cluster: snakeaid-backup-cluster
 ```
 
 Cluster is the runtime environment where services and tasks run.
+
+The service itself is the controller layer that sits between the task definition and actual running tasks.
 
 ---
 
@@ -136,6 +120,8 @@ Max: 200%
 
 On new revision, ECS starts new tasks, waits for health checks, then replaces old tasks.
 
+![ECS service rolling update diagram](_diagrams/rolling-update.png)
+
 ![Deployment configuration showing replica scheduling, desired tasks, and rolling update thresholds](_diagrams/ecs-service-deployment-configuration.webp)
 
 ---
@@ -155,6 +141,8 @@ Practical meaning:
 
 * Fargate task receives public IP (easy for testing)
 * for production, prefer private subnets for tasks and keep ALB public
+
+![ECS service network placement diagram](_diagrams/network-placement.png)
 
 ![Networking section showing default VPC, two subnets, default security group, and public IP enabled](_diagrams/ecs-service-networking.webp)
 
@@ -199,12 +187,6 @@ Container: snakeaid-api
 Port: 8080
 ```
 
-End-to-end mapping:
-
-```text
-ALB:80 -> Target Group -> Container:8080
-```
-
 ### Health check
 
 ```text
@@ -213,6 +195,8 @@ Protocol: HTTP
 ```
 
 If health checks fail, ECS replaces unhealthy tasks automatically.
+
+![ECS service ALB binding diagram](_diagrams/alb-binding.png)
 
 ![Load balancing section showing existing ALB, target group, listener rule, and container port 8080](_diagrams/ecs-service-load-balancing.webp)
 
@@ -242,16 +226,7 @@ No runtime impact. You can fill later.
 
 ## Architecture after this step
 
-```text
-Internet
-  -> ALB (snakeaid-alb)
-  -> Listener :80
-  -> Rule "/"
-  -> Target Group (snakeaid-api-tg)
-  -> ECS Service
-  -> Fargate Task
-  -> Container (8080)
-```
+![Diagram showing the runtime stack after the ECS service is created](_diagrams/service-runtime-stack.png)
 
 ---
 
@@ -266,10 +241,7 @@ Internet
 
 ## TL;DR
 
-```text
-Use existing ALB + existing Target Group + correct container port
-=> ECS Service binds traffic correctly
-```
+Use the existing ALB, the existing target group, and the correct container port so ECS can supply healthy running targets into the traffic path.
 
 ---
 

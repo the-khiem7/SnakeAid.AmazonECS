@@ -72,11 +72,24 @@ def generate_network_placement_diagram() -> None:
     render_bundle_diagram(BUNDLE_DIR, "network-placement.png", builder)
 
 
+def generate_service_runtime_stack_diagram() -> None:
+    def builder() -> None:
+        alb = ALB("snakeaid-alb\n:80")
+        target_group = Endpoint("snakeaid-api-tg")
+        service = ElasticContainerServiceService("snakeaid-api-service")
+        task = Fargate("Fargate task")
+        container = Docker("Container\n:8080")
+        alb >> target_group >> service >> task >> container
+
+    render_bundle_diagram(BUNDLE_DIR, "service-runtime-stack.png", builder)
+
+
 def main() -> None:
     generate_service_orchestration_diagram()
     generate_alb_binding_diagram()
     generate_rolling_update_diagram()
     generate_network_placement_diagram()
+    generate_service_runtime_stack_diagram()
 
 
 if __name__ == "__main__":
