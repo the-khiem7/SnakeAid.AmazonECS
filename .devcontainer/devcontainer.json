@@ -48,6 +48,6 @@
       ]
     }
   },
-  "postCreateCommand": "hugo version",
+  "postCreateCommand": "bash -lc 'set -euo pipefail; hugo version; python --version; python -c \"import diagrams; print(diagrams.__file__)\"; dot -V'",
   "remoteUser": "vscode"
 }
