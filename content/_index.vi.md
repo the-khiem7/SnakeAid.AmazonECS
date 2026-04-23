@@ -21,19 +21,19 @@ Xây dựng một kiến trúc **hybrid (self-host + cloud backup)** nhằm:
 
 ## Tổng quan kiến trúc
 
-![Sơ đồ kiến trúc hybrid SnakeAid](/images/architecture/snakeaid-hybrid-architecture-diagram.png)
+![Sơ đồ kiến trúc hybrid SnakeAid](_diagrams/snakeaid-hybrid-architecture-diagram.png)
 
 ### Góc nhìn failover traffic
 
-![Sơ đồ failover traffic của SnakeAid](/images/diagrams/overview/traffic-failover.png)
+![Sơ đồ failover traffic của SnakeAid](_diagrams/traffic-failover.png)
 
 ### Hành vi messaging
 
-![Sơ đồ hành vi messaging của SnakeAid](/images/diagrams/overview/messaging-behavior.png)
+![Sơ đồ hành vi messaging của SnakeAid](_diagrams/messaging-behavior.png)
 
 ### Chuỗi chuyển trạng thái khi sự cố
 
-![Sơ đồ chuỗi chuyển trạng thái khi sự cố của SnakeAid](/images/diagrams/overview/failure-sequence.png)
+![Sơ đồ chuỗi chuyển trạng thái khi sự cố của SnakeAid](_diagrams/failure-sequence.png)
 
 ---
 

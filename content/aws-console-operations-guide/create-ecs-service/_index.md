@@ -36,19 +36,19 @@ It is responsible for:
 
 ### Service Orchestration
 
-![ECS service orchestration diagram](/images/diagrams/create-ecs-service/service-orchestration.png)
+![ECS service orchestration diagram](_diagrams/service-orchestration.png)
 
 ### ALB Binding
 
-![ECS service ALB binding diagram](/images/diagrams/create-ecs-service/alb-binding.png)
+![ECS service ALB binding diagram](_diagrams/alb-binding.png)
 
 ### Rolling Update
 
-![ECS service rolling update diagram](/images/diagrams/create-ecs-service/rolling-update.png)
+![ECS service rolling update diagram](_diagrams/rolling-update.png)
 
 ### Task Network Placement
 
-![ECS service network placement diagram](/images/diagrams/create-ecs-service/network-placement.png)
+![ECS service network placement diagram](_diagrams/network-placement.png)
 
 ---
 

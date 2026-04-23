@@ -23,15 +23,15 @@ This page is a standard scaffold for documenting AWS Console procedures used in 
 
 ### Console Workflow Map
 
-![AWS Console workflow map](/images/diagrams/aws-guide/console-workflow.png)
+![AWS Console workflow map](_diagrams/console-workflow.png)
 
 ### Runtime Mental Model
 
-![AWS backup runtime mental model diagram](/images/diagrams/aws-guide/runtime-mental-model.png)
+![AWS backup runtime mental model diagram](_diagrams/runtime-mental-model.png)
 
 ### Resource Dependency
 
-![AWS backup resource dependency diagram](/images/diagrams/aws-guide/resource-dependency.png)
+![AWS backup resource dependency diagram](_diagrams/resource-dependency.png)
 
 ---
 

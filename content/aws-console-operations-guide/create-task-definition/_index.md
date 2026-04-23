@@ -35,19 +35,19 @@ It defines:
 
 ### Task Definition Anatomy
 
-![Task definition anatomy diagram](/images/diagrams/create-task-definition/task-definition-anatomy.png)
+![Task definition anatomy diagram](_diagrams/task-definition-anatomy.png)
 
 ### Task Definition to Runtime Mapping
 
-![Task definition to runtime mapping diagram](/images/diagrams/create-task-definition/task-to-runtime.png)
+![Task definition to runtime mapping diagram](_diagrams/task-to-runtime.png)
 
 ### API vs AI Task Profiles
 
-![SnakeAid task profiles diagram](/images/diagrams/create-task-definition/task-profiles.png)
+![SnakeAid task profiles diagram](_diagrams/task-profiles.png)
 
 ### IAM Roles in Task Execution
 
-![IAM roles in ECS task execution diagram](/images/diagrams/create-task-definition/iam-roles.png)
+![IAM roles in ECS task execution diagram](_diagrams/iam-roles.png)
 
 ---
 

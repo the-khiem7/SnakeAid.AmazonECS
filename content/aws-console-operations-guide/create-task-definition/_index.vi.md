@@ -35,19 +35,19 @@ Nó định nghĩa:
 
 ### Cấu trúc của Task Definition
 
-![Sơ đồ cấu trúc của task definition](/images/diagrams/create-task-definition/task-definition-anatomy.png)
+![Sơ đồ cấu trúc của task definition](_diagrams/task-definition-anatomy.png)
 
 ### Task Definition đi vào runtime như thế nào
 
-![Sơ đồ task definition đi vào runtime](/images/diagrams/create-task-definition/task-to-runtime.png)
+![Sơ đồ task definition đi vào runtime](_diagrams/task-to-runtime.png)
 
 ### Profile task của API và AI
 
-![Sơ đồ profile task của API và AI](/images/diagrams/create-task-definition/task-profiles.png)
+![Sơ đồ profile task của API và AI](_diagrams/task-profiles.png)
 
 ### IAM role trong quá trình chạy task
 
-![Sơ đồ IAM role trong quá trình chạy task ECS](/images/diagrams/create-task-definition/iam-roles.png)
+![Sơ đồ IAM role trong quá trình chạy task ECS](_diagrams/iam-roles.png)
 
 ---
 

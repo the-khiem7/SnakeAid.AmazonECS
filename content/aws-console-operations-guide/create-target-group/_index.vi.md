@@ -25,15 +25,15 @@ Nó định nghĩa cách ALB gọi backend: protocol, port, health check.
 
 ### Luồng health check
 
-![Sơ đồ luồng health check của target group](/images/diagrams/create-target-group/health-check.png)
+![Sơ đồ luồng health check của target group](_diagrams/health-check.png)
 
 ### ECS tự động đăng ký target
 
-![Sơ đồ ECS tự động đăng ký target](/images/diagrams/create-target-group/auto-registration.png)
+![Sơ đồ ECS tự động đăng ký target](_diagrams/auto-registration.png)
 
 ### Quan hệ các port
 
-![Sơ đồ quan hệ các port của target group](/images/diagrams/create-target-group/port-alignment.png)
+![Sơ đồ quan hệ các port của target group](_diagrams/port-alignment.png)
 
 ---
 

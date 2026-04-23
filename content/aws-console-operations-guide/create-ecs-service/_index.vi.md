@@ -36,19 +36,19 @@ Nó chịu trách nhiệm:
 
 ### Cơ chế orchestration của service
 
-![Sơ đồ cơ chế orchestration của ECS service](/images/diagrams/create-ecs-service/service-orchestration.png)
+![Sơ đồ cơ chế orchestration của ECS service](_diagrams/service-orchestration.png)
 
 ### Bind ALB vào service
 
-![Sơ đồ bind ALB vào ECS service](/images/diagrams/create-ecs-service/alb-binding.png)
+![Sơ đồ bind ALB vào ECS service](_diagrams/alb-binding.png)
 
 ### Cập nhật rolling update
 
-![Sơ đồ rolling update của ECS service](/images/diagrams/create-ecs-service/rolling-update.png)
+![Sơ đồ rolling update của ECS service](_diagrams/rolling-update.png)
 
 ### Vị trí network của task
 
-![Sơ đồ vị trí network của task ECS service](/images/diagrams/create-ecs-service/network-placement.png)
+![Sơ đồ vị trí network của task ECS service](_diagrams/network-placement.png)
 
 ---
 

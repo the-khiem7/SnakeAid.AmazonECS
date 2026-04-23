@@ -31,7 +31,7 @@ Cluster = folder that holds container services
 
 ### Cluster Scope Diagram
 
-![ECS cluster scope diagram](/images/diagrams/create-ecs-cluster/cluster-scope.png)
+![ECS cluster scope diagram](_diagrams/cluster-scope.png)
 
 ---
 
@@ -45,7 +45,7 @@ Create a cluster to:
 
 ### Cluster In Context
 
-![ECS cluster in context diagram](/images/diagrams/create-ecs-cluster/cluster-in-context.png)
+![ECS cluster in context diagram](_diagrams/cluster-in-context.png)
 
 ---
 

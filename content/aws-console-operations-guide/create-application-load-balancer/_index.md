@@ -27,15 +27,15 @@ Important: ALB does not host backends. It only forwards traffic.
 
 ### ALB Components
 
-![ALB components diagram](/images/diagrams/create-application-load-balancer/alb-components.png)
+![ALB components diagram](_diagrams/alb-components.png)
 
 ### Request Routing
 
-![ALB request routing diagram](/images/diagrams/create-application-load-balancer/request-routing.png)
+![ALB request routing diagram](_diagrams/request-routing.png)
 
 ### Network Placement
 
-![ALB network placement diagram](/images/diagrams/create-application-load-balancer/network-placement.png)
+![ALB network placement diagram](_diagrams/network-placement.png)
 
 ---
 

@@ -31,7 +31,7 @@ Cluster = folder chứa các container service
 
 ### Sơ đồ phạm vi của cluster
 
-![Sơ đồ phạm vi của ECS cluster](/images/diagrams/create-ecs-cluster/cluster-scope.png)
+![Sơ đồ phạm vi của ECS cluster](_diagrams/cluster-scope.png)
 
 ---
 
@@ -45,7 +45,7 @@ Tạo một cluster để:
 
 ### Cluster trong bối cảnh hệ thống
 
-![Sơ đồ cluster trong bối cảnh hệ thống](/images/diagrams/create-ecs-cluster/cluster-in-context.png)
+![Sơ đồ cluster trong bối cảnh hệ thống](_diagrams/cluster-in-context.png)
 
 ---
 

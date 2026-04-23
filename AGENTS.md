@@ -77,16 +77,20 @@ Example:
 
 ## Static Assets
 
-- Put images and other public assets under `static/`.
-- Use root-relative paths in Markdown.
+- Prefer page-bundled assets for page-specific diagrams, screenshots, and attachments.
+- Use a folder prefixed with `_` for page-local assets or tooling, such as `_diagrams/` and `_tools/`.
+- Treat folders without `index.md`, `_index.md`, or other publishable content files as support folders, not subpages.
+- Keep shared global assets such as favicon, fonts, and site-wide images under `static/`.
+- For page-bundled images, use page-relative paths in Markdown.
 
 Example:
 
 ```md
-![Diagram](/images/example/diagram.png)
+![Diagram](_diagrams/example-diagram.png)
 ```
 
 - Keep asset paths stable after publishing to avoid broken links.
+- Keep generator scripts near the page they support by placing them in a sibling `_tools/` folder when practical.
 
 ## Shortcodes Available
 
@@ -112,7 +116,7 @@ Important content goes here.
 2. Create the matching Vietnamese page in the same folder.
 3. Add consistent front matter to both files.
 4. Set `weight` and `pre` if menu ordering matters.
-5. Add related assets under `static/` if needed.
+5. Add related page-specific assets under `_diagrams/` or another `_`-prefixed support folder if needed.
 6. Run Hugo locally and verify both languages.
 
 ## Hugo Commands
@@ -127,6 +131,12 @@ Build production output:
 
 ```bash
 hugo
+```
+
+Regenerate bundled diagrams:
+
+```bash
+python3 tools/build_diagrams.py
 ```
 
 Create a new page quickly:

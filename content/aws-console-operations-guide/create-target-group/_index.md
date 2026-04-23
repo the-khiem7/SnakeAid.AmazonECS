@@ -25,15 +25,15 @@ It defines how ALB calls backends: protocol, port, and health checks.
 
 ### Health Check Flow
 
-![Target group health check diagram](/images/diagrams/create-target-group/health-check.png)
+![Target group health check diagram](_diagrams/health-check.png)
 
 ### ECS Auto Registration
 
-![Target group auto registration diagram](/images/diagrams/create-target-group/auto-registration.png)
+![Target group auto registration diagram](_diagrams/auto-registration.png)
 
 ### Port Alignment
 
-![Target group port alignment diagram](/images/diagrams/create-target-group/port-alignment.png)
+![Target group port alignment diagram](_diagrams/port-alignment.png)
 
 ---
 

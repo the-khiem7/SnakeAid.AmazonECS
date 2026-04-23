@@ -23,15 +23,15 @@ Trang này là khung chuẩn để ghi lại từng bước thao tác trên AWS 
 
 ### Bản đồ luồng thao tác trên Console
 
-![Sơ đồ workflow thao tác trên AWS Console](/images/diagrams/aws-guide/console-workflow.png)
+![Sơ đồ workflow thao tác trên AWS Console](_diagrams/console-workflow.png)
 
 ### Mental model runtime
 
-![Sơ đồ mental model runtime của hệ thống backup AWS](/images/diagrams/aws-guide/runtime-mental-model.png)
+![Sơ đồ mental model runtime của hệ thống backup AWS](_diagrams/runtime-mental-model.png)
 
 ### Quan hệ phụ thuộc giữa các resource
 
-![Sơ đồ quan hệ phụ thuộc giữa các resource AWS backup](/images/diagrams/aws-guide/resource-dependency.png)
+![Sơ đồ quan hệ phụ thuộc giữa các resource AWS backup](_diagrams/resource-dependency.png)
 
 ---
 

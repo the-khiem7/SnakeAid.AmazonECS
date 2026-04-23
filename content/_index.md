@@ -21,19 +21,19 @@ Build a **hybrid architecture (self-host + cloud backup)** to:
 
 ## Architecture Overview
 
-![SnakeAid hybrid architecture diagram](/images/architecture/snakeaid-hybrid-architecture-diagram.png)
+![SnakeAid hybrid architecture diagram](_diagrams/snakeaid-hybrid-architecture-diagram.png)
 
 ### Traffic Failover View
 
-![SnakeAid traffic failover diagram](/images/diagrams/overview/traffic-failover.png)
+![SnakeAid traffic failover diagram](_diagrams/traffic-failover.png)
 
 ### Messaging Behavior
 
-![SnakeAid messaging behavior diagram](/images/diagrams/overview/messaging-behavior.png)
+![SnakeAid messaging behavior diagram](_diagrams/messaging-behavior.png)
 
 ### Failure Transition
 
-![SnakeAid failure transition diagram](/images/diagrams/overview/failure-sequence.png)
+![SnakeAid failure transition diagram](_diagrams/failure-sequence.png)
 
 ---
 
