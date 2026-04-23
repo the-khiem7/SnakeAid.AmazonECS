@@ -66,15 +66,15 @@ Express Mode reduces that operational surface by automatically provisioning or a
 * security defaults
 * logs and deployment defaults
 
-The trade-off is straightforward:
+The trade-off is straightforward: less setup effort usually comes with less fine-grained customization.
 
-```text
-Less setup effort -> less fine-grained customization
-```
+![Diagram comparing the control-heavy Fargate Classic path with the faster, more abstracted Express path](_diagrams/classic-vs-express-tradeoff.png)
 
 ---
 
 ## Comparison Table
+
+The table below is the practical version of that same trade-off.
 
 | Aspect | ECS Fargate Classic | ECS Express Mode |
 | ------ | ------------------- | ---------------- |

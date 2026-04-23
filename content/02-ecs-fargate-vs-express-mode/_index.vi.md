@@ -66,15 +66,15 @@ Express Mode giảm bớt phần việc vận hành ban đầu bằng cách tự
 * security defaults
 * logs và deployment defaults
 
-Trade-off của nó khá rõ:
+Trade-off của nó khá rõ: giảm effort setup thường đi kèm với việc giảm khả năng tùy biến chi tiết.
 
-```text
-Giảm effort setup -> giảm khả năng tùy biến chi tiết
-```
+![Sơ đồ so sánh hướng Fargate Classic thiên về control với hướng Express thiên về tốc độ và abstraction](_diagrams/classic-vs-express-tradeoff.png)
 
 ---
 
 ## Bảng so sánh
+
+Bảng dưới đây là phiên bản thực dụng hơn của cùng trade-off đó.
 
 | Khía cạnh | ECS Fargate Classic | ECS Express Mode |
 | --------- | ------------------- | ---------------- |
