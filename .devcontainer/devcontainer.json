@@ -1,6 +1,7 @@
 {
   "name": "Hugo Development",
   "build": {
+    "context": "..",
     "dockerfile": "Dockerfile",
     "args": {
       "HUGO_VERSION": "0.134.3"
