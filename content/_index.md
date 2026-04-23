@@ -21,49 +21,7 @@ Build a **hybrid architecture (self-host + cloud backup)** to:
 
 ## Architecture Overview
 
-```mermaid
-flowchart TB
-
-subgraph Edge["Cloudflare DNS"]
-		CF["api.snakeaid.com"]
-end
-
-subgraph Primary["Primary System (ZimaOS - Self-hosted)"]
-		NGINX["NGINX Reverse Proxy"]
-
-		subgraph Local["Docker Containers"]
-				API1["snakeaid-api"]
-				AI1["snakeai"]
-				RMQ1["RabbitMQ (local)"]
-		end
-
-		NGINX --> API1
-		NGINX --> AI1
-		API1 --> RMQ1
-end
-
-subgraph Backup["AWS Backup System"]
-		ALB["Application Load Balancer"]
-
-		subgraph ECS["ECS Fargate"]
-				API2["snakeaid-api"]
-				AI2["snakeai"]
-		end
-
-		ALB --> API2
-		ALB --> AI2
-end
-
-subgraph MQ["Messaging Layer"]
-		RMQ_AWS["Amazon MQ (RabbitMQ managed)"]
-end
-
-CF --> NGINX
-CF -. failover .-> ALB
-
-API1 -. fallback .-> RMQ_AWS
-API2 --> RMQ_AWS
-```
+![SnakeAid hybrid architecture diagram](/images/architecture/snakeaid-hybrid-architecture-diagram.png)
 
 ---
 
