@@ -55,10 +55,22 @@ def generate_network_placement_diagram() -> None:
     render_bundle_diagram(BUNDLE_DIR, "network-placement.png", builder)
 
 
+def generate_empty_target_group_diagram() -> None:
+    def builder() -> None:
+        alb = ALB("ALB created")
+        target_group = Endpoint("Target Group\nTargets = 0")
+        service = Fargate("ECS Service\nattach later")
+        alb >> Edge(label="cannot forward yet") >> target_group
+        service >> Edge(label="registers tasks later") >> target_group
+
+    render_bundle_diagram(BUNDLE_DIR, "empty-target-group-state.png", builder)
+
+
 def main() -> None:
     generate_alb_components_diagram()
     generate_request_routing_diagram()
     generate_network_placement_diagram()
+    generate_empty_target_group_diagram()
 
 
 if __name__ == "__main__":

@@ -9,9 +9,7 @@ chapter: false
 
 Tạo ALB làm public entry point cho hệ thống backup trên ECS.
 
-```text
-Internet -> ALB -> Target Group -> ECS Tasks
-```
+![Sơ đồ luồng request đi qua ALB](_diagrams/request-routing.png)
 
 ---
 
@@ -29,37 +27,7 @@ Lưu ý: ALB không chứa backend, ALB chỉ forward.
 
 ![Sơ đồ các thành phần bên trong ALB](_diagrams/alb-components.png)
 
-### Luồng request đi qua ALB
-
-![Sơ đồ luồng request đi qua ALB](_diagrams/request-routing.png)
-
-### Vị trí network của ALB
-
-![Sơ đồ vị trí network của ALB](_diagrams/network-placement.png)
-
----
-
-## Ảnh màn hình theo từng phase
-
-### Phase 1: Basic configuration
-
-![Phần cấu hình cơ bản của ALB hiển thị name, scheme và lựa chọn IPv4](_diagrams/alb-basic-configuration.webp)
-
-### Phase 2: Network mapping
-
-![Phần network mapping của ALB hiển thị VPC và hai public subnet](_diagrams/alb-network-mapping-subnets.webp)
-
-### Phase 3: Security groups và listener routing
-
-![Cấu hình ALB hiển thị security group đã chọn và listener forward về target group](_diagrams/alb-security-listener-routing.webp)
-
-### Phase 4: Dịch vụ nâng cao có thể bỏ qua
-
-![Các dịch vụ nâng cao như CloudFront, WAF và Global Accelerator có thể bỏ qua ở giai đoạn này](_diagrams/alb-advanced-services.webp)
-
-### Phase 5: Review
-
-![Màn hình review tóm tắt cấu hình ALB trước khi tạo](_diagrams/alb-review-summary.webp)
+Cách dễ hiểu nhất về ALB là: nó nhận traffic public, áp listener rule, rồi forward request vào target group.
 
 ---
 
@@ -80,6 +48,8 @@ Giải thích nhanh:
 
 Với use case SnakeAid backup, chọn `Internet-facing`.
 
+![Phần cấu hình cơ bản của ALB hiển thị name, scheme và lựa chọn IPv4](_diagrams/alb-basic-configuration.webp)
+
 ---
 
 ## B. Network mapping
@@ -96,6 +66,12 @@ Nguyên tắc:
 * ALB nên chạy trên >= 2 AZ để tăng availability
 * subnet phải là public subnet (có route ra IGW)
 * VPC này cần match với ECS service và target group
+
+Đây là chỗ network placement quan trọng hơn chính ALB setting: load balancer nên nằm ở public subnet, còn backend task phía sau có thể theo thiết kế runtime cuối cùng.
+
+![Sơ đồ vị trí network của ALB](_diagrams/network-placement.png)
+
+![Phần network mapping của ALB hiển thị VPC và hai public subnet](_diagrams/alb-network-mapping-subnets.webp)
 
 ---
 
@@ -115,6 +91,8 @@ Inbound: HTTP 80 from 0.0.0.0/0
 
 Nếu thiếu rule inbound phù hợp, ALB tạo xong vẫn không truy cập được.
 
+![Cấu hình ALB hiển thị security group đã chọn và listener forward về target group](_diagrams/alb-security-listener-routing.webp)
+
 ---
 
 ## D. Listeners and routing (quan trọng nhất)
@@ -126,13 +104,9 @@ Listener: HTTP :80
 Action: Forward -> snakeaid-api-tg
 ```
 
-Hiểu bản chất:
+Đây mới là lớp routing cốt lõi của hệ thống: listener nhận traffic, rule quyết định đích đến, còn target group trở thành backend pool mà ECS sẽ nạp target vào sau.
 
-```text
-Client -> ALB:80 -> Rule -> Target Group
-```
-
-Đây là lớp routing chính của hệ thống.
+![Sơ đồ luồng request đi qua ALB](_diagrams/request-routing.png)
 
 ---
 
@@ -143,6 +117,8 @@ Giai đoạn hiện tại có thể skip:
 * CloudFront
 * WAF
 * Global Accelerator
+
+![Các dịch vụ nâng cao như CloudFront, WAF và Global Accelerator có thể bỏ qua ở giai đoạn này](_diagrams/alb-advanced-services.webp)
 
 ---
 
@@ -162,25 +138,21 @@ Sau đó bấm:
 Create load balancer
 ```
 
+![Màn hình review tóm tắt cấu hình ALB trước khi tạo](_diagrams/alb-review-summary.webp)
+
 ---
 
 ## Insight quan trọng
 
 Nếu target group chưa có target (Targets = 0), ALB chưa thể forward traffic thành công ngay.
 
-```text
-ALB created -> Target Group (empty) -> wait ECS Service attach
-```
+![Sơ đồ cho thấy ALB có thể tạo xong trước khi ECS service đăng ký target vào target group](_diagrams/empty-target-group-state.png)
 
 ---
 
 ## TL;DR
 
-```text
-ALB = entry point
-Target Group = backend pool
-ECS Service = compute thực tế
-```
+ALB là public entry point, target group là backend pool, còn ECS Service là lớp sẽ cung cấp các target đang chạy thật sự.
 
 ---
 

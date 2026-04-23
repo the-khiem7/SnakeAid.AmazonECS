@@ -9,9 +9,7 @@ chapter: false
 
 Create an ALB as the public entry point for the ECS backup system.
 
-```text
-Internet -> ALB -> Target Group -> ECS Tasks
-```
+![ALB request routing diagram](_diagrams/request-routing.png)
 
 ---
 
@@ -29,37 +27,7 @@ Important: ALB does not host backends. It only forwards traffic.
 
 ![ALB components diagram](_diagrams/alb-components.png)
 
-### Request Routing
-
-![ALB request routing diagram](_diagrams/request-routing.png)
-
-### Network Placement
-
-![ALB network placement diagram](_diagrams/network-placement.png)
-
----
-
-## Screens by UI Phase
-
-### Phase 1: Basic configuration
-
-![ALB basic configuration showing name, scheme, and IPv4 selection](_diagrams/alb-basic-configuration.webp)
-
-### Phase 2: Network mapping
-
-![ALB network mapping showing the selected VPC and two public subnets](_diagrams/alb-network-mapping-subnets.webp)
-
-### Phase 3: Security groups and listener routing
-
-![ALB setup showing the selected security group and listener forwarding to the target group](_diagrams/alb-security-listener-routing.webp)
-
-### Phase 4: Optional advanced services
-
-![Optional advanced services such as CloudFront, WAF, and Global Accelerator that can be skipped at this stage](_diagrams/alb-advanced-services.webp)
-
-### Phase 5: Review
-
-![Review summary showing the ALB configuration before creation](_diagrams/alb-review-summary.webp)
+The easiest way to think about ALB is: it accepts public traffic, applies listener rules, and forwards requests into a target group.
 
 ---
 
@@ -80,6 +48,8 @@ Quick meaning:
 
 For SnakeAid backup use case, choose `Internet-facing`.
 
+![ALB basic configuration showing name, scheme, and IPv4 selection](_diagrams/alb-basic-configuration.webp)
+
 ---
 
 ## B. Network mapping
@@ -96,6 +66,12 @@ Rules:
 * ALB should span >= 2 AZs for availability
 * subnets should be public (route to IGW)
 * VPC must match ECS service and target group
+
+This is where network placement matters more than ALB settings themselves: the load balancer should live in public subnets, while the backend tasks can still stay elsewhere depending on the final design.
+
+![ALB network placement diagram](_diagrams/network-placement.png)
+
+![ALB network mapping showing the selected VPC and two public subnets](_diagrams/alb-network-mapping-subnets.webp)
 
 ---
 
@@ -115,6 +91,8 @@ Inbound: HTTP 80 from 0.0.0.0/0
 
 Without proper inbound rules, ALB can be created but not reachable.
 
+![ALB setup showing the selected security group and listener forwarding to the target group](_diagrams/alb-security-listener-routing.webp)
+
 ---
 
 ## D. Listeners and routing (most important)
@@ -126,13 +104,9 @@ Listener: HTTP :80
 Action: Forward -> snakeaid-api-tg
 ```
 
-Core flow:
+This is the real routing layer of the stack: the listener receives traffic, the rule decides where it goes, and the target group becomes the backend pool that ECS will later populate.
 
-```text
-Client -> ALB:80 -> Rule -> Target Group
-```
-
-This is the main routing layer.
+![ALB request routing diagram](_diagrams/request-routing.png)
 
 ---
 
@@ -143,6 +117,8 @@ At this stage, it is fine to skip:
 * CloudFront
 * WAF
 * Global Accelerator
+
+![Optional advanced services such as CloudFront, WAF, and Global Accelerator that can be skipped at this stage](_diagrams/alb-advanced-services.webp)
 
 ---
 
@@ -162,25 +138,21 @@ Then click:
 Create load balancer
 ```
 
+![Review summary showing the ALB configuration before creation](_diagrams/alb-review-summary.webp)
+
 ---
 
 ## Key Insight
 
 If your target group is still empty (Targets = 0), ALB cannot forward real traffic yet.
 
-```text
-ALB created -> Target Group (empty) -> wait ECS Service attach
-```
+![Diagram showing that an ALB can exist before ECS services register targets into the target group](_diagrams/empty-target-group-state.png)
 
 ---
 
 ## TL;DR
 
-```text
-ALB = entry point
-Target Group = backend pool
-ECS Service = actual compute
-```
+ALB is the public entry point, the target group is the backend pool, and ECS Service is the layer that eventually supplies real running targets.
 
 ---
 
