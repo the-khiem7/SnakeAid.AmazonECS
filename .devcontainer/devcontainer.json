@@ -49,6 +49,6 @@
       ]
     }
   },
-  "postCreateCommand": "bash -lc 'set -euo pipefail; hugo version; python --version; python -c \"import diagrams; print(diagrams.__file__)\"; dot -V'",
+  "postCreateCommand": "bash -lc 'set -euo pipefail; hugo version; python --version; python -c \"import diagrams, PIL, pytesseract, yaml; print(diagrams.__file__)\"; dot -V; magick -version; tesseract --version | head -n 1; cwebp -version; pngquant --version; optipng -version | head -n 1'",
   "remoteUser": "vscode"
 }

@@ -92,6 +92,32 @@ Example:
 - Keep asset paths stable after publishing to avoid broken links.
 - Keep generator scripts near the page they support by placing them in a sibling `_tools/` folder when practical.
 
+## Screenshot Asset Workflow
+
+- Store original AWS Console screenshots in `raw/` as PNG files.
+- Treat files in `raw/` as immutable source material for authoring, not publishable site assets.
+- For pages built from ClickOps screenshots, create cropped publishable assets inside the related page bundle, typically under `_diagrams/`.
+- Prefer WebP for publishable cropped screenshots that are rendered on the website.
+- Keep PNG as the working or source format during capture, review, and intermediate editing.
+- Use stable, descriptive, lowercase, hyphenated filenames for cropped assets, based on what the crop proves, not only the step number.
+- One cropped image should support one main point, or at most two tightly related points.
+- Remove irrelevant browser chrome, AWS header area, empty whitespace, and unrelated panels when cropping unless they are required for reader orientation.
+- If one screenshot contains multiple important details, split it into multiple focused crops instead of embedding one very large image.
+- Keep the same cropped asset usable across English and Vietnamese pages when the visual evidence is identical.
+- If a crop needs reproducibility, store its crop specification in a sibling `_tools/` script or manifest rather than relying on manual editing only.
+
+## Image Tooling
+
+- Preferred CLI tools for screenshot workflows in this repository:
+  - `magick`, `identify`, `mogrify` from ImageMagick for inspect, crop, resize, and format conversion
+  - `tesseract` for OCR-based inspection of screenshot text
+  - `cwebp` for WebP encoding
+  - `pngquant` and `optipng` for PNG optimization
+- Preferred Python packages for scripted image workflows:
+  - `Pillow` for deterministic crop and export automation
+  - `pytesseract` for OCR integration
+  - `PyYAML` when a crop manifest is stored as YAML
+
 ## Shortcodes Available
 
 This repository currently includes or supports these shortcodes:
@@ -138,6 +164,8 @@ Important content goes here.
   # Writing blogs
   - Save screenshots and ChatGPT responses to the appropriate raw/ step folder.
   - Read raw/ for context to write blogs, creating page bundles in `content/` with assets in `_diagrams/` or similar.
+  - Derive publishable crops from raw PNG screenshots and save the final page assets as focused WebP images in the page bundle.
+  - Place each cropped image near the paragraph or step that it explains, instead of stacking long full-screen screenshots before the text.
 
 ## Hugo Commands
 

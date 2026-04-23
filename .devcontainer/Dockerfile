@@ -11,7 +11,16 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
       ca-certificates \
       curl \
+      fd-find \
       graphviz \
+      imagemagick \
+      jq \
+      libwebp-dev \
+      libwebp7 \
+      pngquant \
+      tesseract-ocr \
+      webp \
+      optipng \
       python3 \
       python3-pip \
       python3-venv \
