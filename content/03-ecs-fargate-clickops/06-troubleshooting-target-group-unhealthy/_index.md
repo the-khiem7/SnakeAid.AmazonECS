@@ -10,6 +10,10 @@ pre: " <b> 6. </b> "
 
 In the process of setting up the cloud backup component of SnakeAid's disaster-aware hybrid architecture, we encountered a common issue with AWS ECS and Application Load Balancer (ALB) integration: unhealthy targets in the target group. This post documents the step-by-step troubleshooting process we went through to resolve the issue.
 
+The troubleshooting sequence turned out to be more important than any single screenshot: first confirm the live task IP, then remove stale registrations, then verify the security-group path, and finally give the application enough startup time.
+
+![Diagram showing the troubleshooting order used to isolate the unhealthy target problem](_diagrams/troubleshooting-order.png)
+
 ## Initial Problem
 
 After deploying the snakeaid-api service to ECS Fargate, the ALB health checks were failing, marking the targets as unhealthy. This prevented traffic from reaching the application, causing 502 errors.
@@ -87,5 +91,7 @@ After these changes, the service behavior matched the expected ECS + ALB flow:
 - Use separate security groups for the ALB and for ECS tasks so the traffic contract is explicit.
 - Review the health check grace period whenever application startup includes external services or warm-up work.
 - When a target is unhealthy, verify the live task IP, the target group registration, the security group path, and the grace period in that order.
+
+![Diagram reinforcing the recommended order for ECS target-group troubleshooting](_diagrams/troubleshooting-order.png)
 
 This troubleshooting reinforced our understanding of AWS networking in ECS deployments, crucial for maintaining the reliability of SnakeAid's hybrid architecture.

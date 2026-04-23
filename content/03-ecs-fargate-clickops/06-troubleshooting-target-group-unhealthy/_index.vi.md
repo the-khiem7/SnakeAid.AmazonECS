@@ -10,6 +10,10 @@ pre: " <b> 6. </b> "
 
 Trong quá trình thiết lập thành phần sao lưu đám mây của kiến trúc hybrid chống thảm họa SnakeAid, chúng tôi gặp phải một vấn đề phổ biến khi tích hợp AWS ECS và Application Load Balancer (ALB): các mục tiêu không khỏe mạnh trong nhóm mục tiêu. Bài viết này ghi lại quy trình khắc phục từng bước mà chúng tôi đã thực hiện để giải quyết vấn đề.
 
+Điều quan trọng nhất của ca xử lý này không nằm ở một screenshot riêng lẻ, mà ở thứ tự điều tra: xác nhận task IP đang chạy, gỡ target cũ, kiểm tra security-group path, rồi mới xử lý startup timing qua grace period.
+
+![Sơ đồ thứ tự điều tra để cô lập lỗi target unhealthy](_diagrams/troubleshooting-order.png)
+
 ## Vấn đề ban đầu
 
 Sau khi triển khai dịch vụ snakeaid-api lên ECS Fargate, các kiểm tra sức khỏe ALB thất bại, đánh dấu các mục tiêu là không khỏe mạnh. Điều này ngăn cản lưu lượng truy cập đến ứng dụng, gây ra lỗi 502.
@@ -87,5 +91,7 @@ Sau các thay đổi này, hành vi của service đã khớp với luồng ECS 
 - Nên tách riêng security group cho ALB và cho ECS task để hợp đồng mạng rõ ràng, dễ debug.
 - Cần rà soát health check grace period khi ứng dụng có bước khởi tạo phụ thuộc vào dịch vụ bên ngoài.
 - Khi target unhealthy, nên kiểm tra theo thứ tự: private IP của task, target group registration, đường đi qua security group, rồi mới đến grace period.
+
+![Sơ đồ nhắc lại thứ tự kiểm tra khi xử lý ECS target group unhealthy](_diagrams/troubleshooting-order.png)
 
 Việc khắc phục sự cố này củng cố hiểu biết của chúng tôi về mạng AWS trong các triển khai ECS, rất quan trọng để duy trì độ tin cậy của kiến trúc hybrid SnakeAid.
