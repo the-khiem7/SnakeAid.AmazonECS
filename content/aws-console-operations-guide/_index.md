@@ -1,5 +1,5 @@
 ---
-title: "AWS Console Operations Guide (Skeleton)"
+title: "AWS Console Operations Guide"
 date: 2026-04-22
 weight: 3
 chapter: false
@@ -7,7 +7,7 @@ chapter: false
 
 ## Page Objective
 
-This page is a standard scaffold for documenting AWS Console procedures used in the SnakeAid architecture.
+This section documents the AWS Console procedures used to stand up and troubleshoot the SnakeAid deployment flow.
 
 ---
 
@@ -19,7 +19,7 @@ This page is a standard scaffold for documenting AWS Console procedures used in 
 
 ---
 
-## AWS Backup Mental Model
+## AWS Deployment Mental Model
 
 ### Console Workflow Map
 
@@ -78,7 +78,9 @@ Each child page should follow this structure:
 
 * Include Console navigation paths for each step
 * Keep naming conventions consistent across resources
-* If screenshots are used, store them in `static/images/` and reference with root-relative paths
+* Keep raw console captures in `raw/` and treat them as immutable source material
+* Publish focused screenshot crops from each page bundle under `_diagrams/`, preferably as `webp`
+* Reference screenshot assets with page-relative paths so English and Vietnamese pages can reuse the same crop
 
 ---
 

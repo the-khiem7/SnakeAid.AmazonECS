@@ -41,15 +41,15 @@ It defines how ALB calls backends: protocol, port, and health checks.
 
 ### Phase 1: Define target group
 
-![Create Target Group - Step 1](/images/aws-console-operations-guide/ALB/2.%20create-target-group/target-group-create-1.png)
+![Target group settings showing IP target type, name, protocol, port, VPC, and HTTP1](_diagrams/target-group-settings.webp)
 
 ### Phase 2: Register targets
 
-![Create Target Group - Step 2](/images/aws-console-operations-guide/ALB/2.%20create-target-group/target-group-create-2.png)
+![Register targets screen showing no manually added IP addresses](_diagrams/target-group-register-targets-empty.webp)
 
 ### Phase 3: Review
 
-![Create Target Group - Step 3](/images/aws-console-operations-guide/ALB/2.%20create-target-group/target-group-create-3.png)
+![Review screen showing target group details and health check settings](_diagrams/target-group-review-health-check.webp)
 
 ---
 
@@ -130,6 +130,8 @@ Endpoint should return `200 OK`.
 
 If path is wrong or route does not exist, targets will be marked `UNHEALTHY`.
 
+![Review summary showing the configured health check path and success code](_diagrams/target-group-review-health-check.webp)
+
 ---
 
 ## C. Step 2 - Register targets (common confusion)
@@ -163,6 +165,8 @@ Click:
 ```text
 Create target group
 ```
+
+![Review screen confirming that Targets (0) is still valid before creation](_diagrams/target-group-review-zero-targets.webp)
 
 ---
 

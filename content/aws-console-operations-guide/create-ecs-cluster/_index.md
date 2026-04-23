@@ -7,9 +7,9 @@ chapter: false
 
 ## Console Screen
 
-![Create ECS Cluster in AWS Console](/images/aws-console-operations-guide/ECS/1.%20create-cluster/create-ecs-cluster.png)
+Navigation: `Amazon Elastic Container Service > Create cluster`
 
-> Tip: place the screenshot at `static/images/aws-console-operations-guide/ECS/1. create-cluster/create-ecs-cluster.png` so this image renders correctly.
+![Create cluster form showing cluster name and Fargate-only infrastructure](_diagrams/ecs-cluster-form-name-infrastructure.webp)
 
 ---
 
@@ -135,6 +135,8 @@ Turned off
 
 For now: not needed.
 
+![Monitoring section with Container Insights turned off and default ECS Exec logging](_diagrams/ecs-cluster-form-monitoring.webp)
+
 ---
 
 ## 4. ECS Exec and Logging
@@ -197,6 +199,8 @@ Resource grouping by:
 Skip
 ```
 
+![Lower part of the create cluster form showing encryption defaults and empty tags](_diagrams/ecs-cluster-form-encryption-tags.webp)
+
 ---
 
 ## Final Configuration
@@ -215,6 +219,12 @@ Other sections:
 ```
 
 Click **Create**.
+
+## Expected Result
+
+After the cluster is created, the ECS clusters list should show `snakeaid-backup-cluster`.
+
+![ECS clusters list showing the newly created cluster](_diagrams/ecs-cluster-created-list.webp)
 
 ---
 

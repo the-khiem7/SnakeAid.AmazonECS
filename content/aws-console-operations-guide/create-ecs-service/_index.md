@@ -15,9 +15,15 @@ Run tasks + attach to ALB + auto-heal + scale
 
 ---
 
-## Console Screen
+## Console Entry
 
-![Create ECS Service](/images/aws-console-operations-guide/ECS/4.%20create-service/ecs-services-creation.png)
+Open:
+
+```text
+Amazon Elastic Container Service > Clusters > snakeaid-backup-cluster > Services > Create
+```
+
+![Services screen showing the Create button used to start ECS service setup](_diagrams/ecs-service-entry-create-button.webp)
 
 ---
 
@@ -52,6 +58,26 @@ It is responsible for:
 
 ---
 
+## Screens by UI Phase
+
+### Phase 1: Service details and environment
+
+![Service creation screen showing the task definition family, service name, cluster, and capacity provider](_diagrams/ecs-service-details.webp)
+
+### Phase 2: Deployment configuration
+
+![Service creation screen showing replica scheduling and rolling update settings](_diagrams/ecs-service-deployment-configuration.webp)
+
+### Phase 3: Networking
+
+![Service creation screen showing the selected VPC, subnets, security group, and public IP setting](_diagrams/ecs-service-networking.webp)
+
+### Phase 4: Load balancing
+
+![Service creation screen showing the selected ALB, target group, listener rule, and container port mapping](_diagrams/ecs-service-load-balancing.webp)
+
+---
+
 ## 1. Service details
 
 Typical values:
@@ -66,6 +92,8 @@ Meaning:
 
 * Task definition = container configuration
 * Service = runtime controller that keeps tasks alive
+
+![Service details section showing task definition revision, service name, cluster, and Fargate strategy](_diagrams/ecs-service-details.webp)
 
 ---
 
@@ -108,6 +136,8 @@ Max: 200%
 
 On new revision, ECS starts new tasks, waits for health checks, then replaces old tasks.
 
+![Deployment configuration showing replica scheduling, desired tasks, and rolling update thresholds](_diagrams/ecs-service-deployment-configuration.webp)
+
 ---
 
 ## 5. Networking (very important)
@@ -125,6 +155,8 @@ Practical meaning:
 
 * Fargate task receives public IP (easy for testing)
 * for production, prefer private subnets for tasks and keep ALB public
+
+![Networking section showing default VPC, two subnets, default security group, and public IP enabled](_diagrams/ecs-service-networking.webp)
 
 ---
 
@@ -181,6 +213,8 @@ Protocol: HTTP
 ```
 
 If health checks fail, ECS replaces unhealthy tasks automatically.
+
+![Load balancing section showing existing ALB, target group, listener rule, and container port 8080](_diagrams/ecs-service-load-balancing.webp)
 
 ---
 

@@ -7,9 +7,9 @@ chapter: false
 
 ## Màn hình thao tác
 
-![Create ECS Cluster trên AWS Console](/images/aws-console-operations-guide/ECS/1.%20create-cluster/create-ecs-cluster.png)
+Điều hướng: `Amazon Elastic Container Service > Create cluster`
 
-> Gợi ý: đặt ảnh screenshot vào file `static/images/aws-console-operations-guide/ECS/1. create-cluster/create-ecs-cluster.png` để hiển thị đúng.
+![Form tạo cluster hiển thị cluster name và lựa chọn Fargate only](_diagrams/ecs-cluster-form-name-infrastructure.webp)
 
 ---
 
@@ -135,6 +135,8 @@ Turned off
 
 Hiện tại: chưa cần.
 
+![Phần Monitoring cho thấy Container Insights đang để Turned off và ECS Exec logging giữ mặc định](_diagrams/ecs-cluster-form-monitoring.webp)
+
 ---
 
 ## 4. ECS Exec và Logging
@@ -196,6 +198,8 @@ Bỏ qua (skip)
 Skip
 ```
 
+![Phần cuối form tạo cluster hiển thị Encryption mặc định và Tags đang để trống](_diagrams/ecs-cluster-form-encryption-tags.webp)
+
 ---
 
 ## Final cấu hình
@@ -214,6 +218,12 @@ Các phần khác:
 ```
 
 Bấm **Create**.
+
+## Kết quả mong đợi
+
+Sau khi tạo xong, danh sách cluster trong ECS cần hiển thị `snakeaid-backup-cluster`.
+
+![Danh sách ECS clusters hiển thị cluster vừa tạo](_diagrams/ecs-cluster-created-list.webp)
 
 ---
 

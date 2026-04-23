@@ -43,15 +43,23 @@ Lưu ý: ALB không chứa backend, ALB chỉ forward.
 
 ### Phase 1: Basic configuration
 
-![Create ALB - Step 1](/images/aws-console-operations-guide/ALB/1.%20create-application-load-balancer/alb-create-1.png)
+![Phần cấu hình cơ bản của ALB hiển thị name, scheme và lựa chọn IPv4](_diagrams/alb-basic-configuration.webp)
 
-### Phase 2: Network, security, listener
+### Phase 2: Network mapping
 
-![Create ALB - Step 2](/images/aws-console-operations-guide/ALB/1.%20create-application-load-balancer/alb-create-2.png)
+![Phần network mapping của ALB hiển thị VPC và hai public subnet](_diagrams/alb-network-mapping-subnets.webp)
 
-### Phase 3: Review
+### Phase 3: Security groups và listener routing
 
-![Create ALB - Step 3](/images/aws-console-operations-guide/ALB/1.%20create-application-load-balancer/alb-create-3.png)
+![Cấu hình ALB hiển thị security group đã chọn và listener forward về target group](_diagrams/alb-security-listener-routing.webp)
+
+### Phase 4: Dịch vụ nâng cao có thể bỏ qua
+
+![Các dịch vụ nâng cao như CloudFront, WAF và Global Accelerator có thể bỏ qua ở giai đoạn này](_diagrams/alb-advanced-services.webp)
+
+### Phase 5: Review
+
+![Màn hình review tóm tắt cấu hình ALB trước khi tạo](_diagrams/alb-review-summary.webp)
 
 ---
 

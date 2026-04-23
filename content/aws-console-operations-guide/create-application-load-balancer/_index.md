@@ -43,15 +43,23 @@ Important: ALB does not host backends. It only forwards traffic.
 
 ### Phase 1: Basic configuration
 
-![Create ALB - Step 1](/images/aws-console-operations-guide/ALB/1.%20create-application-load-balancer/alb-create-1.png)
+![ALB basic configuration showing name, scheme, and IPv4 selection](_diagrams/alb-basic-configuration.webp)
 
-### Phase 2: Network, security, listener
+### Phase 2: Network mapping
 
-![Create ALB - Step 2](/images/aws-console-operations-guide/ALB/1.%20create-application-load-balancer/alb-create-2.png)
+![ALB network mapping showing the selected VPC and two public subnets](_diagrams/alb-network-mapping-subnets.webp)
 
-### Phase 3: Review
+### Phase 3: Security groups and listener routing
 
-![Create ALB - Step 3](/images/aws-console-operations-guide/ALB/1.%20create-application-load-balancer/alb-create-3.png)
+![ALB setup showing the selected security group and listener forwarding to the target group](_diagrams/alb-security-listener-routing.webp)
+
+### Phase 4: Optional advanced services
+
+![Optional advanced services such as CloudFront, WAF, and Global Accelerator that can be skipped at this stage](_diagrams/alb-advanced-services.webp)
+
+### Phase 5: Review
+
+![Review summary showing the ALB configuration before creation](_diagrams/alb-review-summary.webp)
 
 ---
 

@@ -55,26 +55,13 @@ It defines:
 
 Before creating task definitions, confirm the backup cluster from Step 1 was created successfully.
 
-![ECS Clusters Created](/images/aws-console-operations-guide/ECS/1.%20create-cluster/ecs-clusters-created.png)
-
----
-
-## Screenshot Reference Convention
-
-In Hugo markdown, use only root-relative public paths:
-
-* `/images/aws-console-operations-guide/ECS/1.%20create-cluster/ecs-clusters-created.png`
-* `/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition.png`
-* `/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition-create.png`
-* `/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeaid-api-rev1.png`
-* `/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeai.png`
-* `/images/aws-console-operations-guide/ECS/2.%20create-task-definition/ecs-services.png`
-
-Do not use filesystem paths like `static/images/...` inside page content.
+![ECS clusters list showing the backup cluster is ready](_diagrams/task-definition-cluster-created-list.webp)
 
 ---
 
 ## A. Navigate to Task Definitions
+
+Navigation: `Amazon Elastic Container Service > Task definitions`
 
 1. In the top search bar, type:
 
@@ -96,7 +83,7 @@ Create new task definition
 
 Either button works (middle or top-right).
 
-![Task Definition List](/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition.png)
+![Task definitions screen with the Create new task definition action](_diagrams/task-definition-list-create-button.webp)
 
 ---
 
@@ -112,7 +99,7 @@ Task Definition for snakeaid-api
 
 You only need about 20% of the fields to make it run.
 
-![Create Task Definition](/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition-create.png)
+![Top of the create task definition form showing family, launch type, CPU, memory, and IAM roles](_diagrams/task-definition-create-top-config.webp)
 
 ### 1. Task definition configuration
 
@@ -144,6 +131,8 @@ This is sufficient for the current backend workload.
 ### 4. Container (most important section)
 
 This section is equivalent to `docker run config`.
+
+![Container section showing image URI and port mapping fields](_diagrams/task-definition-create-container-port.webp)
 
 ```text
 Name: snakeaid-api
@@ -178,6 +167,8 @@ Do NOT use: rabbitmq
 ```
 
 ECS does not include your local RabbitMQ container from self-host mode.
+
+![Environment variables and CloudWatch log collection in the task definition form](_diagrams/task-definition-create-env-logging.webp)
 
 ### 7. Logging
 
@@ -252,11 +243,11 @@ After completion, the task list should include:
 
 ### Screenshot: snakeaid-api
 
-![ECS Task snakeaid-api rev1](/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeaid-api-rev1.png)
+![Created snakeaid-api task definition showing revision 1 and environment settings](_diagrams/task-definition-api-created.webp)
 
 ### Screenshot: snakeai
 
-![ECS Task snakeai](/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeai.png)
+![Created snakeai task definition showing revision 1 and task sizing](_diagrams/task-definition-ai-created.webp)
 
 ---
 
@@ -281,4 +272,4 @@ Fill: Name + Image + Port + Env + CPU/RAM
 
 When both tasks are ready, continue with **ALB + Service**.
 
-![ECS Services Screen](/images/aws-console-operations-guide/ECS/2.%20create-task-definition/ecs-services.png)
+![Cluster services screen with the Create service action](_diagrams/task-definition-next-step-services.webp)

@@ -55,26 +55,13 @@ Nó định nghĩa:
 
 Bạn nên xác nhận cluster backup đã tạo thành công ở Step 1 trước khi tạo task definition.
 
-![ECS Clusters Created](/images/aws-console-operations-guide/ECS/1.%20create-cluster/ecs-clusters-created.png)
-
----
-
-## Quy ước reference screenshot
-
-Trong markdown của Hugo, chỉ dùng đường dẫn public dạng root-relative:
-
-* `/images/aws-console-operations-guide/ECS/1.%20create-cluster/ecs-clusters-created.png`
-* `/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition.png`
-* `/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition-create.png`
-* `/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeaid-api-rev1.png`
-* `/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeai.png`
-* `/images/aws-console-operations-guide/ECS/2.%20create-task-definition/ecs-services.png`
-
-Không dùng đường dẫn filesystem như `static/images/...` trong nội dung page.
+![Danh sách ECS clusters cho thấy backup cluster đã sẵn sàng](_diagrams/task-definition-cluster-created-list.webp)
 
 ---
 
 ## A. Vào màn Task Definitions
+
+Điều hướng: `Amazon Elastic Container Service > Task definitions`
 
 1. Ở ô Search trên cùng, gõ:
 
@@ -96,7 +83,7 @@ Create new task definition
 
 Bạn có thể bấm nút ở giữa màn hoặc góc phải, kết quả giống nhau.
 
-![Task Definition List](/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition.png)
+![Màn Task definitions với hành động Create new task definition](_diagrams/task-definition-list-create-button.webp)
 
 ---
 
@@ -112,7 +99,7 @@ Task Definition cho snakeaid-api
 
 Chỉ cần điền khoảng 20% field là đủ chạy.
 
-![Create Task Definition](/images/aws-console-operations-guide/ECS/2.%20create-task-definition/task-definition-create.png)
+![Phần đầu form tạo task definition hiển thị family, launch type, CPU, memory và IAM role](_diagrams/task-definition-create-top-config.webp)
 
 ### 1. Task definition configuration
 
@@ -144,6 +131,8 @@ Mức này đủ cho backend hiện tại.
 ### 4. Container (phần quan trọng nhất)
 
 Đây là phần tương đương `docker run config`.
+
+![Phần Container hiển thị Image URI và Port mappings](_diagrams/task-definition-create-container-port.webp)
 
 ```text
 Name: snakeaid-api
@@ -178,6 +167,8 @@ KHÔNG dùng: rabbitmq
 ```
 
 Vì ECS không có container RabbitMQ local như môi trường self-host.
+
+![Phần Environment variables và CloudWatch log collection trong form task definition](_diagrams/task-definition-create-env-logging.webp)
 
 ### 7. Logging
 
@@ -252,11 +243,11 @@ Sau khi hoàn tất, danh sách task cần có đủ:
 
 ### Screenshot: snakeaid-api
 
-![ECS Task snakeaid-api rev1](/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeaid-api-rev1.png)
+![Task definition snakeaid-api đã tạo thành công với revision 1 và environment settings](_diagrams/task-definition-api-created.webp)
 
 ### Screenshot: snakeai
 
-![ECS Task snakeai](/images/aws-console-operations-guide/ECS/3.%20task-definition-results/task-snakeai.png)
+![Task definition snakeai đã tạo thành công với revision 1 và task sizing](_diagrams/task-definition-ai-created.webp)
 
 ---
 
@@ -281,4 +272,4 @@ docker-compose -> ECS task definition
 
 Khi đã có đủ 2 task, chuyển sang bước **ALB + Service**.
 
-![ECS Services Screen](/images/aws-console-operations-guide/ECS/2.%20create-task-definition/ecs-services.png)
+![Màn Cluster services với hành động Create service](_diagrams/task-definition-next-step-services.webp)

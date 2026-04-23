@@ -15,9 +15,15 @@ Run task + attach vào ALB + tự heal + scale
 
 ---
 
-## Màn hình thao tác
+## Điểm vào trong Console
 
-![Create ECS Service](/images/aws-console-operations-guide/ECS/4.%20create-service/ecs-services-creation.png)
+Mở theo đường dẫn:
+
+```text
+Amazon Elastic Container Service > Clusters > snakeaid-backup-cluster > Services > Create
+```
+
+![Màn hình Services hiển thị nút Create để bắt đầu tạo ECS service](_diagrams/ecs-service-entry-create-button.webp)
 
 ---
 
@@ -52,6 +58,26 @@ Nó chịu trách nhiệm:
 
 ---
 
+## Ảnh theo từng cụm thao tác
+
+### Cụm 1: Service details và environment
+
+![Màn hình tạo service hiển thị task definition, service name, cluster và capacity provider](_diagrams/ecs-service-details.webp)
+
+### Cụm 2: Deployment configuration
+
+![Màn hình tạo service hiển thị replica scheduling và thiết lập rolling update](_diagrams/ecs-service-deployment-configuration.webp)
+
+### Cụm 3: Networking
+
+![Màn hình tạo service hiển thị VPC, subnet, security group và tùy chọn public IP](_diagrams/ecs-service-networking.webp)
+
+### Cụm 4: Load balancing
+
+![Màn hình tạo service hiển thị ALB, target group, listener rule và container port mapping](_diagrams/ecs-service-load-balancing.webp)
+
+---
+
 ## 1. Service details
 
 Giá trị điển hình:
@@ -66,6 +92,8 @@ Service name: snakeaid-api-service
 
 * Task definition = cấu hình container
 * Service = cơ chế giữ container luôn chạy
+
+![Phần service details hiển thị revision, service name, cluster và cấu hình Fargate](_diagrams/ecs-service-details.webp)
 
 ---
 
@@ -108,6 +136,8 @@ Max: 200%
 
 Khi deploy revision mới, ECS tạo task mới, pass health check rồi mới thay task cũ.
 
+![Phần deployment configuration hiển thị replica scheduling, desired tasks và ngưỡng rolling update](_diagrams/ecs-service-deployment-configuration.webp)
+
 ---
 
 ## 5. Networking (rất quan trọng)
@@ -125,6 +155,8 @@ Public IP: Enabled
 
 * task Fargate có public IP (dễ test)
 * production nên ưu tiên private subnet cho task và giữ ALB public
+
+![Phần networking hiển thị default VPC, hai subnet, default security group và public IP bật](_diagrams/ecs-service-networking.webp)
 
 ---
 
@@ -181,6 +213,8 @@ Protocol: HTTP
 ```
 
 Nếu health check fail, task sẽ bị thay thế theo cơ chế tự heal.
+
+![Phần load balancing hiển thị ALB có sẵn, target group, listener rule và port 8080 của container](_diagrams/ecs-service-load-balancing.webp)
 
 ---
 

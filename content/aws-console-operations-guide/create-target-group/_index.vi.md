@@ -41,15 +41,15 @@ Nó định nghĩa cách ALB gọi backend: protocol, port, health check.
 
 ### Phase 1: Define target group
 
-![Create Target Group - Step 1](/images/aws-console-operations-guide/ALB/2.%20create-target-group/target-group-create-1.png)
+![Cấu hình target group hiển thị target type IP, name, protocol, port, VPC và HTTP1](_diagrams/target-group-settings.webp)
 
 ### Phase 2: Register targets
 
-![Create Target Group - Step 2](/images/aws-console-operations-guide/ALB/2.%20create-target-group/target-group-create-2.png)
+![Màn Register targets cho thấy chưa thêm IP thủ công nào](_diagrams/target-group-register-targets-empty.webp)
 
 ### Phase 3: Review
 
-![Create Target Group - Step 3](/images/aws-console-operations-guide/ALB/2.%20create-target-group/target-group-create-3.png)
+![Màn review hiển thị chi tiết target group và health check](_diagrams/target-group-review-health-check.webp)
 
 ---
 
@@ -130,6 +130,8 @@ Yêu cầu endpoint trả về `200 OK`.
 
 Nếu sai path hoặc app không có route này, target sẽ bị `UNHEALTHY`.
 
+![Phần review cho thấy health check path và success code đã được cấu hình](_diagrams/target-group-review-health-check.webp)
+
 ---
 
 ## C. Step 2 - Register targets (điểm hay nhầm)
@@ -163,6 +165,8 @@ Bấm:
 ```text
 Create target group
 ```
+
+![Màn review xác nhận rằng Targets (0) vẫn là trạng thái đúng trước khi tạo](_diagrams/target-group-review-zero-targets.webp)
 
 ---
 

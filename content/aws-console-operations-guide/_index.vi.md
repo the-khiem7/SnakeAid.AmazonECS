@@ -1,5 +1,5 @@
 ---
-title: "Khung hướng dẫn thao tác trên AWS Console"
+title: "Hướng dẫn thao tác trên AWS Console"
 date: 2026-04-22
 weight: 3
 chapter: false
@@ -7,7 +7,7 @@ chapter: false
 
 ## Mục tiêu trang
 
-Trang này là khung chuẩn để ghi lại từng bước thao tác trên AWS Console cho kiến trúc SnakeAid.
+Phần này ghi lại các quy trình thao tác trên AWS Console dùng để triển khai và xử lý sự cố cho hệ thống SnakeAid.
 
 ---
 
@@ -19,7 +19,7 @@ Trang này là khung chuẩn để ghi lại từng bước thao tác trên AWS 
 
 ---
 
-## Mental model cho AWS backup
+## Mental model cho quá trình triển khai trên AWS
 
 ### Bản đồ luồng thao tác trên Console
 
@@ -78,7 +78,9 @@ Mỗi trang con nên theo format sau:
 
 * Mỗi bước nên kèm đường dẫn điều hướng trong Console
 * Dùng tên tài nguyên nhất quán để dễ tìm lại
-* Nếu có ảnh chụp màn hình, lưu trong `static/images/` và dùng đường dẫn root-relative
+* Lưu ảnh chụp Console gốc trong `raw/` và xem đó là dữ liệu nguồn không chỉnh sửa
+* Xuất các ảnh crop phục vụ bài viết vào `_diagrams/` trong page bundle, ưu tiên định dạng `webp`
+* Tham chiếu ảnh bằng đường dẫn tương đối theo page để bản tiếng Anh và tiếng Việt có thể dùng chung cùng một crop
 
 ---
 
