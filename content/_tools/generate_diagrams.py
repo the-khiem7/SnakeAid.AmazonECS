@@ -5,10 +5,10 @@ from pathlib import Path
 
 from diagrams import Cluster, Edge
 from diagrams.aws.compute import Fargate
+from diagrams.aws.management import Cloudwatch
 from diagrams.aws.general import Users
 from diagrams.aws.integration import MQ
 from diagrams.aws.network import ALB
-from diagrams.generic.blank import Blank
 from diagrams.onprem.container import Docker
 from diagrams.onprem.network import Nginx
 from diagrams.onprem.queue import RabbitMQ
@@ -98,11 +98,16 @@ def generate_messaging_diagram() -> None:
 
 def generate_failure_sequence_diagram() -> None:
     def builder() -> None:
-        normal = Blank("1. Normal state\nCloudflare -> ZimaOS")
-        outage = Blank("2. Outage detected\nSelf-host path unavailable")
-        switch = Blank("3. Manual failover\nCloudflare -> AWS ALB")
-        backup = Blank("4. Backup runtime active\nECS serves traffic")
-        queue = Blank("5. Messaging mode\nAmazon MQ becomes active path")
+        with Cluster("1. Normal state", graph_attr=cluster_style("#FFF7ED", "#F59E0B")):
+            normal = Cloudflare("Primary route")
+        with Cluster("2. Outage detected", graph_attr=cluster_style("#EFF6FF", "#3B82F6")):
+            outage = Nginx("Self-host unavailable")
+        with Cluster("3. Manual failover", graph_attr=cluster_style("#FFF7ED", "#FB923C")):
+            switch = ALB("Traffic to AWS ALB")
+        with Cluster("4. Backup runtime active", graph_attr=cluster_style("#FFFDF7", "#FDBA74")):
+            backup = Fargate("ECS serves traffic")
+        with Cluster("5. Messaging mode", graph_attr=cluster_style("#F0FDF4", "#22C55E")):
+            queue = MQ("Amazon MQ active")
         normal >> outage >> switch >> backup >> queue
 
     render_bundle_diagram(
