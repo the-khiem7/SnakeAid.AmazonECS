@@ -52,10 +52,23 @@ def generate_port_alignment_diagram() -> None:
     render_bundle_diagram(BUNDLE_DIR, "port-alignment.png", builder)
 
 
+def generate_empty_review_state_diagram() -> None:
+    def builder() -> None:
+        target_group = Endpoint("Target Group\ncreated")
+        review = ManagementConsole("Review screen\nTargets = 0")
+        service = ElasticContainerServiceService("ECS Service\ncreated later")
+        task = Fargate("Task IP")
+        review >> Edge(label="still valid") >> target_group
+        service >> task >> Edge(label="auto-registers later") >> target_group
+
+    render_bundle_diagram(BUNDLE_DIR, "target-group-empty-review-state.png", builder)
+
+
 def main() -> None:
     generate_health_check_diagram()
     generate_auto_registration_diagram()
     generate_port_alignment_diagram()
+    generate_empty_review_state_diagram()
 
 
 if __name__ == "__main__":

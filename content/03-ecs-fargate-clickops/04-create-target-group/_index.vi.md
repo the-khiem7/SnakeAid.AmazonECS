@@ -9,17 +9,13 @@ chapter: false
 
 Tạo Target Group để ALB biết cách gọi backend của ECS.
 
-```text
-Client -> ALB -> Target Group -> ECS Tasks
-```
+![Sơ đồ quan hệ các port của target group](_diagrams/port-alignment.png)
 
 ---
 
 ## Target Group là gì?
 
-```text
-Target Group = danh sách backend mà ALB sẽ forward request tới
-```
+Target Group là phần định nghĩa backend pool để ALB biết request cần được đẩy về đâu.
 
 Nó định nghĩa cách ALB gọi backend: protocol, port, health check.
 
@@ -35,21 +31,7 @@ Nó định nghĩa cách ALB gọi backend: protocol, port, health check.
 
 ![Sơ đồ quan hệ các port của target group](_diagrams/port-alignment.png)
 
----
-
-## Ảnh màn hình theo từng phase
-
-### Phase 1: Define target group
-
-![Cấu hình target group hiển thị target type IP, name, protocol, port, VPC và HTTP1](_diagrams/target-group-settings.webp)
-
-### Phase 2: Register targets
-
-![Màn Register targets cho thấy chưa thêm IP thủ công nào](_diagrams/target-group-register-targets-empty.webp)
-
-### Phase 3: Review
-
-![Màn review hiển thị chi tiết target group và health check](_diagrams/target-group-review-health-check.webp)
+Ba góc nhìn này đi cùng nhau để giải thích trọn vai trò của target group: định nghĩa hợp đồng backend, kiểm tra health, và chờ ECS đăng ký task IP thật về sau.
 
 ---
 
@@ -70,6 +52,8 @@ Vì sao:
 * `Lambda` dùng cho Lambda function
 
 Với SnakeAid chạy ECS Fargate, bắt buộc chọn `IP addresses`.
+
+![Cấu hình target group hiển thị target type IP, name, protocol, port, VPC và HTTP1](_diagrams/target-group-settings.webp)
 
 ### 2. Name
 
@@ -92,6 +76,8 @@ Port target group phải khớp container port
 ```
 
 Nếu container lắng nghe 8080 thì target group cũng phải là 8080.
+
+![Sơ đồ quan hệ các port của target group](_diagrams/port-alignment.png)
 
 ### 4. VPC
 
@@ -130,6 +116,8 @@ Yêu cầu endpoint trả về `200 OK`.
 
 Nếu sai path hoặc app không có route này, target sẽ bị `UNHEALTHY`.
 
+![Sơ đồ luồng health check của target group](_diagrams/health-check.png)
+
 ![Phần review cho thấy health check path và success code đã được cấu hình](_diagrams/target-group-review-health-check.webp)
 
 ---
@@ -150,9 +138,11 @@ Targets = 0
 
 Lý do:
 
-```text
-ECS Service sẽ tự động register task IP vào target group khi service chạy
-```
+ECS Service sẽ tự động register task IP vào target group khi service chạy.
+
+![Sơ đồ ECS tự động đăng ký target](_diagrams/auto-registration.png)
+
+![Màn Register targets cho thấy chưa thêm IP thủ công nào](_diagrams/target-group-register-targets-empty.webp)
 
 ---
 
@@ -165,6 +155,8 @@ Bấm:
 ```text
 Create target group
 ```
+
+![Sơ đồ cho thấy Targets = 0 vẫn là trạng thái hợp lệ ở màn review trước khi ECS Service tồn tại](_diagrams/target-group-empty-review-state.png)
 
 ![Màn review xác nhận rằng Targets (0) vẫn là trạng thái đúng trước khi tạo](_diagrams/target-group-review-zero-targets.webp)
 
@@ -180,10 +172,7 @@ Create target group
 
 ## TL;DR
 
-```text
-Target Group = định nghĩa cách ALB gọi backend
-Register targets = skip (ECS sẽ auto register)
-```
+Target Group định nghĩa cách ALB gọi backend, còn bước register targets có thể để trống vì ECS sẽ nạp target về sau.
 
 ---
 

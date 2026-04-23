@@ -9,17 +9,13 @@ chapter: false
 
 Create a Target Group so ALB knows how to route traffic to ECS backends.
 
-```text
-Client -> ALB -> Target Group -> ECS Tasks
-```
+![Target group port alignment diagram](_diagrams/port-alignment.png)
 
 ---
 
 ## What Is a Target Group?
 
-```text
-Target Group = the backend list ALB forwards requests to
-```
+Target Group is the backend pool definition that tells ALB where requests should go.
 
 It defines how ALB calls backends: protocol, port, and health checks.
 
@@ -35,21 +31,7 @@ It defines how ALB calls backends: protocol, port, and health checks.
 
 ![Target group port alignment diagram](_diagrams/port-alignment.png)
 
----
-
-## Screens by UI Phase
-
-### Phase 1: Define target group
-
-![Target group settings showing IP target type, name, protocol, port, VPC, and HTTP1](_diagrams/target-group-settings.webp)
-
-### Phase 2: Register targets
-
-![Register targets screen showing no manually added IP addresses](_diagrams/target-group-register-targets-empty.webp)
-
-### Phase 3: Review
-
-![Review screen showing target group details and health check settings](_diagrams/target-group-review-health-check.webp)
+Together, these three views explain the whole job of a target group: define the backend contract, validate health, and wait for ECS to register real task IPs later.
 
 ---
 
@@ -70,6 +52,8 @@ Why:
 * `Lambda` for Lambda functions
 
 For SnakeAid on ECS Fargate, choose `IP addresses`.
+
+![Target group settings showing IP target type, name, protocol, port, VPC, and HTTP1](_diagrams/target-group-settings.webp)
 
 ### 2. Name
 
@@ -92,6 +76,8 @@ Target group port must match container port
 ```
 
 If container listens on 8080, target group should use 8080.
+
+![Target group port alignment diagram](_diagrams/port-alignment.png)
 
 ### 4. VPC
 
@@ -130,6 +116,8 @@ Endpoint should return `200 OK`.
 
 If path is wrong or route does not exist, targets will be marked `UNHEALTHY`.
 
+![Target group health check diagram](_diagrams/health-check.png)
+
 ![Review summary showing the configured health check path and success code](_diagrams/target-group-review-health-check.webp)
 
 ---
@@ -150,9 +138,11 @@ Targets = 0
 
 Reason:
 
-```text
-ECS Service will auto-register task IPs into the target group when service runs
-```
+ECS Service will auto-register task IPs into the target group when service runs.
+
+![Target group auto registration diagram](_diagrams/auto-registration.png)
+
+![Register targets screen showing no manually added IP addresses](_diagrams/target-group-register-targets-empty.webp)
 
 ---
 
@@ -165,6 +155,8 @@ Click:
 ```text
 Create target group
 ```
+
+![Diagram showing that Targets = 0 is still valid at review time before ECS Service exists](_diagrams/target-group-empty-review-state.png)
 
 ![Review screen confirming that Targets (0) is still valid before creation](_diagrams/target-group-review-zero-targets.webp)
 
@@ -180,10 +172,7 @@ Create target group
 
 ## TL;DR
 
-```text
-Target Group = how ALB calls backends
-Register targets = skip (ECS auto-registers)
-```
+Target Group defines how ALB calls backends, and the register-targets step can stay empty because ECS will populate it later.
 
 ---
 
