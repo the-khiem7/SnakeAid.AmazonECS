@@ -17,6 +17,11 @@ Build a **hybrid architecture (self-host + cloud backup)** to:
 * Keep the system **lean and easy to operate (low ops overhead)**
 * Allow gradual scaling to production-grade when needed
 
+The cloud backup path is being documented along two deployment options:
+
+* **ECS Fargate Classic** for explicit infrastructure control
+* **ECS Express Mode** for faster, more opinionated delivery
+
 ---
 
 ## Architecture Overview
@@ -76,11 +81,11 @@ The cloud system serves as **standby (active-passive)**.
 
 #### Compute:
 
-* **ECS Fargate**
+* **Amazon ECS deployment path**
 
-	* Service 1: `snakeaid-api`
-	* Service 2: `snakeai`
-	* Per service: 1 instance
+	* Option 1: `ECS Fargate Classic`
+	* Option 2: `ECS Express Mode`
+	* The current detailed hands-on flow is centered on Fargate Classic
 
 #### Networking:
 
@@ -201,6 +206,18 @@ The backend must ensure:
 * Preserves existing system (zero rewrite)
 * Simple operations (no Kubernetes, no over-engineering)
 * Clear scaling roadmap
+
+---
+
+## Content Map
+
+This documentation is organized into three main tracks:
+
+1. **Fargate vs Express**
+2. **Hands-on ClickOps for ECS Fargate**
+3. **Hands-on ClickOps for ECS Express**
+
+{{% children description="true" /%}}
 
 ---
 

@@ -17,6 +17,11 @@ Xây dựng một kiến trúc **hybrid (self-host + cloud backup)** nhằm:
 * Duy trì hệ thống **lean, dễ vận hành (low ops overhead)**
 * Cho phép mở rộng dần lên production-grade khi cần
 
+Phần cloud backup hiện được định hướng theo hai hướng triển khai:
+
+* **ECS Fargate Classic** để giữ quyền kiểm soát hạ tầng rõ ràng
+* **ECS Express Mode** để rút ngắn thời gian đi tới bản deploy đầu tiên
+
 ---
 
 ## Tổng quan kiến trúc
@@ -76,11 +81,11 @@ Hệ thống cloud đóng vai trò **standby (active-passive)**
 
 #### Compute:
 
-* **ECS Fargate**
+* **Hướng triển khai Amazon ECS**
 
-	* Service 1: `snakeaid-api`
-	* Service 2: `snakeai`
-	* Mỗi service: 1 instance
+	* Hướng 1: `ECS Fargate Classic`
+	* Hướng 2: `ECS Express Mode`
+	* Luồng hands-on chi tiết hiện tại đang tập trung vào Fargate Classic
 
 #### Networking:
 
@@ -201,6 +206,18 @@ Backend cần đảm bảo:
 * Giữ nguyên hệ thống hiện tại (zero rewrite)
 * Ops đơn giản (no Kubernetes, no over-engineering)
 * Có lộ trình scale rõ ràng
+
+---
+
+## Sơ đồ nội dung
+
+Bộ tài liệu hiện được tách thành ba nhánh chính:
+
+1. **So sánh Fargate và Express**
+2. **Hands-on ClickOps cho ECS Fargate**
+3. **Hands-on ClickOps cho ECS Express**
+
+{{% children description="true" /%}}
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "AWS Console Operations Guide"
+title: "ECS Fargate ClickOps"
 date: 2026-04-22
 weight: 3
 chapter: false
@@ -7,14 +7,14 @@ chapter: false
 
 ## Page Objective
 
-This section documents the AWS Console procedures used to stand up and troubleshoot the SnakeAid deployment flow.
+This section documents the manual AWS Console workflow for the **ECS Fargate Classic** deployment path used by SnakeAid.
 
 ---
 
 ## Scope
 
-* Covers manual configuration workflows in AWS Console
-* Follows the actual deployment flow of this project
+* Covers manual AWS Console configuration for ECS Fargate Classic
+* Follows the current detailed deployment path of this project
 * Each child page represents one specific operational task
 
 ---

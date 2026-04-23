@@ -1,5 +1,5 @@
 ---
-title: "Hướng dẫn thao tác trên AWS Console"
+title: "ECS Fargate ClickOps"
 date: 2026-04-22
 weight: 3
 chapter: false
@@ -7,14 +7,14 @@ chapter: false
 
 ## Mục tiêu trang
 
-Phần này ghi lại các quy trình thao tác trên AWS Console dùng để triển khai và xử lý sự cố cho hệ thống SnakeAid.
+Phần này ghi lại workflow thao tác thủ công trên AWS Console cho hướng triển khai **ECS Fargate Classic** của SnakeAid.
 
 ---
 
 ## Phạm vi
 
-* Dùng cho các thao tác cấu hình thủ công trên AWS Console
-* Ưu tiên theo luồng triển khai thực tế của dự án
+* Dùng cho các thao tác cấu hình thủ công trên AWS Console cho ECS Fargate Classic
+* Bám theo luồng triển khai chi tiết hiện tại của dự án
 * Mỗi mục con sẽ là một tác vụ cụ thể
 
 ---
