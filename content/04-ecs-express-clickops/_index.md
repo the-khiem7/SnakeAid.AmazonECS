@@ -9,6 +9,8 @@ chapter: false
 
 This section will document the AWS Console workflow for **ECS Express Mode** as a faster and more opinionated deployment path.
 
+![Diagram showing ECS Express as a faster but more default-driven deployment path](_diagrams/express-mode-overview.png)
+
 ---
 
 ## Scope
@@ -21,6 +23,8 @@ This section will document the AWS Console workflow for **ECS Express Mode** as 
 
 ## Planned Child Topics
 
+The focus here is not to reproduce the Fargate Classic flow with fewer screenshots. It is to understand what ECS Express chooses for you, what it hides, and where that changes the operational trade-off.
+
 1. Create an ECS Express service
 2. Review generated networking and endpoint resources
 3. Validate logs, health, and rollback behavior
@@ -30,7 +34,7 @@ This section will document the AWS Console workflow for **ECS Express Mode** as 
 
 ## Current Status
 
-This section is intentionally lightweight for now and will expand as the Express workflow is tested in practice.
+This section is still early, but it already serves a clear role: it is the place where Express Mode will be documented as its own deployment path rather than as a footnote to Fargate Classic.
 
 ---
 

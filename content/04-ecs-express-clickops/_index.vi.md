@@ -9,6 +9,8 @@ chapter: false
 
 Phần này sẽ ghi lại workflow thao tác trên AWS Console cho **ECS Express Mode** như một hướng triển khai nhanh hơn và opinionated hơn.
 
+![Sơ đồ cho thấy ECS Express là hướng triển khai nhanh hơn nhưng phụ thuộc nhiều hơn vào default do hệ thống quyết định](_diagrams/express-mode-overview.png)
+
 ---
 
 ## Phạm vi
@@ -21,6 +23,8 @@ Phần này sẽ ghi lại workflow thao tác trên AWS Console cho **ECS Expres
 
 ## Danh sách mục con dự kiến
 
+Trọng tâm ở đây không phải là lặp lại flow Fargate Classic với ít screenshot hơn. Trọng tâm là hiểu ECS Express đang tự quyết định thay chúng ta điều gì, che bớt phần nào, và điều đó làm thay đổi trade-off vận hành ra sao.
+
 1. Tạo một ECS Express service
 2. Kiểm tra các tài nguyên network và endpoint được sinh ra
 3. Xác thực logs, health, và rollback behavior
@@ -30,7 +34,7 @@ Phần này sẽ ghi lại workflow thao tác trên AWS Console cho **ECS Expres
 
 ## Trạng thái hiện tại
 
-Phần này hiện đang ở mức khung nội dung và sẽ được mở rộng khi workflow Express được kiểm chứng bằng thao tác thực tế.
+Phần này hiện vẫn ở giai đoạn sớm, nhưng vai trò của nó đã rõ: đây sẽ là nơi ghi chép Express Mode như một deployment path riêng, không chỉ như một chú thích phụ của Fargate Classic.
 
 ---
 
