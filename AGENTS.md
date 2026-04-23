@@ -91,6 +91,13 @@ Example:
 ![Diagram](_diagrams/example-diagram.png)
 ```
 
+## Diagram Rules
+
+- Prefer reproducible diagrams generated from nearby `_tools/` scripts when practical.
+- Match the diagram layout to the relationship being explained, not only to what the generator defaults produce.
+- If a diagram has a `1 -> n` or hub-and-spoke structure, prefer straight arrows over rectangular/elbow connectors.
+- Use orthogonal or rectangular connectors only when they improve clarity for dependency chains, layered architecture, or screen-space constraints.
+
 ## Screenshot Workflow
 
 - Store original AWS Console screenshots in `raw/` as PNG files.
