@@ -22,9 +22,7 @@ In Amazon Elastic Container Service:
 
 Equivalent mental model:
 
-```text
-docker-compose (single service) ≈ Task Definition
-```
+![Diagram showing docker-compose as the closest mental model to an ECS task definition](_diagrams/compose-to-task-definition.png)
 
 It defines:
 
@@ -33,17 +31,25 @@ It defines:
 * env
 * CPU / RAM
 
+The easiest way to read a task definition is: one part describes the container itself, and another part describes how ECS should run it.
+
 ### Task Definition Anatomy
 
 ![Task definition anatomy diagram](_diagrams/task-definition-anatomy.png)
+
+That blueprint only becomes useful when ECS turns it into running tasks inside a service.
 
 ### Task Definition to Runtime Mapping
 
 ![Task definition to runtime mapping diagram](_diagrams/task-to-runtime.png)
 
+For SnakeAid, the API task and the AI task are similar in structure but different in runtime profile.
+
 ### API vs AI Task Profiles
 
 ![SnakeAid task profiles diagram](_diagrams/task-profiles.png)
+
+IAM is the final piece many people miss on the first try. The task needs roles not because of application logic, but because ECS itself needs permission to pull images, send logs, and run correctly.
 
 ### IAM Roles in Task Execution
 
@@ -193,6 +199,8 @@ For both roles:
 * Task role
 * Execution role
 
+This is where the IAM role diagram above becomes practical: one role is about what the app can access, and the other is about what ECS needs in order to launch and operate the task.
+
 ### 9. Fields to skip
 
 No need to touch these at this step:
@@ -230,7 +238,7 @@ CPU: 1 vCPU
 Memory: 2 GB
 ```
 
-After both tasks are created (API + AI), share screenshots and continue to ALB + Service.
+Compared with `snakeaid-api`, the AI task mainly changes sizing and container port. The overall ECS flow stays the same.
 
 ---
 
@@ -241,9 +249,13 @@ After completion, the task list should include:
 * `snakeaid-api` (rev 1)
 * `snakeai`
 
+First confirm that the API task definition exists with the expected revision and base configuration.
+
 ### Screenshot: snakeaid-api
 
 ![Created snakeaid-api task definition showing revision 1 and environment settings](_diagrams/task-definition-api-created.webp)
+
+Then confirm that the AI task definition was created separately rather than being merged into the API task.
 
 ### Screenshot: snakeai
 
@@ -253,23 +265,24 @@ After completion, the task list should include:
 
 ## Key Insight
 
-```text
-docker-compose -> ECS task definition
-```
+If you have worked with Docker Compose before, the cleanest shortcut is to think of a task definition as the ECS-native version of a single service blueprint.
+
+![Diagram mapping docker-compose mental model to an ECS task definition](_diagrams/compose-to-task-definition.png)
 
 ---
 
 ## TL;DR
 
-```text
-Fill: Name + Image + Port + Env + CPU/RAM
--> Create
-```
+At minimum, you are really filling five things: name, image, port, env, and sizing.
+
+![Diagram showing the minimum inputs required to create an ECS task definition](_diagrams/minimum-fields-to-create-task.png)
 
 ---
 
 ## Next Step
 
 When both tasks are ready, continue with **ALB + Service**.
+
+At that point, the task definitions stop being just blueprints and become attachable compute units behind the load balancer and ECS services.
 
 ![Cluster services screen with the Create service action](_diagrams/task-definition-next-step-services.webp)

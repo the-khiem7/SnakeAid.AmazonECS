@@ -22,9 +22,7 @@ Trong Amazon Elastic Container Service:
 
 Hiểu tương đương:
 
-```text
-docker-compose (1 service) ≈ Task Definition
-```
+![Sơ đồ cho thấy docker-compose là mental model gần nhất với ECS task definition](_diagrams/compose-to-task-definition.png)
 
 Nó định nghĩa:
 
@@ -33,17 +31,25 @@ Nó định nghĩa:
 * env
 * CPU / RAM
 
+Cách dễ hiểu nhất là: một phần mô tả chính container, phần còn lại mô tả ECS sẽ chạy container đó như thế nào.
+
 ### Cấu trúc của Task Definition
 
 ![Sơ đồ cấu trúc của task definition](_diagrams/task-definition-anatomy.png)
+
+Blueprint này chỉ thật sự có ý nghĩa khi ECS biến nó thành task đang chạy trong service.
 
 ### Task Definition đi vào runtime như thế nào
 
 ![Sơ đồ task definition đi vào runtime](_diagrams/task-to-runtime.png)
 
+Với SnakeAid, task của API và task của AI giống nhau ở cấu trúc tổng quát nhưng khác nhau ở profile runtime.
+
 ### Profile task của API và AI
 
 ![Sơ đồ profile task của API và AI](_diagrams/task-profiles.png)
+
+IAM là mảnh ghép rất hay bị bỏ sót ở lần làm đầu tiên. Task cần role không chỉ vì logic ứng dụng, mà còn vì ECS cần quyền để kéo image, đẩy log, và vận hành task đúng cách.
 
 ### IAM role trong quá trình chạy task
 
@@ -193,6 +199,8 @@ Cho cả hai role:
 * Task role
 * Execution role
 
+Đây là lúc diagram IAM ở trên trở nên thực tế hơn: một role nói về những gì app được phép truy cập, còn role kia là thứ ECS cần để khởi chạy và vận hành task.
+
 ### 9. Các phần skip
 
 Không cần đụng ở bước này:
@@ -230,7 +238,7 @@ CPU: 1 vCPU
 Memory: 2 GB
 ```
 
-Sau khi tạo xong cả hai task (API + AI), gửi screenshot để chuyển sang bước ALB + Service.
+So với `snakeaid-api`, task AI chủ yếu đổi task sizing và container port. Luồng ECS tổng thể vẫn giữ nguyên.
 
 ---
 
@@ -241,9 +249,13 @@ Sau khi hoàn tất, danh sách task cần có đủ:
 * `snakeaid-api` (rev 1)
 * `snakeai`
 
+Trước hết, xác nhận task definition của API đã tồn tại với đúng revision và cấu hình nền mong muốn.
+
 ### Screenshot: snakeaid-api
 
 ![Task definition snakeaid-api đã tạo thành công với revision 1 và environment settings](_diagrams/task-definition-api-created.webp)
+
+Sau đó, xác nhận task definition của AI được tạo riêng, không bị trộn vào cùng task của API.
 
 ### Screenshot: snakeai
 
@@ -253,23 +265,24 @@ Sau khi hoàn tất, danh sách task cần có đủ:
 
 ## Insight quan trọng
 
-```text
-docker-compose -> ECS task definition
-```
+Nếu bạn đã quen với Docker Compose, cách hiểu ngắn gọn nhất là: task definition chính là phiên bản ECS-native của blueprint cho một service đơn.
+
+![Sơ đồ ánh xạ mental model từ docker-compose sang ECS task definition](_diagrams/compose-to-task-definition.png)
 
 ---
 
 ## TL;DR
 
-```text
-Điền: Name + Image + Port + Env + CPU/RAM
--> Create
-```
+Ở mức tối thiểu, bạn thực chất chỉ cần điền năm thứ: tên, image, port, env, và sizing.
+
+![Sơ đồ các input tối thiểu để tạo ECS task definition](_diagrams/minimum-fields-to-create-task.png)
 
 ---
 
 ## Bước tiếp theo
 
 Khi đã có đủ 2 task, chuyển sang bước **ALB + Service**.
+
+Lúc này task definition không còn chỉ là blueprint nữa, mà đã sẵn sàng để trở thành compute unit gắn vào load balancer và ECS service.
 
 ![Màn Cluster services với hành động Create service](_diagrams/task-definition-next-step-services.webp)
