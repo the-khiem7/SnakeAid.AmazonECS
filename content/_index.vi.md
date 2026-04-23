@@ -117,6 +117,8 @@ Bộ tài liệu được tách thành ba nhánh:
 
 ## Lộ trình
 
+Trong giai đoạn gần, mục tiêu là giữ failover ở mức thực dụng và dễ hiểu trước khi bổ sung thêm automation.
+
 ### Gần hạn
 
 * Manual failover với backup path ổn định
@@ -128,11 +130,4 @@ Bộ tài liệu được tách thành ba nhánh:
 * Mẫu message durability tốt hơn
 * Multi-region hoặc AI scaling nâng cao nếu thật sự cần
 
----
-
-## One-line Summary
-
-```text
-Cloudflare DNS -> (Primary: ZimaOS + RabbitMQ local)
-               -> (Backup: ALB -> ECS + Amazon MQ)
-```
+Tóm lại, Cloudflare vẫn ở phía trước, ZimaOS giữ vai trò runtime chính, còn AWS cung cấp đường thực thi backup khi cần failover.

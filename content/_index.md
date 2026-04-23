@@ -117,6 +117,8 @@ This documentation is organized into three tracks:
 
 ## Roadmap
 
+The near-term plan is to keep failover practical and understandable before adding more automation.
+
 ### Near term
 
 * Manual failover with a stable backup path
@@ -128,11 +130,4 @@ This documentation is organized into three tracks:
 * Better message durability patterns
 * Multi-region or more advanced AI scaling only if justified
 
----
-
-## One-line Summary
-
-```text
-Cloudflare DNS -> (Primary: ZimaOS + local RabbitMQ)
-               -> (Backup: ALB -> ECS + Amazon MQ)
-```
+In short, Cloudflare stays in front, ZimaOS remains the primary runtime, and AWS provides the backup execution path when failover is needed.
